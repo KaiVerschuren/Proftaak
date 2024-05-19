@@ -1,0 +1,39 @@
+@import url("normalize.css");
+@import url("allStyle.css");
+@import url("functionStyles.css");
+
+:root {
+  --text: #f1f5f9;
+  --text-reverse: #0c0a09;
+  --text-soft: rgba(255, 255, 255, 0.6);
+  --text-soft-reverse: rgba(0, 0, 0, 0.6);
+
+  --background: #020617;
+  --background-reverse: #f8fafc;
+
+  --primary: #fcd535;
+  --secondary: #121934;
+  --accent: #0f1223;
+
+  --clr-yes: #22C55E;
+  --clr-no: #B91C1C;
+}
+
+/* paste this on css files where responsive layout is applicable */
+/* xs */
+/* @media (min-width: 475px) {} */
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

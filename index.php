@@ -5,6 +5,9 @@ head();
 ?>
 
 <body>
+<script defer src="inc/js/main.js"></script>
+    <?php HeaderFunction(); ?>
+
 
 </body>
 
