@@ -27,6 +27,8 @@ head();
         </section>
     </main>
 
+<?php footer(); ?>
+
 </body>
 
 </html>
