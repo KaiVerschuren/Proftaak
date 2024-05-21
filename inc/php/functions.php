@@ -90,6 +90,23 @@ function headerFunction()
 <?php
 }
 
+function top3Card() {
+    ?>
+    <div class="top3Card">
+        <div class="top3Wrapper">
+            <div class="top3Picture">
+                <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" />
+            </div>
+            <div class="top3Info">
+                <h2>Spongebob</h2>
+                <p>999,999 Credits</p>
+                <span class="top3Placement">1st</span>
+            </div>
+        </div>
+    </div>
+<?php
+}
+
 function footer() {
     ?>
     <footer>

@@ -1,0 +1,37 @@
+.top3Card {
+    width: 50%;
+    height: fit-content;
+    border: 1px red solid;
+    position: relative;
+    border-radius: 15px;
+    margin-top: 3em;
+}
+
+.top3Wrapper {
+    width: 100%;
+    background-color: var(--accent);
+}
+
+.top3Picture > img {
+    border-radius: 15px;
+}
+.top3Info {
+    padding: 1em 2em;
+    text-align: center;
+}
+
+.top3Placement {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: var(--secondary);
+    width: 3rem;
+    aspect-ratio: 1/1;
+    border-radius: 32px;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--text-soft-reverse);
+}
