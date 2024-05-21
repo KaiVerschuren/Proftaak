@@ -91,6 +91,12 @@ function headerFunction()
 }
 
 function footer() {
-    
+    ?>
+    <footer>
+        <div class="container">
+            <p class="footerText">- CoinCove - <br> - 2024 &copy; -</p>
+        </div>
+    </footer>
+    <?php
 }
 ?>
