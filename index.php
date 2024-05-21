@@ -25,8 +25,8 @@ head();
                 <h2 class="userCounterTitle">Trusted by <span class="userCounterAmount">999,999,999</span> users!</h2>
             </div>
         </section>
-        <section>
-            
+        <section class="container">
+            <?php top3Card(); ?>
         </section>
     </main>
 
