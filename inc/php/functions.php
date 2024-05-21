@@ -89,4 +89,8 @@ function headerFunction()
     </div>
 <?php
 }
+
+function footer() {
+    
+}
 ?>
