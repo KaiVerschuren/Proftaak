@@ -26,11 +26,19 @@ head();
             </div>
         </section>
         <section class="container">
-            <?php top3Card(); ?>
+            <div class="top3Cards">
+
+                <?php
+                for ($i = 0; $i < 3; $i++) {
+
+                    top3Card($i);
+                }
+                ?>
+            </div>
         </section>
     </main>
 
-<?php footer(); ?>
+    <?php footer(); ?>
 
 </body>
 

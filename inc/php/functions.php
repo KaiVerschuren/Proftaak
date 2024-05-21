@@ -90,30 +90,30 @@ function headerFunction()
 <?php
 }
 
-function top3Card() {
-    ?>
-    <div class="top3Card">
-        <div class="top3Wrapper">
-            <div class="top3Picture">
-                <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" />
-            </div>
-            <div class="top3Info">
-                <h2>Spongebob</h2>
-                <p>999,999 Credits</p>
-                <span class="top3Placement">1st</span>
-            </div>
+function top3Card($placement)
+{
+?>
+    <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
+        <div class="top3Picture">
+            <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" />
+        </div>
+        <div class="top3Info">
+            <h2 class="top3InfoTitle">Spongebob</h2>
+            <p class="top3Credits">999,999 Credits</p>
+            <span class="top3Placement"><?php echo $placement + 1; ?>st</span>
         </div>
     </div>
 <?php
 }
 
-function footer() {
-    ?>
+function footer()
+{
+?>
     <footer>
         <div class="container">
             <p class="footerText">- CoinCove - <br> - 2024 &copy; -</p>
         </div>
     </footer>
-    <?php
+<?php
 }
 ?>

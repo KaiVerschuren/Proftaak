@@ -1,37 +1,130 @@
-.top3Card {
-    width: 50%;
-    height: fit-content;
-    border: 1px red solid;
-    position: relative;
-    border-radius: 15px;
-    margin-top: 3em;
+.top3Cards {
+  width: 100%;
+  height: fit-content;
+  margin-top: 11em;
+  margin-bottom: 10em;
+  pad: 0 1em;
+  /* border: 1px solid red; */
 }
 
 .top3Wrapper {
-    width: 100%;
-    background-color: var(--accent);
+  width: 70%;
+  background-color: var(--accent);
+  border-radius: 15px;
+  position: relative;
+  margin-bottom: 3em;
+  margin-left: auto;
+  margin-right: auto;
+  /* border: 1px solid violet; */
 }
 
 .top3Picture > img {
-    border-radius: 15px;
+  border-radius: 15px;
 }
 .top3Info {
-    padding: 1em 2em;
-    text-align: center;
+  padding: 1em 2em;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+}
+
+.top3InfoTitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 800;
+}
+
+.top3Credits {
+  color: var(--text-soft);
+  font-weight: 500;
 }
 
 .top3Placement {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(50%, -50%);
-    background-color: var(--secondary);
-    width: 3rem;
-    aspect-ratio: 1/1;
-    border-radius: 32px;
-    display: grid;
-    place-items: center;
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: var(--text-soft-reverse);
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  background-color: var(--secondary);
+  width: 2rem;
+  aspect-ratio: 1/1;
+  border-radius: 32px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--text-soft-reverse);
 }
+
+/* xs */
+@media (min-width: 475px) {
+  .top3Info {
+    font-size: 1rem;
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+  .top3Wrapper {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .top3Cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    /* gap: 2em; */
+  }
+
+  .top3Card0 {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .top3Card1 {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+  .top3Card2 {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+
+  .top3Info {
+    font-size: 1.2rem;
+  }
+
+  .top3Placement {
+    width: 3rem;
+    font-size: 1.5rem;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  .top3Info {
+    font-size: 1.4rem;
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .top3Wrapper {
+    width: 25%;
+  }
+  .top3Cards {
+    display: flex;
+    justify-content: space-around;
+    /* gap: 10%; */
+  }
+
+  .top3Info {
+    font-size: 1.2rem;
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  .top3Cards {
+    /* gap: 10%; */
+  }
+}
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
