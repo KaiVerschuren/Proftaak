@@ -1,0 +1,63 @@
+:root {
+  --text: #f1f5f9;
+  --text-reverse: #0c0a09;
+  --text-soft: rgba(255, 255, 255, 0.6);
+  --text-soft-reverse: rgba(0, 0, 0, 0.6);
+
+  --background: #020617;
+  --background-reverse: #f8fafc;
+
+  --primary: #fcd535;
+  --secondary: #34d399;
+  --accent: #0f1223;
+
+  --clr-yes: #22c55e;
+  --clr-no: #b91c1c;
+
+  /*Primary rgba: 	rgba(252, 213, 53, 1) */
+}
+
+* {
+  margin: 0;
+  line-height: calc(1em + 0.5rem);
+  box-sizing: border-box;
+  color: var(--text);
+  font-family: montserrat, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+img,
+picture,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  user-select: none;
+}
+
+button {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;
+}
+
+strong {
+  color: var(--secondary);
+  font-weight: 700;
+}
