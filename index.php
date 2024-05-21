@@ -7,8 +7,8 @@ head();
 <body>
     <script defer src="inc/js/main.js"></script>
     <?php HeaderFunction(); ?>
-    <main class="container">
-        <section class="hero">
+    <main class="">
+        <section class="hero container">
             <div class="heroTextWrapper">
                 <div>
                     <h1 class="heroTitle">Coin Cove</h1>
@@ -19,6 +19,11 @@ head();
                 <button class="heroButton btn">Start Trading!</button>
             </div>
             <img class="heroImage" src="./assets/Placeholder1000x800.jpg" alt="">
+        </section>
+        <section class="userCounter">
+            <div class="container">
+                <h2 class="userCounterTitle">Trusted by <span class="userCounterAmount">999,999,999</span> users!</h2>
+            </div>
         </section>
     </main>
 

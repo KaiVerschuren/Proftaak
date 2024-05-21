@@ -3,6 +3,7 @@
 @import url("allStyle.css");
 @import url("components/header.css");
 @import url("components/hero.css");
+@import url("components/userCounter.css");
 @import url("functionStyles.css");
 
 .btn {
@@ -35,7 +36,10 @@
 .container {
   width: 100%;
   box-sizing: border-box;
-  margin: 0 auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* xs */
