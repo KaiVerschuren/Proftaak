@@ -1,0 +1,42 @@
+.userCounter {
+    background-color: var(--accent);
+    height: 5rem;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    margin-top: 5em;
+}
+
+.userCounterTitle {
+    font-size: 1rem;
+}
+
+.userCounterAmount {
+    background: linear-gradient(to left, var(--secondary), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+/* xs */
+@media (min-width: 475px) {
+    .userCounterTitle {
+        font-size: 1.5rem;
+    }
+}
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

@@ -45,11 +45,11 @@ function headerFunction()
         </nav>
         <div class="loginButtons">
             <a class="resetAnchorTag" href="">Sign up</a>
-            <a class="resetAnchorTag" href="">Log in</a>
+            <a class="resetAnchorTag btn" href="">Log in</a>
         </div>
     </header>
     <!-- ik wist niet welke links hier in moesten dus ik bedenk maar wat -->
-    <div class="dropdownMenu">
+    <div class="dropdownMenu dropdownProducts">
         <ul class="noStyleUL">
             <li>
                 <a href="" class="dropdown dropdownLink1 resetAnchorTag">
@@ -64,6 +64,25 @@ function headerFunction()
             <li>
                 <a href="" class="dropdown dropdownLink3 resetAnchorTag">
                     Statistics
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="dropdownMenu dropdownAccount">
+        <ul class="noStyleUL">
+            <li>
+                <a href="" class="dropdown dropdownLink1 resetAnchorTag">
+                    Account
+                </a>
+            </li>
+            <li>
+                <a href="" class="dropdown dropdownLink2 resetAnchorTag">
+                    Wallet
+                </a>
+            </li>
+            <li>
+                <a href="" class="dropdown dropdownLink3 resetAnchorTag">
+                    Credits
                 </a>
             </li>
         </ul>

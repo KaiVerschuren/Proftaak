@@ -1,23 +1,89 @@
 @import url("normalize.css");
+@import url("style.css");
 @import url("allStyle.css");
+@import url("components/header.css");
+@import url("components/hero.css");
+@import url("components/userCounter.css");
 @import url("functionStyles.css");
 
-:root {
-  --text: #f1f5f9;
-  --text-reverse: #0c0a09;
-  --text-soft: rgba(255, 255, 255, 0.6);
-  --text-soft-reverse: rgba(0, 0, 0, 0.6);
-
-  --background: #020617;
-  --background-reverse: #f8fafc;
-
-  --primary: #fcd535;
-  --secondary: #121934;
-  --accent: #0f1223;
-
-  --clr-yes: #22C55E;
-  --clr-no: #B91C1C;
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -0.05em;
+  background-color: var(--primary);
+  color: var(--text-reverse);
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgba(252, 213, 53, 0.5), 0 6px 6px rgba(252, 213, 53, 0.5), 0 0 100px -10px var(--primary);
+  transition: 0.3s ease;
 }
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 18px rgba(252, 213, 53, 0.5), 0 10px 10px rgba(252, 213, 53, 0.5), 0 0 120px -10px var(--primary);
+}
+
+.noStyleUL {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.resetAnchorTag {
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* xs */
+@media (min-width: 475px) {
+  .container {
+      width: 475px;
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+  .container {
+      width: 640px;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  .container {
+      width: 768px;
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .container {
+      width: 1024px;
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  .container {
+      width: 1280px;
+  }
+}
+
+/* 2xl */
+@media (min-width: 1536px) {
+  .container {
+      width: 1536px;
+  }
+}
+
 
 /* paste this on css files where responsive layout is applicable */
 /* xs */
