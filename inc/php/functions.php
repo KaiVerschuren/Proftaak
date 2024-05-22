@@ -23,7 +23,9 @@ function headerFunction()
 ?>
     <header class="container">
         <div class="title">
-            <h1>Coin Cove</h1>
+            <a href="index.php" class="resetAnchorTag">
+                <h1 class="titleH1">Coin Cove</h1>
+            </a>
         </div>
         <nav class="nav">
             <ul class="navUL noStyleUL">
@@ -87,6 +89,28 @@ function headerFunction()
             </li>
         </ul>
     </div>
+<<<<<<< Updated upstream
+=======
+    <div class="dropdownMenu dropdownAccount">
+        <ul class="noStyleUL">
+            <li>
+                <a href="aboutUs.php" class="dropdown dropdownLink1 resetAnchorTag">
+                    About us
+                </a>
+            </li>
+            <li>
+                <a href="" class="dropdown dropdownLink2 resetAnchorTag">
+                    Team
+                </a>
+            </li>
+            <li>
+                <a href="" class="dropdown dropdownLink3 resetAnchorTag">
+                    History
+                </a>
+            </li>
+        </ul>
+    </div>
+>>>>>>> Stashed changes
 <?php
 }
 
