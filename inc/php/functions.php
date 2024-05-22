@@ -1,6 +1,6 @@
 <?php
 
-function head()
+function head($page)
 {
 ?>
     <!DOCTYPE html>
@@ -13,7 +13,7 @@ function head()
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style/utils.css">
-        <title>Homepage | Coin Cove</title>
+        <title><?php echo $page ?> | Coin Cove</title>
     </head>
 <?php
 }
