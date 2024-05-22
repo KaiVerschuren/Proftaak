@@ -41,7 +41,7 @@
 .top3Placement {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 50%;
   transform: translate(50%, -50%);
   background-color: var(--secondary);
   width: 2rem;

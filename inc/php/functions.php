@@ -95,7 +95,7 @@ function top3Card($placement)
 ?>
     <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
         <div class="top3Picture">
-            <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" />
+            <!-- <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" /> -->
         </div>
         <div class="top3Info">
             <h2 class="top3InfoTitle">Spongebob</h2>
