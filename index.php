@@ -27,7 +27,6 @@ head();
         </section>
         <section class="container">
             <div class="top3Cards">
-
                 <?php
                 for ($i = 0; $i < 3; $i++) {
 
