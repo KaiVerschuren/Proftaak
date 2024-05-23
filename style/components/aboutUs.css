@@ -1,0 +1,39 @@
+.aboutUs {
+    display: block;
+    
+    /* border: 1px solid red; */
+}
+
+.aboutUsPicture {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+/* xs */
+@media (min-width: 475px) {
+    
+}
+
+/* sm */
+@media (min-width: 640px) {
+    .aboutUs {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+    }
+    .aboutUsPicture {
+        margin-top: 80px;
+    }
+}
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
