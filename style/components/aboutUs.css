@@ -9,6 +9,10 @@
     margin-bottom: 10px;
 }
 
+.aboutUsText > section {
+    margin-bottom: 1em;
+}
+
 /* xs */
 @media (min-width: 475px) {}
 

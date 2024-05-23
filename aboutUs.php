@@ -26,7 +26,6 @@ head("About us");
                     cutting-edge tools, and exceptional support. We believe in the transformative power of blockchain technology and strive to foster an inclusive community where knowledge and innovation thrive.
                 </p>
             </section>
-            <br>
             <section class="aboutSection3">
                 <h2>Our platform offers</h2>
                 <ul>
@@ -61,7 +60,6 @@ head("About us");
                     </li>
                 </ul>
             </section>
-            <br>
             <section class="aboutSection4">
                 <p>
                     At CoinCove, we are more than just a platform; we are your partner in the crypto journey. 
