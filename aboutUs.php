@@ -22,7 +22,7 @@ head("About us");
             </section>
             <section class="aboutSection2">
                 <p>
-                    At <strong>CoinCove</strong>, our mission is to empower both novice and experienced crypto enthusiasts by providing comprehensive resources, 
+                    At CoinCove, our mission is to empower both novice and experienced crypto enthusiasts by providing comprehensive resources, 
                     cutting-edge tools, and exceptional support. We believe in the transformative power of blockchain technology and strive to foster an inclusive community where knowledge and innovation thrive.
                 </p>
             </section>
@@ -64,7 +64,7 @@ head("About us");
             <br>
             <section class="aboutSection4">
                 <p>
-                    At <strong>CoinCove</strong>, we are more than just a platform; we are your partner in the crypto journey. 
+                    At CoinCove, we are more than just a platform; we are your partner in the crypto journey. 
                     Join us as we explore the future of finance and unlock the full potential of digital currencies. 
                     Together, we can shape a decentralized and inclusive financial landscape.
                 </p>

@@ -1,6 +1,6 @@
 .aboutUs {
     display: block;
-    
+    margin-bottom: 2em;
     /* border: 1px solid red; */
 }
 
@@ -10,17 +10,17 @@
 }
 
 /* xs */
-@media (min-width: 475px) {
-    
-}
+@media (min-width: 475px) {}
 
 /* sm */
 @media (min-width: 640px) {
     .aboutUs {
         display: grid;
-        grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 2em;
     }
+
     .aboutUsPicture {
         margin-top: 80px;
     }
