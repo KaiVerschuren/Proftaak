@@ -76,9 +76,7 @@ header {
   .title {
     display: block;
   }
-  .navLinkSvg {
-    display: inline-block;
-  }
+  
 }
 
 /* sm */
@@ -91,6 +89,9 @@ header {
   }
   .loginButtons {
     font-size: 1rem;
+  }
+  .navLinkSvg {
+    display: inline-block;
   }
 }
 

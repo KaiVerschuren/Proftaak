@@ -60,17 +60,17 @@ function headerFunction()
     <div class="dropdownMenu dropdownProducts">
         <ul class="noStyleUL">
             <li>
-                <a href="" class="dropdown dropdownLink1 resetAnchorTag">
+                <a href="pricing.php" class="dropdown dropdownLink1 resetAnchorTag">
                     Pricing
                 </a>
             </li>
             <li>
-                <a href="" class="dropdown dropdownLink2 resetAnchorTag">
+                <a href="buySell.php" class="dropdown dropdownLink2 resetAnchorTag">
                     Buy/Sell crypto
                 </a>
             </li>
             <li>
-                <a href="" class="dropdown dropdownLink3 resetAnchorTag">
+                <a href="statistics.php" class="dropdown dropdownLink3 resetAnchorTag">
                     Statistics
                 </a>
             </li>
@@ -79,17 +79,17 @@ function headerFunction()
     <div class="dropdownMenu dropdownAccount">
         <ul class="noStyleUL">
             <li>
-                <a href="" class="dropdown dropdownLink1 resetAnchorTag">
+                <a href="account.php" class="dropdown dropdownLink1 resetAnchorTag">
                     Account
                 </a>
             </li>
             <li>
-                <a href="" class="dropdown dropdownLink2 resetAnchorTag">
+                <a href="wallet.php" class="dropdown dropdownLink2 resetAnchorTag">
                     Wallet
                 </a>
             </li>
             <li>
-                <a href="" class="dropdown dropdownLink3 resetAnchorTag">
+                <a href="credits.php" class="dropdown dropdownLink3 resetAnchorTag">
                     Credits
                 </a>
             </li>
@@ -98,17 +98,17 @@ function headerFunction()
     <div class="dropdownMenu dropdownAccount">
         <ul class="noStyleUL">
             <li>
-                <a href="" class="dropdown dropdownLink1 resetAnchorTag">
+                <a href="aboutUs.php" class="dropdown dropdownLink1 resetAnchorTag">
                     About us
                 </a>
             </li>
             <li>
-                <a href="" class="dropdown dropdownLink2 resetAnchorTag">
+                <a href="team.php" class="dropdown dropdownLink2 resetAnchorTag">
                     Team
                 </a>
             </li>
             <li>
-                <a href="" class="dropdown dropdownLink3 resetAnchorTag">
+                <a href="history.php" class="dropdown dropdownLink3 resetAnchorTag">
                     History
                 </a>
             </li>
