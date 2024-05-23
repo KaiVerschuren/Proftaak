@@ -42,6 +42,14 @@ function headerFunction()
 
                     </span>
                 </li>
+                <li class="navList3">
+                    <span class="navLinkSpan">Us
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navLinkSvg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+
+                    </span>
+                </li>
                 <!-- <li class="navList3"><a class="resetAnchorTag" href="">Wallet</a></li> -->
             </ul>
         </nav>
@@ -89,12 +97,12 @@ function headerFunction()
             </li>
         </ul>
     </div>
-<<<<<<< Updated upstream
-=======
+
     <div class="dropdownMenu dropdownAccount">
         <ul class="noStyleUL">
             <li>
                 <a href="aboutUs.php" class="dropdown dropdownLink1 resetAnchorTag">
+
                     About us
                 </a>
             </li>
@@ -110,7 +118,6 @@ function headerFunction()
             </li>
         </ul>
     </div>
->>>>>>> Stashed changes
 <?php
 }
 
@@ -119,7 +126,7 @@ function top3Card($placement)
 ?>
     <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
         <div class="top3Picture">
-            <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" />
+            <!-- <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" /> -->
         </div>
         <div class="top3Info">
             <h2 class="top3InfoTitle">Spongebob</h2>
