@@ -18,7 +18,7 @@ head();
                 </div>
                 <button class="heroButton btn">Start Trading!</button>
             </div>
-            <img class="heroImage" src="./assets/Placeholder1000x800.jpg" alt="">
+            <img class="heroImage" src="./assets/logo.png" alt="Our logo">
         </section>
     </main>
 
