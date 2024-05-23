@@ -14,7 +14,7 @@ head("About us");
         </div>
         <section class="aboutSection1">
             <p>
-                Welcome to CoinCove, your premier destination for navigating the exciting world of cryptocurrency. 
+                Welcome to <strong>CoinCove</strong>, your premier destination for navigating the exciting world of cryptocurrency. 
                 Founded by a group of blockchain visionaries and financial experts, 
                 CoinCove is committed to making the complex world of digital assets accessible, secure, and beneficial for everyone.
             </p>

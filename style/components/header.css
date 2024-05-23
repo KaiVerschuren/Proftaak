@@ -10,9 +10,13 @@ header {
   display: none;
 }
 
-.title > h1 {
+.title > a {
+  /* font-size: 2em; */
+}
+
+.title > a > h1 {
   color: var(--primary);
-  font-size: .8rem;
+  /* font-size: .8rem; */
 }
 
 .navUL {
@@ -64,7 +68,7 @@ header {
 
 /* xs */
 @media (min-width: 475px) {
-  .title > h1 {
+  .title > a > h1 {
     font-size: 1.2rem;
   }
   .navUL {
@@ -81,7 +85,7 @@ header {
 
 /* sm */
 @media (min-width: 640px) {
-  .title > h1 {
+  .title > a > h1 {
     font-size: 1.4rem;
   }
   .navUL {
@@ -97,7 +101,7 @@ header {
 
 /* md */
 @media (min-width: 768px) {
-  .title > h1 {
+  .title > a > h1 {
     font-size: 2rem;
   }
 }
