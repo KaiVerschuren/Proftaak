@@ -12,6 +12,29 @@ for (let i = 0; i < length; i++) {
     dropDropdown[index].style.top = `${rect.bottom}px`;
   };
 
+<<<<<<< Updated upstream
+=======
+  // Function to handle showing the dropdown
+  const showDropdown = (index) => {
+    if (timeoutIds[index]) {
+      clearTimeout(timeoutIds[index]);
+      timeoutIds[index] = null;
+    }
+    navSvg[index].style.transform = "rotate(0deg)";
+    dropDropdown[index].style.display = "block";
+    positionDropdown(index);
+  };
+
+  // Function to handle hiding the dropdown
+  const hideDropdown = (index) => {
+    timeoutIds[index] = setTimeout(() => {
+      navSvg[index].style.transform = "rotate(-90deg)";
+      dropDropdown[index].style.display = "none";
+      timeoutIds[index] = null;
+    }, 100); // Delay of 1 second
+  };
+
+>>>>>>> Stashed changes
   // Add mouseenter event listener to navLink
   navLink[i].addEventListener("mouseenter", () => {
     navSvg[i].style.transform = "rotate(0deg)";

@@ -55,8 +55,8 @@ function headerFunction()
             </ul>
         </nav>
         <div class="loginButtons">
-            <a class="resetAnchorTag" href="">Sign up</a>
-            <a class="resetAnchorTag btn" href="">Log in</a>
+            <a class="resetAnchorTag" href="loginSignup.php?method=signUp">Sign up</a>
+            <a class="resetAnchorTag btn" href="loginSignup.php?method=logIn">Log in</a>
         </div>
     </header>
     <!-- ik wist niet welke links hier in moesten dus ik bedenk maar wat -->
