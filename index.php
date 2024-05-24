@@ -5,7 +5,7 @@ head("Homepage");
 ?>
 
 <body>
-    <script defer src="inc/js/main.js"></script>
+    <?php mobileNav(); ?>
     <?php HeaderFunction(); ?>
     <main class="">
         <section class="hero container">

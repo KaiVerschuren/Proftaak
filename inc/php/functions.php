@@ -21,6 +21,7 @@ function head($page)
 function headerFunction()
 {
 ?>
+    <script defer src="./inc/js/main.js"></script>
     <header class="container">
         <div class="title">
             <a href="index.php" class="resetAnchorTag">
@@ -145,5 +146,124 @@ function footer()
         </div>
     </footer>
 <?php
+}
+
+function mobileNav()
+{
+?>
+    <div class="mobileNav" onclick="window.location.href='index.php';">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+
+    </div>
+<?php
+}
+
+
+function api($limit = 5, $ids = [], $convert = 'USD')
+{
+    $url = 'https://api.coincap.io/v2/assets';
+    $parameters = [
+        'limit' => $limit
+    ];
+
+    if (!empty($ids)) {
+        $parameters['ids'] = implode(',', $ids); // Join the IDs with commas
+    }
+
+    $qs = http_build_query($parameters); // Query string encode the parameters
+    $request = "{$url}?{$qs}"; // Create the request URL
+
+    $curl = curl_init(); // Get cURL resource
+    // Set cURL options
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => $request,            // Set the request URL
+        CURLOPT_HTTPHEADER => [
+            'Accepts: application/json'
+        ],     // Set the headers
+        CURLOPT_RETURNTRANSFER => true,     // Ask for raw response instead of bool
+        CURLOPT_CAINFO => __DIR__ . '../../../api/cacert.pem', // Path to the CA bundle file in the same directory
+    ));
+
+    $response = curl_exec($curl); // Send the request, save the response
+
+    if ($response === false) {
+        $error = curl_error($curl);
+        curl_close($curl);
+        die('Curl error: ' . $error);
+    }
+
+    $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+    if ($statusCode !== 200) {
+        curl_close($curl);
+        die('Request failed: HTTP status code ' . $statusCode);
+    }
+
+    $data = json_decode($response, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        curl_close($curl);
+        die('JSON decode error: ' . json_last_error_msg());
+    }
+
+    curl_close($curl);
+
+    // Extract and use the data
+    $cryptocurrencies = $data['data'] ?? [];
+
+    // Convert prices to the requested currency if needed
+    if (strtoupper($convert) !== 'USD' && !empty($cryptocurrencies)) {
+        $cryptocurrencies = convertCurrency($cryptocurrencies, $convert);
+    }
+
+    return $cryptocurrencies;
+}
+
+function convertCurrency($cryptocurrencies, $convert)
+{
+    $convertUrl = 'https://api.coincap.io/v2/rates/' . strtolower($convert);
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => $convertUrl,
+        CURLOPT_HTTPHEADER => [
+            'Accepts: application/json'
+        ],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CAINFO => __DIR__ . '../../../api/cacert.pem',
+    ));
+
+    $response = curl_exec($curl);
+
+    if ($response === false) {
+        $error = curl_error($curl);
+        curl_close($curl);
+        die('Curl error: ' . $error);
+    }
+
+    $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+    if ($statusCode !== 200) {
+        curl_close($curl);
+        die('Request failed: HTTP status code ' . $statusCode);
+    }
+
+    $data = json_decode($response, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        curl_close($curl);
+        die('JSON decode error: ' . json_last_error_msg());
+    }
+
+    curl_close($curl);
+
+    $rate = $data['data']['rateUsd'] ?? 1;
+
+    foreach ($cryptocurrencies as &$crypto) {
+        $crypto['priceUsd'] = $crypto['priceUsd'] * $rate;
+    }
+
+    return $cryptocurrencies;
 }
 ?>
