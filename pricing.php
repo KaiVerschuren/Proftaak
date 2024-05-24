@@ -5,6 +5,7 @@ include('./inc/php/functions.php');
 
 head("Prices");
 headerFunction();
+mobileNav();
 
 // api(nummer van limiet, [als gespecificeerd, kun je kiezen welke maar als deze array leeg is], welke valuta)
 $cryptocurrencies = api(100, [], 'EUR');
