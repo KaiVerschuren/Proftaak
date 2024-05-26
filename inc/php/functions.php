@@ -55,11 +55,20 @@ function headerFunction()
             </ul>
         </nav>
         <div class="loginButtons">
-            <a class="resetAnchorTag" href="loginSignup.php?method=signUp">Sign up</a>
-            <a class="resetAnchorTag btn" href="loginSignup.php?method=logIn">Log in</a>
+            <?php
+            if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo']['userLoginState']) {
+            ?>
+                <a class="resetAnchorTag" href="loginSignup.php?method=signUp">Sign up</a>
+                <a class="resetAnchorTag btn" href="loginSignup.php?method=logIn">Log in</a>
+            <?php
+            } else if (isset($_SESSION['loginInfo']['userLoginState']) || $_SESSION['loginInfo']) {
+            ?>
+                <a class="resetAnchorTag btn" href="loginSignup.php?method=signOut">Sign out</a>
+            <?php
+            }
+            ?>
         </div>
     </header>
-    <!-- ik wist niet welke links hier in moesten dus ik bedenk maar wat -->
     <div class="dropdownMenu dropdownProducts">
         <ul class="noStyleUL">
             <li>
@@ -68,7 +77,7 @@ function headerFunction()
                 </a>
             </li>
             <li>
-                <a href="buySell.php" class="dropdown dropdownLink2 resetAnchorTag">
+                <a href="buy.php?method=buy&cryptoCurrency=BTC" class="dropdown dropdownLink2 resetAnchorTag">
                     Buy/Sell crypto
                 </a>
             </li>
@@ -99,7 +108,7 @@ function headerFunction()
         </ul>
     </div>
 
-    <div class="dropdownMenu dropdownAccount">
+    <div class="dropdownMenu dropdownUs">
         <ul class="noStyleUL">
             <li>
                 <a href="aboutUs.php" class="dropdown dropdownLink1 resetAnchorTag">
@@ -160,6 +169,43 @@ function mobileNav()
 <?php
 }
 
+function customMessageBox($title, $message, $buttons = [])
+{
+?>
+    <div class="customMessageBoxBlur">
+        <div class="customMessageBox">
+            <div class="customMessageBoxInner">
+                <header class="customMessageBoxHeader">
+                    <h2><?= htmlspecialchars($title); ?></h2>
+                </header>
+                <main class="customMessageBoxMain">
+                    <p><?= htmlspecialchars($message); ?></p>
+                    <div class="customMessageBoxButtonWrapper">
+
+                        <?php
+                        foreach ($buttons as $button) {
+                            if (isset($button['url'])) {
+                        ?>
+                                <button onclick="window.location.href='<?php echo $button['url']; ?>'" class="customMessageBoxButton btn"><?php echo htmlspecialchars($button['label']); ?></button>
+                            <?php
+                            } else {
+                            ?>
+                                <button onclick="history.go(-1)" class="customMessageBoxButton btn"><?php echo htmlspecialchars($button['label']); ?></button>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+<?php
+}
+
+function divide($num1, $num2) {
+    return $num1 / $num2;
+}
 
 function api($limit = 5, $ids = [], $convert = 'USD')
 {
