@@ -2,6 +2,8 @@
 
 include('./inc/php/functions.php');
 
+session_start();
+
 
 head("Prices");
 headerFunction();

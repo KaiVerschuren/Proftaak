@@ -6,6 +6,11 @@
     margin: 0 auto;
     padding: .5rem 1rem;
     border-radius: 10px;
+    font-size: .8em;
+}
+
+.loginForm {
+    margin-top: 5em;
 }
 
 .loginForm li:not(:last-child) {
@@ -35,3 +40,30 @@
     flex-direction: column;
     align-items: center;
 }
+
+/* xs */
+/* @media (min-width: 475px) {} */
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+@media (min-width: 768px) {
+    .loginFormInput {
+        font-size: 1em;
+        padding: 1rem 2rem;
+    }
+
+    .loginInputList svg {
+        width: 2rem;
+    }
+}
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
