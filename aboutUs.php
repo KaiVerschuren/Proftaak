@@ -1,12 +1,12 @@
 <?php
 include("inc/php/functions.php");
 
+session_start();
+
 head("About us");
 ?>
 <body>
-
-    <script defer src="inc/js/main.js"></script>
-    <?php HeaderFunction(); ?>
+    <?php HeaderFunction(); mobileNav(); ?>
 
     <main class="aboutUs container">
         <div class="aboutUsText">
@@ -15,7 +15,7 @@ head("About us");
             </div>
             <section class="aboutSection1">
                 <p>
-                    Welcome to <strong>CoinCove</strong>, your premier destination for navigating the exciting world of cryptocurrency. 
+                    Welcome to CoinCove, your premier destination for navigating the exciting world of cryptocurrency. 
                     Founded by a group of blockchain visionaries and financial experts, 
                     CoinCove is committed to making the complex world of digital assets accessible, secure, and beneficial for everyone.
                 </p>

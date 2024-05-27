@@ -32,7 +32,7 @@ for (let i = 0; i < length; i++) {
       navSvg[index].style.transform = "rotate(-90deg)";
       dropDropdown[index].style.display = "none";
       timeoutIds[index] = null;
-    }, 1000); // Delay of 1 second
+    }, 100); // Delay of 1 second
   };
 
   // Add mouseenter event listener to navLink

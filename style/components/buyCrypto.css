@@ -1,0 +1,30 @@
+.buyCryptoTitle {
+    display: flex;    
+    justify-content: space-between;
+    align-items: end;
+}
+
+.buyCryptoChoose {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.buyCryptoChoose > select {
+    text-align: center;
+}
+
+.buyCrypto input[type=submit] {
+    cursor: pointer;
+}
+
+.buyCryptoAmount {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.buyCryptoAmount input {
+    padding: 1rem 2rem;
+}

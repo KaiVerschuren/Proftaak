@@ -7,12 +7,17 @@
 @import url("components/userCounter.css");
 @import url("components/top3Leaderboard.css");
 @import url("components/aboutUs.css");
-<<<<<<< Updated upstream
-=======
+
 @import url("components/pricingTable.css");
 @import url("components/mobileNav.css");
 @import url("components/team.css");
->>>>>>> Stashed changes
+
+@import url("components/pricingTable.css");
+@import url("components/mobileNav.css");
+@import url("components/loginSignUp.css");
+@import url("components/customMessageBox.css");
+@import url("components/buyCrypto.css");
+
 @import url("functionStyles.css");
 
 .btn {
@@ -31,6 +36,14 @@
 .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 14px 18px rgba(252, 213, 53, 0.5), 0 10px 10px rgba(252, 213, 53, 0.5), 0 0 120px -10px var(--primary);
+}
+
+.input {
+  background-color: var(--accent);
+  border: none;
+  outline: none;
+  padding: .5rem 1rem;
+  font-weight: 600;
 }
 
 .noStyleUL {

@@ -1,11 +1,13 @@
 <?php
 include("inc/php/functions.php");
 
+session_start();
+
 head("Homepage");
 ?>
 
 <body>
-    <script defer src="inc/js/main.js"></script>
+    <?php mobileNav(); ?>
     <?php HeaderFunction(); ?>
     <main class="">
         <section class="hero container">
@@ -16,7 +18,7 @@ head("Homepage");
                 <div class="heroParagraph">
                     <strong>Buy, sell, and store</strong> over 250 digital assets at one of Europe’s<strong> leading exchanges</strong>.
                 </div>
-                <button class="heroButton btn">Start Trading!</button>
+                <button onclick="window.location.href='buySell.php'" class="heroButton btn">Start Trading!</button>
             </div>
             <img class="heroImage" src="./assets/logo.png" alt="Our logo">
         </section>
@@ -38,7 +40,18 @@ head("Homepage");
     </main>
 
     <?php footer(); ?>
-
+    <?php 
+    if (isset($_GET['status']) && $_GET['status'] == "success") {
+        customMessageBox(
+            "Nice!",
+            "The proccess has ben completed succesfully.",
+            $buttons = [
+                ['label' => 'To dashboard', 'url' => 'dashboard.php'],
+                ['label' => 'To Buying and Selling', 'url' => 'buy.php?method=buy&cryptoCurrency=BTC']
+            ]
+        );
+    }
+    ?>
 </body>
 
 </html>
