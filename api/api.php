@@ -1,14 +1,7 @@
 <?php
-$url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
+$url = 'https://api.coincap.io/v2/assets';
 $parameters = [
-    'start' => '1',
-    'limit' => '5000',
-    'convert' => 'EUR'
-];
-
-$headers = [
-    'Accepts: application/json',
-    'X-CMC_PRO_API_KEY: 4ae1c817-cef7-484a-8228-3c584d919d51'
+    'limit' => '5'  // Limit to top 5 cryptocurrencies
 ];
 
 $qs = http_build_query($parameters); // Query string encode the parameters
@@ -18,9 +11,11 @@ $curl = curl_init(); // Get cURL resource
 // Set cURL options
 curl_setopt_array($curl, array(
     CURLOPT_URL => $request,            // Set the request URL
-    CURLOPT_HTTPHEADER => $headers,     // Set the headers
+    CURLOPT_HTTPHEADER => [
+        'Accepts: application/json'
+    ],     // Set the headers
     CURLOPT_RETURNTRANSFER => true,     // Ask for raw response instead of bool
-    CURLOPT_CAINFO => __DIR__ . '/cacert.pem', // Path to the CA bundle file
+    CURLOPT_CAINFO => __DIR__ . '/cacert.pem', // Path to the CA bundle file in the same directory
 ));
 
 $response = curl_exec($curl); // Send the request, save the response
@@ -55,7 +50,7 @@ if (!empty($cryptocurrencies)) {
 <html>
 
 <head>
-    <title></title>
+    <title>Top 5 Cryptocurrencies</title>
 </head>
 
 <body>
@@ -65,17 +60,20 @@ if (!empty($cryptocurrencies)) {
             <tr>
                 <th>Name</th>
                 <th>Symbol</th>
-                <th>Price (EUR)</th>
+                <th>Price (USD)</th> <!-- Note: CoinCap provides prices in USD by default -->
             </tr>
         </thead>
         <tbody>
             <?php foreach ($cryptocurrencies as $crypto): ?>
             <tr>
-                <td><?= $crypto['name'] ?></td>
-                <td><?= $crypto['symbol'] ?></td>
-                <td><?= $crypto['quote']['EUR']['price'] ?></td>
+                <td><?= htmlspecialchars($crypto['name'], ENT_QUOTES, 'UTF-8') ?></td>
+                <td><?= htmlspecialchars($crypto['symbol'], ENT_QUOTES, 'UTF-8') ?></td>
+                <td><?= number_format($crypto['priceUsd'], 2) ?> USD</td> <!-- Ensure proper number formatting -->
             </tr>
-            <?php endforeach; ?>
+            <?php
+             endforeach;
+             echo hash('sha256', "Admin123");
+             ?>
         </tbody>
     </table>
 </body>

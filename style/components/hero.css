@@ -22,7 +22,8 @@
 
 .heroImage {
     border-radius: 15px;
-    width: 100%;
+    width: 60%;
+    margin: 0 auto;
 }
 
 /* xs */
@@ -44,16 +45,12 @@
     }
 
     .heroImage {
-        width: 25em;
+        width: 20em;
     }
 }
 
 /* lg */
-@media (min-width: 1024px) {
-    .heroImage {
-        width: 30em;
-    }
-}
+/* @media (min-width: 1024px) {} */
 
 /* xl */
 /* @media (min-width: 1280px) {} */

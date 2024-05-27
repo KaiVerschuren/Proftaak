@@ -1,0 +1,43 @@
+.mobileNav {
+    background: var(--primary);
+    height: 2em;
+    width: 2em;
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    border-radius: 50px;
+    box-shadow: 0 0px 10px rgba(252, 213, 53, 0.5), 0 0px 6px rgba(252, 213, 53, 0.5), 0 0 100px -10px var(--primary);
+    z-index: 999;
+}
+
+.mobileNav > svg {
+    stroke: black;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* xs */
+@media (min-width: 475px) {
+    .mobileNav {
+        display: none;
+    }
+}
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
