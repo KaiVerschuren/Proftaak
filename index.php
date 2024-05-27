@@ -47,7 +47,8 @@ head("Homepage");
             "The proccess has ben completed succesfully.",
             $buttons = [
                 ['label' => 'To dashboard', 'url' => 'dashboard.php'],
-                ['label' => 'To Buying and Selling', 'url' => 'buy.php?method=buy&cryptoCurrency=BTC']
+                ['label' => 'To the buying page', 'url' => 'buy.php?method=buy&cryptoCurrency=BTC'],
+                ['label' => 'Home', 'url' => 'index.php']
             ]
         );
     }

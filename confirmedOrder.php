@@ -10,11 +10,17 @@ if (isset($_SESSION['order'])) {
     $cryptoCurrency = $_SESSION['order']['cryptoCurrency'];
     $initialPay = $_SESSION['order']['initialPay'];
     $cryptoAmount = $_SESSION['order']['cryptoAmount'];
+    $newCreditAmount = $_SESSION['order']['newCreditAmount'];
     
     // Call the function and check its return value
     if (addWalletToId($userId, $cryptoCurrency, $creditAmount, $cryptoAmount, $initialPay)) {
-        // Success: Redirect to index.php with success parameter
-        header("Location: index.php?status=success");
+        
+        $subtractSucces = updateCredits($userId, $newCreditAmount);
+
+        if ($subtractSucces) {
+            unset($_SESSION['order']);
+            header("Location: index.php?status=success");
+        }
         exit;
     } else {
         // Failure: Redirect to index.php with failure parameter

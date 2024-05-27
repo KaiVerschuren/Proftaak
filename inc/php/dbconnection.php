@@ -210,6 +210,33 @@ function getUserCredits($userId)
     return $userCreditsFromId;
 }
 
+function updateCredits($userId, $newCredits) {
+    $con = connectDB();
+    // Define the SQL
+    $sql = "UPDATE userInfo
+    SET userCredits = ?
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameters
+    $stmt->bind_param("si", $newCredits, $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the updated user credits
+    return true;
+}
+
+
 
 
 ?>
