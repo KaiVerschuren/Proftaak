@@ -91,8 +91,8 @@ function headerFunction()
     <div class="dropdownMenu dropdownAccount">
         <ul class="noStyleUL">
             <li>
-                <a href="account.php" class="dropdown dropdownLink1 resetAnchorTag">
-                    Account
+                <a href="dashboard.php" class="dropdown dropdownLink1 resetAnchorTag">
+                    Dashboard
                 </a>
             </li>
             <li>
