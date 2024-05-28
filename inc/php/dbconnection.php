@@ -210,6 +210,135 @@ function getUserCredits($userId)
     return $userCreditsFromId;
 }
 
+<<<<<<< Updated upstream
+=======
+function getUserSettings($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT * 
+    FROM userSettings
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userSettingsFromId = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $userSettingsFromId;
+}
+
+function getUserInfo($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT * 
+    FROM userInfo
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userInfoFromId = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $userInfoFromId;
+}
+
+function updateCredits($userId, $newCredits) {
+    $con = connectDB();
+    // Define the SQL
+    $sql = "UPDATE userInfo
+    SET userCredits = ?
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameters
+    $stmt->bind_param("si", $newCredits, $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the updated user credits
+    return true;
+}
+
+function getWalletFromId($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT *
+    FROM userwallet
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userWallet = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $userWallet;
+}
+
+
+>>>>>>> Stashed changes
 
 
 ?>
