@@ -2,7 +2,7 @@
 include('./inc/php/functions.php');
 include('./inc/php/dbconnection.php');
 
-head("credits");
+head("Credits");
 headerFunction();
 ?>
 <body>  
