@@ -135,7 +135,7 @@ function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
 }
 
 
-function addWalletToId($userId, $currency, $creditAmount, $amountCrypto, $initialPay)
+function addWalletToId($userId, $currency, $currencyFull, $creditAmount, $amountCrypto, $initialPay)
 {
     $con = connectDB();
 
@@ -145,8 +145,11 @@ function addWalletToId($userId, $currency, $creditAmount, $amountCrypto, $initia
         return; // exit the function or handle the error appropriately
     }
 
+    // convert currencyFull to lowercase
+    $currencyFull = strtolower($currencyFull);
+
     // define the SQL with placeholders
-    $sql = "INSERT INTO `userWallet` (currency, amountCredits, amountCrypto, initialPayed, userId) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO `userWallet` (currency, currencyFull, amountCredits, amountCrypto, initialPayed, userId) VALUES (?, ?, ?, ?, ?, ?)";
 
     // prepare the statement
     $stmt = $con->prepare($sql);
@@ -159,7 +162,7 @@ function addWalletToId($userId, $currency, $creditAmount, $amountCrypto, $initia
     }
 
     // bind parameters
-    $stmt->bind_param("sdddi", $currency, $creditAmount, $amountCrypto, $initialPay, $userId);
+    $stmt->bind_param("ssdddi", $currency, $currencyFull, $creditAmount, $amountCrypto, $initialPay, $userId);
 
     // execute the statement
     $stmt->execute();
@@ -176,6 +179,7 @@ function addWalletToId($userId, $currency, $creditAmount, $amountCrypto, $initia
     $stmt->close();
     $con->close();
 }
+
 
 function getUserCredits($userId)
 {
@@ -336,7 +340,10 @@ function getWalletFromId($userId)
     // return array of links
     return $userWallet;
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 
 
