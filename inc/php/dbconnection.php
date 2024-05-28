@@ -236,6 +236,39 @@ function updateCredits($userId, $newCredits) {
     return true;
 }
 
+function getWalletFromId($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT *
+    FROM userwallet
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userWallet = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $userWallet;
+}
+
 
 
 

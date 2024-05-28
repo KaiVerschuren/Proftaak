@@ -7,22 +7,15 @@
 @import url("components/userCounter.css");
 @import url("components/top3Leaderboard.css");
 @import url("components/aboutUs.css");
-
 @import url("components/pricingTable.css");
 @import url("components/mobileNav.css");
 @import url("components/history.css");
-
-
-@import url("components/pricingTable.css");
-@import url("components/mobileNav.css");
 @import url("components/team.css");
-
-@import url("components/pricingTable.css");
-@import url("components/mobileNav.css");
 @import url("components/loginSignUp.css");
 @import url("components/customMessageBox.css");
 @import url("components/buyCrypto.css");
-
+@import url("components/wallet.css");
+@import url("components/walletInfo.css");
 @import url("functionStyles.css");
 
 .btn {
@@ -34,6 +27,8 @@
   color: var(--text-reverse);
   padding: 0.5em 1em;
   border-radius: 6px;
+  border: none;
+  outline: none;
   box-shadow: 0 10px 20px rgba(252, 213, 53, 0.5), 0 6px 6px rgba(252, 213, 53, 0.5), 0 0 100px -10px var(--primary);
   transition: 0.3s ease;
 }
