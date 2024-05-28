@@ -8,12 +8,14 @@ if (isset($_SESSION['order'])) {
     $userId = $_SESSION['order']['userId'];
     $creditAmount = $_SESSION['order']['creditAmount'];
     $cryptoCurrency = $_SESSION['order']['cryptoCurrency'];
+    $cryptoCurrencyFull = $_SESSION['order']['cryptoCurrencyFull'];
     $initialPay = $_SESSION['order']['initialPay'];
     $cryptoAmount = $_SESSION['order']['cryptoAmount'];
     $newCreditAmount = $_SESSION['order']['newCreditAmount'];
+
     
     // Call the function and check its return value
-    if (addWalletToId($userId, $cryptoCurrency, $creditAmount, $cryptoAmount, $initialPay)) {
+    if (addWalletToId($userId, $cryptoCurrency, $cryptoCurrencyFull, $creditAmount, $cryptoAmount, $initialPay)) {
         
         $subtractSucces = updateCredits($userId, $newCreditAmount);
 

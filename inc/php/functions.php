@@ -207,7 +207,10 @@ function divide($num1, $num2) {
     return $num1 / $num2;
 }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 function calculatePercentageChange($purchasePrice, $currentPrice) {
     // Calculate the difference between the current price and the purchase price
     $difference = $currentPrice - $purchasePrice;
@@ -218,9 +221,12 @@ function calculatePercentageChange($purchasePrice, $currentPrice) {
     return $percentageChange;
 }
 
+<<<<<<< Updated upstream
 
 
 
+=======
+>>>>>>> Stashed changes
 function api($limit = 5, $ids = [], $convert = 'USD')
 {
     $url = 'https://api.coincap.io/v2/assets';
@@ -325,5 +331,68 @@ function convertCurrency($cryptocurrencies, $convert)
     }
 
     return $cryptocurrencies;
+}
+
+function getAssetHistory($name, $interval = 'd1', $convert = 'USD')
+{
+    // Calculate current time and one year ago in UNIX time (milliseconds)
+    $end_time = round(microtime(true) * 1000);
+    $start_time = $end_time - (365 * 24 * 60 * 60 * 1000); // 1 year ago in milliseconds
+
+    // Define the URL and parameters
+    $url = "https://api.coincap.io/v2/assets/{$name}/history";
+    $parameters = [
+        'interval' => $interval,
+        'start' => $start_time,
+        'end' => $end_time
+    ];
+
+    $qs = http_build_query($parameters); // Query string encode the parameters
+    $request = "{$url}?{$qs}"; // Create the request URL
+
+    $curl = curl_init(); // Get cURL resource
+    // Set cURL options
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => $request,            // Set the request URL
+        CURLOPT_HTTPHEADER => [
+            'Accepts: application/json'
+        ],     // Set the headers
+        CURLOPT_RETURNTRANSFER => true,     // Ask for raw response instead of bool
+        CURLOPT_CAINFO => __DIR__ . '../../../api/cacert.pem', // Path to the CA bundle file in the same directory
+    ));
+
+    $response = curl_exec($curl); // Send the request, save the response
+
+    if ($response === false) {
+        $error = curl_error($curl);
+        curl_close($curl);
+        die('Curl error: ' . $error);
+    }
+
+    $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+    if ($statusCode !== 200) {
+        curl_close($curl);
+        die('Request failed: HTTP status code ' . $statusCode);
+    }
+
+    $data = json_decode($response, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        curl_close($curl);
+        die('JSON decode error: ' . json_last_error_msg());
+    }
+
+    curl_close($curl);
+
+    // Extract and use the data
+    $assetHistory = $data['data'] ?? [];
+
+    // Convert prices to the requested currency if needed (assuming convertCurrency function is defined)
+    if (strtoupper($convert) !== 'USD' && !empty($assetHistory)) {
+        $assetHistory = convertCurrency($assetHistory, $convert);
+    }
+
+    return $assetHistory;
 }
 ?>
