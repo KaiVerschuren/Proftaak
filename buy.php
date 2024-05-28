@@ -8,6 +8,7 @@ session_start();
 
 head("Buy/Sell");
 headerFunction();
+mobileNav();
 
 if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo']['userLoginState']) {
     customMessageBox(
