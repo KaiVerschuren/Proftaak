@@ -2,7 +2,7 @@
 include('./inc/php/functions.php');
 include('./inc/php/dbconnection.php');
 
-$crypto = api(5, [], 'EUR');
+$crypto = api(100, [], 'EUR');
 
 session_start();
 

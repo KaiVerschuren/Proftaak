@@ -210,6 +210,74 @@ function getUserCredits($userId)
     return $userCreditsFromId;
 }
 
+
+function getUserSettings($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT * 
+    FROM userSettings
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userSettingsFromId = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $userSettingsFromId;
+}
+
+function getUserInfo($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT * 
+    FROM userInfo
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userInfoFromId = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $userInfoFromId;
+}
+
+
 function updateCredits($userId, $newCredits) {
     $con = connectDB();
     // Define the SQL
@@ -268,6 +336,7 @@ function getWalletFromId($userId)
     // return array of links
     return $userWallet;
 }
+
 
 
 
