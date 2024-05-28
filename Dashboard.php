@@ -19,6 +19,8 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
     exit();
 }
 
+
+
 ?>
 
 <body>
