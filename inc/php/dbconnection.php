@@ -210,8 +210,7 @@ function getUserCredits($userId)
     return $userCreditsFromId;
 }
 
-<<<<<<< Updated upstream
-=======
+
 function getUserSettings($userId)
 {
     $con = connectDB();
@@ -278,6 +277,7 @@ function getUserInfo($userId)
     return $userInfoFromId;
 }
 
+
 function updateCredits($userId, $newCredits) {
     $con = connectDB();
     // Define the SQL
@@ -338,7 +338,7 @@ function getWalletFromId($userId)
 }
 
 
->>>>>>> Stashed changes
+
 
 
 ?>

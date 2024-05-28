@@ -18,7 +18,7 @@ head("Homepage");
                 <div class="heroParagraph">
                     <strong>Buy, sell, and store</strong> over 250 digital assets at one of Europe’s<strong> leading exchanges</strong>.
                 </div>
-                <button onclick="window.location.href='buySell.php'" class="heroButton btn">Start Trading!</button>
+                <button onclick="window.location.href='buy.php?method=buy&cryp'" class="heroButton btn">Start Trading!</button>
             </div>
             <img class="heroImage" src="./assets/logo.png" alt="Our logo">
         </section>
@@ -47,7 +47,8 @@ head("Homepage");
             "The proccess has ben completed succesfully.",
             $buttons = [
                 ['label' => 'To dashboard', 'url' => 'dashboard.php'],
-                ['label' => 'To Buying and Selling', 'url' => 'buy.php?method=buy&cryptoCurrency=BTC']
+                ['label' => 'To the buying page', 'url' => 'buy.php?method=buy&cryptoCurrency=BTC'],
+                ['label' => 'Home', 'url' => 'index.php']
             ]
         );
     }

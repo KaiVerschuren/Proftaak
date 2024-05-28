@@ -8,6 +8,7 @@ session_start();
 
 head("Buy/Sell");
 headerFunction();
+mobileNav();
 
 if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo']['userLoginState']) {
     customMessageBox(
@@ -43,7 +44,8 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
                     'creditAmount' => $creditAmount,
                     'cryptoCurrency' => $cryptoCurrency,
                     'initialPay' => $initialPay,
-                    'cryptoAmount' => $cryptoAmount
+                    'cryptoAmount' => $cryptoAmount,
+                    'newCreditAmount' => ($userCredits - $creditAmount)
                 );
             }
             
@@ -96,7 +98,7 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
                 ?>
             </div>
             <div class="buyCrypto">
-                <form class="buyCryptoChoose" action="<?php echo "buySell.php?method=buy"; ?>" method="get">
+                <form class="buyCryptoChoose" action="<?php echo "buy.php?method=buy"; ?>" method="get">
                         <input type="hidden" name="method" value="buy">
                         <select class="input" name="cryptoCurrency">
                             <option disabled>Choose currency</option>
