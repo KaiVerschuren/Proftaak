@@ -1,7 +1,8 @@
 .creditsCard {
-    display: flex;
+    /* display: flex; */
 }
 
 .creditsWrap {
-    
+    display: flex;
+    justify-content: space-between;
 }
