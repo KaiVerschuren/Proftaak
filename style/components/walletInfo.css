@@ -24,7 +24,28 @@
 }
 
 .walletBigDisplay {
-    display: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.walletInfoCard {
+  background-color: var(--accent);
+  padding: 1em 2em;
+}
+
+.walletSmallDisplay {
+  display: block;
+}
+
+.walletBigDisplay {
+  display: none;
+}
+
+
+#myChart {
+    cursor: crosshair;
+    height: 15em;
 }
 
 /* xs */
@@ -49,6 +70,29 @@
     .cryptoInfo {
     grid-area: 1 / 1 / 3 / 3;
     }  
+    .walletSmallDisplay {
+    display: none;
+  }
+
+  .walletBigDisplay {
+    display: block;
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .cryptoInfo {
+    grid-area: 1 / 1 / 2 / 4;
+  }
+  .sellCrypto {
+    grid-area: 1 / 4 / 2 / 6;
+  }
+  .cryptoGraph {
+    grid-area: 2 / 1 / 4 / 6
+  }
 }
 
 /* md */

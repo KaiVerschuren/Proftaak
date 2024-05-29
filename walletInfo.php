@@ -8,16 +8,94 @@ head("Wallet");
 headerFunction();
 
 if (isset($_SESSION['walletInfo'])) {
+    $info = $_SESSION['walletInfo'];
 }
+
 ?>
 
 <body>
-    <pre class="container">
-        <?php
-        var_dump($_SESSION['walletInfo']);
-        ?>
-    </pre>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Set parameters for the AJAX request
+            var name = '<?php echo $info['currencyFull']; ?>'; // Example asset name
+            var interval = 'd1'; // Example interval
 
+            // Make AJAX request
+            $.ajax({
+                url: 'https://api.coincap.io/v2/assets/' + name + '/history?interval=' + interval, // Adjusted URL
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    // Handle successful response
+                    console.log(response);
+
+                    // Extract labels and values for the chart
+                    let labels = response.data.map((item, index) => index % 1 === 0 ? new Date(item.time).toLocaleDateString() : null).filter(item => item);
+                    let values = response.data.map((item, index) => index % 1 === 0 ? item.priceUsd : null).filter(item => item);
+
+                    const rootStyles = getComputedStyle(document.documentElement);
+                    const primaryClr = rootStyles.getPropertyValue('--primary').trim();
+                    const secondaryClr = rootStyles.getPropertyValue('--secondary').trim();
+
+                    // Create chart
+                    const ctx = document.getElementById('myChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Price (USD)',
+                                data: values,
+                                borderWidth: 2,
+                                borderColor: primaryClr,
+                                pointRadius: 0,
+                                pointBackgroundColor: primaryClr,
+                                cubicInterpolationMode: 'monotone'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    display: true,
+                                },
+                                y: {
+                                    display: false,
+                                    beginAtZero: false
+                                }
+                            },
+                            plugins: {
+                                tooltip: {
+                                    enabled: true,
+                                    mode: 'index',
+                                    intersect: false
+                                },
+                                legend: {
+                                    display: false,
+                                    position: 'top'
+                                }
+                            },
+                            animation: {
+                                duration: 300,
+                                easing: 'linear'
+                            },
+                            hover: {
+                                mode: 'nearest',
+                                intersect: false
+                            }
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    </script>
     <div class="info container">
         <div class="cryptoInfo walletInfoCard">
             <div class="walletBigDisplay">
@@ -54,7 +132,7 @@ if (isset($_SESSION['walletInfo'])) {
             </div>
         </div>
         <div class="cryptoGraph walletInfoCard">
-            (insert some graph)
+            <canvas id="myChart"></canvas>
         </div>
     </div>
 </body>

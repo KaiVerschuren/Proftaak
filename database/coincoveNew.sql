@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 27, 2024 at 07:23 AM
+-- Generation Time: May 29, 2024 at 06:51 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -41,7 +41,7 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`userId`, `userDisplayName`, `userEmail`, `userPassword`, `userStatus`, `userCredits`) VALUES
-(2, 'Admin 1', 'admin@gmail.com', '$2y$10$QZI28.RTj/Oy.H4Tm.9Fquxk4qXQxSkDOFo99NIHkBIcGggLKFvha', 'admin', 10000);
+(2, 'Admin 1', 'admin@gmail.com', '$2y$10$QZI28.RTj/Oy.H4Tm.9Fquxk4qXQxSkDOFo99NIHkBIcGggLKFvha', 'admin', 8795);
 
 -- --------------------------------------------------------
 
@@ -73,12 +73,20 @@ INSERT INTO `usersettings` (`id`, `profilePublic`, `profileCredits`, `profileLea
 CREATE TABLE `userwallet` (
   `id` int NOT NULL,
   `currency` varchar(255) NOT NULL,
+  `currencyFull` varchar(255) NOT NULL,
   `amountCredits` double NOT NULL,
   `amountCrypto` double NOT NULL,
   `initialPayed` double NOT NULL,
   `timeOfPayment` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `userId` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `userwallet`
+--
+
+INSERT INTO `userwallet` (`id`, `currency`, `currencyFull`, `amountCredits`, `amountCrypto`, `initialPayed`, `timeOfPayment`, `userId`) VALUES
+(69, 'BTC', 'bitcoin', 100, 0.001459014265843, 68539.425789796, '2024-05-29 06:38:19', 2);
 
 --
 -- Indexes for dumped tables
@@ -124,7 +132,7 @@ ALTER TABLE `usersettings`
 -- AUTO_INCREMENT for table `userwallet`
 --
 ALTER TABLE `userwallet`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- Constraints for dumped tables
