@@ -8,17 +8,6 @@ head("Wallet");
 headerFunction();
 
 if (isset($_SESSION['walletInfo'])) {
-<<<<<<< Updated upstream
-}
-?>
-
-<body>
-    <pre class="container">
-        <?php
-        var_dump($_SESSION['walletInfo']);
-        ?>
-    </pre>
-=======
     $info = $_SESSION['walletInfo'];
 }
 
@@ -107,9 +96,6 @@ if (isset($_SESSION['walletInfo'])) {
             });
         });
     </script>
-
->>>>>>> Stashed changes
-
     <div class="info container">
         <div class="cryptoInfo walletInfoCard">
             <div class="walletBigDisplay">
@@ -146,13 +132,7 @@ if (isset($_SESSION['walletInfo'])) {
             </div>
         </div>
         <div class="cryptoGraph walletInfoCard">
-<<<<<<< Updated upstream
-            (insert some graph)
-        </div>
-=======
             <canvas id="myChart"></canvas>
         </div>
-
->>>>>>> Stashed changes
     </div>
 </body>

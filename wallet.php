@@ -2,18 +2,8 @@
 include('./inc/php/functions.php');
 include('./inc/php/dbconnection.php');
 
-<<<<<<< Updated upstream
-
-
 session_start();
 
-
-
-
-=======
-session_start();
-
->>>>>>> Stashed changes
 if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo']['userLoginState']) {
     customMessageBox(
         "Whoopsie!",
@@ -33,10 +23,7 @@ if (isset($_SESSION['walletInfo']) && !isset($_POST['walletForm'])) {
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['walletForm'])) {
     $currency = $_POST['currency'];
-<<<<<<< Updated upstream
-=======
     $currencyFull = $_POST['currencyFull'];
->>>>>>> Stashed changes
     $amountCrypto = $_POST['amountCrypto'];
     $amountCredits = $_POST['amountCredits'];
     $initialPaid = $_POST['initialPaid'];
@@ -45,10 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['walletForm'])) {
     $currency = $_POST['currency'];
     $_SESSION['walletInfo'] = array(
         'currency' => $currency,
-<<<<<<< Updated upstream
-=======
         'currencyFull' => $currencyFull,
->>>>>>> Stashed changes
         'amountCrypto' => $amountCrypto,
         'amountCredits' => $amountCredits,
         'initialPaid' => $initialPaid,
@@ -108,10 +92,7 @@ $crypto = api(5, [], 'EUR');
                                     <form class="walletInfoForm" method="post" name="walletPosted">
                                         <input type="hidden" name="walletForm">
                                         <input name="currency" type="hidden" value="<?php echo $walletContents['currency']; ?>">
-<<<<<<< Updated upstream
-=======
                                         <input name="currencyFull" type="hidden" value="<?php echo $walletContents['currencyFull']; ?>">
->>>>>>> Stashed changes
                                         <input name="amountCrypto" type="hidden" value="<?php echo $walletContents['amountCrypto']; ?>">
                                         <input name="amountCredits" type="hidden" value="<?php echo $walletContents['amountCredits']; ?>">
                                         <input name="initialPaid" type="hidden" value="<?php echo $walletContents['initialPayed']; ?>">

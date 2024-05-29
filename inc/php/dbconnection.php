@@ -340,12 +340,4 @@ function getWalletFromId($userId)
     // return array of links
     return $userWallet;
 }
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-
-
-
-
 ?>

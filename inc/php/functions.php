@@ -207,10 +207,6 @@ function divide($num1, $num2) {
     return $num1 / $num2;
 }
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 function calculatePercentageChange($purchasePrice, $currentPrice) {
     // Calculate the difference between the current price and the purchase price
     $difference = $currentPrice - $purchasePrice;
@@ -221,12 +217,6 @@ function calculatePercentageChange($purchasePrice, $currentPrice) {
     return $percentageChange;
 }
 
-<<<<<<< Updated upstream
-
-
-
-=======
->>>>>>> Stashed changes
 function api($limit = 5, $ids = [], $convert = 'USD')
 {
     $url = 'https://api.coincap.io/v2/assets';

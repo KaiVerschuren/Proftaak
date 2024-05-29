@@ -1,5 +1,4 @@
 .info {
-<<<<<<< Updated upstream
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -25,8 +24,6 @@
 }
 
 .walletBigDisplay {
-    display: none;
-=======
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -49,7 +46,6 @@
 #myChart {
     cursor: crosshair;
     height: 15em;
->>>>>>> Stashed changes
 }
 
 /* xs */
@@ -57,7 +53,6 @@
 
 /* sm */
 @media (min-width: 640px) {
-<<<<<<< Updated upstream
     .walletSmallDisplay {
         display: none;
     }
@@ -75,8 +70,7 @@
     .cryptoInfo {
     grid-area: 1 / 1 / 3 / 3;
     }  
-=======
-  .walletSmallDisplay {
+    .walletSmallDisplay {
     display: none;
   }
 
@@ -99,7 +93,6 @@
   .cryptoGraph {
     grid-area: 2 / 1 / 4 / 6
   }
->>>>>>> Stashed changes
 }
 
 /* md */
