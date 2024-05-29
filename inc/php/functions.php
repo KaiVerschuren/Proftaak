@@ -81,11 +81,6 @@ function headerFunction()
                     Buy/Sell crypto
                 </a>
             </li>
-            <li>
-                <a href="statistics.php" class="dropdown dropdownLink3 resetAnchorTag">
-                    Statistics
-                </a>
-            </li>
         </ul>
     </div>
     <div class="dropdownMenu dropdownAccount">
