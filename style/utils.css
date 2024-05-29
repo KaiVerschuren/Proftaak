@@ -15,7 +15,11 @@
 @import url("components/customMessageBox.css");
 @import url("components/buyCrypto.css");
 @import url("components/wallet.css");
+<<<<<<< Updated upstream
 @import url("components/walletInfo.css");
+=======
+@import url("components/credits.css");
+>>>>>>> Stashed changes
 @import url("functionStyles.css");
 
 .btn {
