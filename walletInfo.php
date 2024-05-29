@@ -9,6 +9,14 @@ headerFunction();
 
 if (isset($_SESSION['walletInfo'])) {
     $info = $_SESSION['walletInfo'];
+    $crypto = api(5, [], 'EUR');
+}
+
+foreach ($crypto as $cryptos) {
+    if($cryptos['symbol'] == $info['currency']) {
+        $profit = calculatePercentageChange($info['initialPaid'], $cryptos['priceUsd']);
+        $class = $profit >= 0 ? 'yes' : 'no';
+    }
 }
 
 ?>
@@ -97,41 +105,64 @@ if (isset($_SESSION['walletInfo'])) {
         });
     </script>
     <div class="info container">
-        <div class="cryptoInfo walletInfoCard">
+        <div class="cryptoInfo walletInfoCard accentShadow">
             <div class="walletBigDisplay">
-                <h1>BTC</h1>
-                <p>Amount of coins: 0.11</p>
-                <p>Amount of Credits paid: 7700</p>
-                <p>Initial amount per coin: 68480.72</p>
+                <div class="walletBigWrapper">
+                    <div class="walletBigLeft">
+                        <h1>Your Info</h1>
+                        <h2><?php echo $info['currency']; ?></h2>
+                        <p>Amount of coins: <strong><?php echo number_format($info['amountCrypto'], 3); ?></strong></p>
+                        <p>Amount of Credits paid: <strong><?php echo $info['amountCredits']; ?></strong></p>
+                        <p>Initial amount per coin: <strong><?php echo number_format($info['initialPaid'], 2); ?></strong></p>
+                        <p>Percentage changed: <strong style="color: var(--<?php echo $class; ?>);"><?php echo number_format($profit, 2) . "%"; ?></strong></p>
+                    </div>
+                    <div class="walletBigRight">
+                        <h1>Crypto Info</h1>
+                        <?php 
+                        foreach($crypto as $cryptos) {
+                            if ($cryptos['symbol'] == $info['currency']) {
+                                $profit = calculatePercentageChange($info['initialPaid'], $cryptos['priceUsd']);
+                        ?>
+                        <h2><?php echo $cryptos['symbol']; ?></h2>
+                        <p>Current amount per coin: <strong><?php echo number_format($cryptos['priceUsd'], 2); ?></strong></p>
+                        <p>Current supply: <strong><?php echo formatNumber($cryptos['supply']); ?></strong></p>
+                        <p>Market cap: <strong><?php echo formatNumber($cryptos['marketCapUsd']); ?></strong></p>
+                        <p>Change in price 24hr: <strong style="color: var(--<?php echo $class; ?>);"><?php echo number_format($cryptos['changePercent24Hr'], 2) . "%"; ?></strong></p>
+                        <?php
+                        }}
+                        ?>
+                    </div>
+                </div>
             </div>
             <div class="walletSmallDisplay">
                 <ul class="noStyleUL">
                     <li>
-                        <h1>BTC</h1>
+                        <h1>Your info</h1>
+                        <h2><?php echo $info['currency']; ?></h2>
                     </li>
                     <label>Amount of coins:</label>
                     <li>
-                        <p>0.11</p>
+                    <p><strong><?php echo number_format($info['amountCrypto'], 3); ?></strong></p>
                     </li>
                     <label for="">Amount of credits paid:</label>
                     <li>
-                        <p>7700</p>
+                    <p><strong><?php echo $info['amountCredits']; ?></strong></p>
                     </li>
                     <label for="">Initial amount per coin:</label>
                     <li>
-                        <p>68480.72</p>
+                        <p><strong></strong></p>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="sellCrypto walletInfoCard">
+        <div class="sellCrypto walletInfoCard accentShadow">
             <h1>Sell this crypto</h1>
             <div class="walletSellButtonWrapper">
                 <button class="btn">Sell all</button>
                 <button class="btn">Sell custom amount</button>
             </div>
         </div>
-        <div class="cryptoGraph walletInfoCard">
+        <div class="cryptoGraph walletInfoCard accentShadow">
             <canvas id="myChart"></canvas>
         </div>
     </div>

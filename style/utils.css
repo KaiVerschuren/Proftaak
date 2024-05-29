@@ -39,6 +39,10 @@
   box-shadow: 0 14px 18px rgba(252, 213, 53, 0.5), 0 10px 10px rgba(252, 213, 53, 0.5), 0 0 120px -10px var(--primary);
 }
 
+.accentShadow {
+  box-shadow: 0px 5px 15px rgba(15, 18, 35, .6), 0px 0px 20px rgba(15, 18, 35, .5);
+}
+
 .input {
   background-color: var(--accent);
   border: none;

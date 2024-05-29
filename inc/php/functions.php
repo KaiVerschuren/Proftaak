@@ -134,10 +134,10 @@ function top3Card($placement)
 {
 ?>
     <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
-        <div class="top3Picture">
+        <div class="top3Picture ">
             <!-- <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" /> -->
         </div>
-        <div class="top3Info">
+        <div class="top3Info ">
             <h2 class="top3InfoTitle">Spongebob</h2>
             <p class="top3Credits">999,999 Credits</p>
             <span class="top3Placement"><?php echo $placement + 1; ?>st</span>
@@ -173,7 +173,7 @@ function customMessageBox($title, $message, $buttons = [])
 {
 ?>
     <div class="customMessageBoxBlur">
-        <div class="customMessageBox">
+        <div class="customMessageBox accentShadow">
             <div class="customMessageBoxInner">
                 <header class="customMessageBoxHeader">
                     <h2><?= htmlspecialchars($title); ?></h2>
@@ -215,6 +215,18 @@ function calculatePercentageChange($purchasePrice, $currentPrice) {
     $percentageChange = ($difference / $purchasePrice) * 100;
     
     return $percentageChange;
+}
+
+function formatNumber($num) {
+    if ($num >= 1000000000) {
+        return number_format($num / 1000000000, 1) . 'b';
+    } elseif ($num >= 1000000) {
+        return number_format($num / 1000000, 1) . 'm';
+    } elseif ($num >= 1000) {
+        return number_format($num / 1000, 1) . 'k';
+    }
+
+    return $num;
 }
 
 function api($limit = 5, $ids = [], $convert = 'USD')
@@ -321,68 +333,5 @@ function convertCurrency($cryptocurrencies, $convert)
     }
 
     return $cryptocurrencies;
-}
-
-function getAssetHistory($name, $interval = 'd1', $convert = 'USD')
-{
-    // Calculate current time and one year ago in UNIX time (milliseconds)
-    $end_time = round(microtime(true) * 1000);
-    $start_time = $end_time - (365 * 24 * 60 * 60 * 1000); // 1 year ago in milliseconds
-
-    // Define the URL and parameters
-    $url = "https://api.coincap.io/v2/assets/{$name}/history";
-    $parameters = [
-        'interval' => $interval,
-        'start' => $start_time,
-        'end' => $end_time
-    ];
-
-    $qs = http_build_query($parameters); // Query string encode the parameters
-    $request = "{$url}?{$qs}"; // Create the request URL
-
-    $curl = curl_init(); // Get cURL resource
-    // Set cURL options
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => $request,            // Set the request URL
-        CURLOPT_HTTPHEADER => [
-            'Accepts: application/json'
-        ],     // Set the headers
-        CURLOPT_RETURNTRANSFER => true,     // Ask for raw response instead of bool
-        CURLOPT_CAINFO => __DIR__ . '../../../api/cacert.pem', // Path to the CA bundle file in the same directory
-    ));
-
-    $response = curl_exec($curl); // Send the request, save the response
-
-    if ($response === false) {
-        $error = curl_error($curl);
-        curl_close($curl);
-        die('Curl error: ' . $error);
-    }
-
-    $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-    if ($statusCode !== 200) {
-        curl_close($curl);
-        die('Request failed: HTTP status code ' . $statusCode);
-    }
-
-    $data = json_decode($response, true);
-
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        curl_close($curl);
-        die('JSON decode error: ' . json_last_error_msg());
-    }
-
-    curl_close($curl);
-
-    // Extract and use the data
-    $assetHistory = $data['data'] ?? [];
-
-    // Convert prices to the requested currency if needed (assuming convertCurrency function is defined)
-    if (strtoupper($convert) !== 'USD' && !empty($assetHistory)) {
-        $assetHistory = convertCurrency($assetHistory, $convert);
-    }
-
-    return $assetHistory;
 }
 ?>

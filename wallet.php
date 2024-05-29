@@ -55,7 +55,7 @@ $crypto = api(5, [], 'EUR');
                 <h3>Hello, <?php echo $_SESSION['loginInfo']['userDisplayName']; ?>!</h3>
             </header>
             <div class="walletContents">
-                <table class="walletTable">
+                <table class="walletTable accentShadow">
                     <thead>
                         <tr>
                             <th>Currency</th>
@@ -75,6 +75,7 @@ $crypto = api(5, [], 'EUR');
                             foreach ($crypto as $cryptoData) {
                                 if ($cryptoData['symbol'] == $walletContents['currency']) {
                                     $profit = calculatePercentageChange($walletContents['initialPayed'], $cryptoData['priceUsd']);
+                                    $class = $profit >= 0 ? 'yes' : 'no';
                                     $currentPrice = $cryptoData['priceUsd'];
                                     break;
                                 }
@@ -87,7 +88,7 @@ $crypto = api(5, [], 'EUR');
                                 <td class="walletCreditsPaid"><?php echo $walletContents['amountCredits']; ?></td>
                                 <td class="walletInitialAmount"><?php echo number_format($walletContents['initialPayed'], 2) ?></td>
                                 <td class="walletTimeOfPayment"><?php echo $walletContents['timeOfPayment']; ?></td>
-                                <td class="walletProfit"><?php echo number_format($profit, 2) . '%'; ?></td>
+                                <td  class="walletProfit"><strong style="color: var(--<?php echo $class; ?>);"><?php echo number_format($profit, 2) . '%'; ?></strong></td>
                                 <td>
                                     <form class="walletInfoForm" method="post" name="walletPosted">
                                         <input type="hidden" name="walletForm">

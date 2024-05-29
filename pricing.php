@@ -27,13 +27,15 @@ if (!empty($cryptocurrencies)) {
                 </tr>
             </thead>
             <tbody class="pricingTableBody">
-                <?php foreach ($cryptocurrencies as $crypto): ?>
+                <?php foreach ($cryptocurrencies as $crypto): 
+                    $class = $crypto['changePercent24Hr'] >= 0 ? 'yes' : 'no';
+                    ?>
                 <tr class="pricingTableBodyRow">
                     <td class="pricingTableRank"><?= htmlspecialchars($crypto['rank'], ENT_QUOTES, 'UTF-8') ?></td>
                     <td class="pricingTableName"><?= htmlspecialchars($crypto['name'], ENT_QUOTES, 'UTF-8') ?></td>
                     <td class="pricingTableSymbol"><?= htmlspecialchars($crypto['symbol'], ENT_QUOTES, 'UTF-8') ?></td>
                     <td class="pricingTablePrice"><?= number_format($crypto['priceUsd'], 2) ?> EUR</td>
-                    <td class="pricingTableChange"><?= number_format($crypto['changePercent24Hr'], 2) ?> %</td>
+                    <td class="pricingTableChange"><strong style="color: var(--<?php echo $class; ?>);"><?= number_format($crypto['changePercent24Hr'], 2) ?> %</strong></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
