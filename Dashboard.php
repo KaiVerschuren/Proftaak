@@ -19,10 +19,15 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
     exit();
 }
 
+$user = getUserSettings(2);
+
+$userInfo = getUserInfo(2);
 ?>
 
 <body>
-
+<?php
+    var_dump($userInfo);
+?>
 </body>
 
 </html>
