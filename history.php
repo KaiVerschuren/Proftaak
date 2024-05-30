@@ -14,7 +14,7 @@ head("Homepage");
 <body>
     <?php mobileNav(); ?>
     <?php HeaderFunction(); ?>
-
+    
     <div class="slideshow-container">
     <div class="projectGrid">
         <div class="project">
@@ -30,7 +30,8 @@ head("Homepage");
             <div class="description">
                 This was our second project. In this project we learned how to insert and use a database.
                 With this information we had to make a basic radio where the user will see three artist and when they click on a artist 3 random songs will show up.
-                <br><br> hold shift and scroll down to go to the next page and hold shiftand scroll up to go back
+                Also there will be a music video off on off the songs
+                <br><br> hold shift and scroll down to go to the next page and hold shift and scroll up to go back
             </div>
         </div>
         <div class="project">
@@ -38,14 +39,17 @@ head("Homepage");
             <div class="description">
                 This was our third project. In this project we learned how to make a webshop using php, html, css and a database.
                 In the database we added pictures, prices, descriptions, item name, item id and a filter bar.
+                When the user selects the filter bar and chooses for example: Porsche. only the cars with item id Porsche will be shown.
                 <br><br> hold shift and scroll up to go back
             </div>
         </div>
     </div>
 </div>
 
-
-    <?php footer(); ?>
+    <div class= "history_footer">
+        <?php footer(); ?>
+    </div>
     
 </body>
+
 </html>
