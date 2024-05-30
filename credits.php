@@ -9,6 +9,7 @@ headerFunction();
     <div class="container creditsWrap">
         <section class="creditsCard">
             <H1>1000 credits</H1>
+            <p><strong> &euro;1000,- </strong></p>
             <ol>
                 <li>
                     You get 1000 credits.
@@ -21,6 +22,7 @@ headerFunction();
         </section>
         <section class="creditsCard">
             <h1>10000 credits</h1>
+            <p><strong> &euro;10000,- </strong></p>
             <ol>
                 <li>
                     You get 10000 credits.
@@ -33,6 +35,7 @@ headerFunction();
         </section>
         <section class="creditsCard">
             <h1>custom amount</h1>
+            <p><strong> 1 euro per credit </strong></p>
             <ol>
                 <li>
                     You get the amount of credits you want.
