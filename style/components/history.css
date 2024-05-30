@@ -2,7 +2,7 @@
     width: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    display: flex;
+    display: none;
     justify-content: center;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
@@ -20,18 +20,19 @@
 .project {
     flex: 0 0 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     scroll-snap-align: start;
 }
 
 .photo {
-    width: 50%;
+    width: 75%;
     border-radius: 15px 0 0 15px;
     object-fit: cover;
 }
 
 .description {
-    width: 50%;
+    width: 75%;
     background-color: var(--accent);
     border-radius: 0 15px 15px 0;
     display: flex;
@@ -42,5 +43,41 @@
 }
 
 .history_footer {
-    padding-top: 350px;
+    padding-top: 250px;
 }
+
+.mobileHistory {
+    display: flex;
+    flex-direction: column;
+}
+
+/* xs */
+/* @media (min-width: 475px) {} */
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+@media (min-width: 1024px) {
+    .mobileHistory {
+        display: none;
+    }
+    .project {
+        flex-direction: row;
+    }
+    .slideshow-container {
+        display: flex;
+    }
+    .photo, .description {
+        width: 50%;
+    }
+}
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
