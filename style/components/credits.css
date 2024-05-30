@@ -1,8 +1,30 @@
 .creditsCard {
-    /* display: flex; */
+    padding: 1em 2em;
+    background-color: var(--accent); 
+    height: 20em;
+    aspect-ratio: 7/5;
 }
 
 .creditsWrap {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
+
+/* xs */
+/* @media (min-width: 475px) {} */
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
