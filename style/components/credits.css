@@ -1,30 +1,48 @@
 .creditsCard {
     padding: 1em 2em;
     background-color: var(--accent); 
-    height: 20em;
+    max-height: 20em;
     aspect-ratio: 7/5;
-}
-
-.creditsWrap {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 /* xs */
-/* @media (min-width: 475px) {} */
+@media (min-width: 475px) {
+    .creditsCard {
+        text-align: center;
+    }
+}
 
 /* sm */
-/* @media (min-width: 640px) {} */
+@media (min-width: 640px) {    
+    .creditsWrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        max-width: 450px;
+    }
+}
 
 /* md */
 /* @media (min-width: 768px) {} */
 
 /* lg */
-/* @media (min-width: 1024px) {} */
+@media (min-width: 1024px) {
+    .creditsWrap {
+        flex-direction: row;
+        max-width: 1000px;
+    }
 
-/* xl */
-/* @media (min-width: 1280px) {} */
+    .creditsCard {
+        max-width: 450px;
+    }
+}
+
+/* @media (min-width: 1280px) {}  */
 
 /* 2xl */
 /* @media (min-width: 1536px) {} */
+
+.creditsFooter {
+
+}

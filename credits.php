@@ -5,7 +5,7 @@ include('./inc/php/dbconnection.php');
 head("Credits");
 headerFunction();
 ?>
-<body>  
+<body class="credits">  
     <div class="container creditsWrap">
         <section class="creditsCard">
             <H1>1000 credits</H1>
@@ -38,7 +38,9 @@ headerFunction();
             <p><strong> 1 euro per credit </strong></p>
             <ol>
                 <li>
-                    You get the amount of credits you want.
+                    You get the amount of 
+                    <br>
+                    credits you want.
                 </li>
             </ol>
             <input type="number" min="1" max="99999999">
@@ -46,9 +48,12 @@ headerFunction();
             <button class="btn">Buy</button> 
         </section>
     </div>
+
+    <footer class="creditsFooter">
+        <?php
+        footer()
+        ?>
+    <footer>
+
 </body>
 </html>
-
-<?php
-footer()
-?>
