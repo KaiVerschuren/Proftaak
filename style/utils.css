@@ -1,6 +1,5 @@
 @import url("normalize.css");
 @import url("style.css");
-@import url("allStyle.css");
 @import url("components/header.css");
 @import url("components/footer.css");
 @import url("components/hero.css");
@@ -15,11 +14,9 @@
 @import url("components/customMessageBox.css");
 @import url("components/buyCrypto.css");
 @import url("components/wallet.css");
-@import url("components/walletInfo.css");
 @import url("components/credits.css");
 @import url("components/walletInfo.css");
-@import url("components/wallet.css");
-@import url("functionStyles.css");
+@import url("components/sell.css");
 
 .btn {
   display: inline-block;
@@ -42,7 +39,7 @@
 }
 
 .accentShadow {
-  box-shadow: 0px 5px 15px rgba(15, 18, 35, .6), 0px 0px 20px rgba(15, 18, 35, .5);
+  box-shadow: 0 5px 15px rgba(15, 18, 35, .6), 0 0 20px rgba(15, 18, 35, .5);
 }
 
 .input {
@@ -60,6 +57,14 @@
 
 .resetAnchorTag {
   text-decoration: none;
+}
+
+.gradientText {
+  background: linear-gradient(to left, var(--secondary), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .container {

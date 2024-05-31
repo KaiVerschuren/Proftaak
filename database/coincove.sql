@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 29, 2024 at 06:51 AM
+-- Generation Time: May 31, 2024 at 08:27 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `coincove`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `credithistory`
+--
+
+CREATE TABLE `credithistory` (
+  `hisortyId` int NOT NULL,
+  `historyCredits` int NOT NULL,
+  `historyTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `userId` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -41,7 +54,7 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`userId`, `userDisplayName`, `userEmail`, `userPassword`, `userStatus`, `userCredits`) VALUES
-(2, 'Admin 1', 'admin@gmail.com', '$2y$10$QZI28.RTj/Oy.H4Tm.9Fquxk4qXQxSkDOFo99NIHkBIcGggLKFvha', 'admin', 8795);
+(2, 'Admin 1', 'admin@gmail.com', '$2y$10$QZI28.RTj/Oy.H4Tm.9Fquxk4qXQxSkDOFo99NIHkBIcGggLKFvha', 'admin', 2216);
 
 -- --------------------------------------------------------
 
@@ -86,11 +99,19 @@ CREATE TABLE `userwallet` (
 --
 
 INSERT INTO `userwallet` (`id`, `currency`, `currencyFull`, `amountCredits`, `amountCrypto`, `initialPayed`, `timeOfPayment`, `userId`) VALUES
-(69, 'BTC', 'bitcoin', 100, 0.001459014265843, 68539.425789796, '2024-05-29 06:38:19', 2);
+(75, 'SOL', 'solana', 123, 0.7390909980696226, 166.42064417136, '2024-05-31 08:02:22', 2),
+(76, 'BTC', 'bitcoin', 5000, 0.07336866213473532, 68148.986972366, '2024-05-31 08:03:43', 2);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `credithistory`
+--
+ALTER TABLE `credithistory`
+  ADD PRIMARY KEY (`hisortyId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `userinfo`
@@ -117,6 +138,12 @@ ALTER TABLE `userwallet`
 --
 
 --
+-- AUTO_INCREMENT for table `credithistory`
+--
+ALTER TABLE `credithistory`
+  MODIFY `hisortyId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
@@ -132,11 +159,17 @@ ALTER TABLE `usersettings`
 -- AUTO_INCREMENT for table `userwallet`
 --
 ALTER TABLE `userwallet`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `credithistory`
+--
+ALTER TABLE `credithistory`
+  ADD CONSTRAINT `credithistory_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `userwallet` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `usersettings`

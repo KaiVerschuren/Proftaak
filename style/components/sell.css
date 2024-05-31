@@ -1,0 +1,33 @@
+.sellInfoWrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2em;
+}
+
+.sellInfoCard {
+    background-color: var(--accent);
+    padding: 1em 2em;
+    border-radius: 16px;
+}
+
+.sellInfoUser {
+    grid-area: 1 / 1 / 2 / 5;
+}
+
+.sellInfoCrypto {
+    grid-area: 1 / 5 / 2 / 8;
+}
+
+.sellCard {
+    grid-area: 2 / 1 / 3 / 4;
+}
+
+.userCreditsGraph {
+    grid-area: 2 / 4 / 2 / 8;
+}
+
+.sellAllForm {
+    display: flex;
+    gap: 1em;
+}
