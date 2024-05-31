@@ -83,14 +83,3 @@
 /* 2xl */
 /* @media (min-width: 1536px) {} */
 
-.creditsFooter {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-.credits {
-    position: relative;
-    min-height: 100vh;
->>>>>>> Stashed changes
-}
