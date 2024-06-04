@@ -2,8 +2,23 @@
 include('./inc/php/functions.php');
 include('./inc/php/dbconnection.php');
 
+session_start();
+
 head("Credits");
 headerFunction();
+
+if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo']['userLoginState']) {
+    customMessageBox(
+        "Whoopsie!",
+        "You need to be logged in to access your wallet",
+        $buttons = [
+            ['label' => 'Take me back', 'url' => 'javascript:history.go(-1);'],
+            ['label' => 'Let me log in', 'url' => 'loginSignup.php?method=logIn']
+        ]
+    );
+    exit();
+}
+
 ?>
 <body class="credits">  
     <div class="container creditsWrap">
@@ -18,7 +33,7 @@ headerFunction();
                     Nice amount to start.
                 </li>
             </ol>
-            <button class="btn">Buy</button>
+            <button class="btn creditsSection">Buy</button>
         </section>
         <section class="creditsCard">
             <h1>10000 credits</h1>
@@ -31,7 +46,7 @@ headerFunction();
                     It's a little bit cheaper
                 </li>
             </ol>
-            <button class="btn">Buy</button>
+            <button class="btn creditsSection">Buy</button>
         </section>
         <section class="creditsCard">
             <h1>custom amount</h1>
@@ -43,17 +58,17 @@ headerFunction();
                     credits you want.
                 </li>
             </ol>
-            <input type="number" min="1" max="99999999">
+            <input class="input creditsInput" type="number" min="1" max="99999999">
             <br>
-            <button class="btn">Buy</button> 
+            <button class="btn creditsSection">Buy</button> 
         </section>
     </div>
 
-    <footer class="creditsFooter">
+    <div class="creditsFooter">
         <?php
         footer()
         ?>
-    <footer>
+    </div>
 
 </body>
 </html>

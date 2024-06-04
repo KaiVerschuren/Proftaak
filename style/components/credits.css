@@ -6,6 +6,22 @@
     margin-bottom: 20px;
 }
 
+.creditsInput {
+    border: 1px solid var(--text-soft) !important;
+    /* color: var(--text-soft); */
+    border-radius: 10px;
+}
+
+.creditsInput::-webkit-outer-spin-button,
+.creditsInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.creditsSection {
+    margin-top: 1em;
+}
+
 /* xs */
 @media (min-width: 475px) {
     .creditsCard {
