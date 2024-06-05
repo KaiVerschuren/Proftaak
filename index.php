@@ -9,7 +9,6 @@ head("Homepage");
 <body>
 
 
-                <button onclick="window.location.href='buySell.php'" class="heroButton btn">Start Trading!</button>
 
 <?php mobileNav(); ?>
 <?php HeaderFunction(); ?>
@@ -20,8 +19,7 @@ head("Homepage");
                 <h1 class="heroTitle">Coin Cove</h1>
 
 
-                <button onclick="window.location.href='buy.php?method=buy&cryptoCurrency=BTC'" class="heroButton btn">Start Trading!</button>
-
+               
             </div>
             <div class="heroParagraph">
                 <strong>Buy, sell, and store</strong> over 250 digital assets at one of Europe’s<strong> leading
