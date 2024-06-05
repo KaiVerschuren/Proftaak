@@ -2,12 +2,13 @@
 include('./inc/php/functions.php');
 include('./inc/php/dbconnection.php');
 
-$crypto = api(5, [], 'EUR');
+$crypto = api(100, [], 'EUR');
 
 session_start();
 
 head("Buy/Sell");
 headerFunction();
+mobileNav();
 
 if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo']['userLoginState']) {
     customMessageBox(
@@ -34,6 +35,7 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
         $userId = $_POST['userId'];
         $creditAmount = $_POST['creditAmount'];
         $cryptoCurrency = $_POST['cryptoCurrency'];
+        $cryptoCurrencyFull = $_POST['cryptoCurrencyFull'];
         $initialPay = $_POST['priceUsd'];
         $cryptoAmount = divide($creditAmount, $initialPay);
         
@@ -42,8 +44,10 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
                     'userId' => $userId,
                     'creditAmount' => $creditAmount,
                     'cryptoCurrency' => $cryptoCurrency,
+                    'cryptoCurrencyFull' => $cryptoCurrencyFull,
                     'initialPay' => $initialPay,
-                    'cryptoAmount' => $cryptoAmount
+                    'cryptoAmount' => $cryptoAmount,
+                    'newCreditAmount' => ($userCredits - $creditAmount)
                 );
             }
             
@@ -96,7 +100,7 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
                 ?>
             </div>
             <div class="buyCrypto">
-                <form class="buyCryptoChoose" action="<?php echo "buySell.php?method=buy"; ?>" method="get">
+                <form class="buyCryptoChoose" action="<?php echo "buy.php?method=buy"; ?>" method="get">
                         <input type="hidden" name="method" value="buy">
                         <select class="input" name="cryptoCurrency">
                             <option disabled>Choose currency</option>
@@ -124,6 +128,7 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
 
                                 <input type="hidden" name="userId" value="<?php echo $_SESSION['loginInfo']['userId'] ?>">
                                 <input type="hidden" name="cryptoCurrency" value="<?php echo $cryptoCurrencies['symbol']; ?>" ?>
+                                <input type="hidden" name="cryptoCurrencyFull" value="<?php echo $cryptoCurrencies['id']; ?>" ?>
                                 <input type="hidden" name="priceUsd" value="<?php echo $cryptoCurrencies['priceUsd']; ?>" ?>
                                 <input class="input" type="submit" value="Buy Crypto">
 

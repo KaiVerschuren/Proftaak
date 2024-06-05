@@ -1,0 +1,203 @@
+.walletHeader {
+<<<<<<< Updated upstream
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+  /* background-color: var(--accent); */
+  font-size: 0.8rem;
+}
+
+.walletTable {
+  width: 100%;
+  /* border: 1px solid blue; */
+  margin-top: 1em;
+  background-color: var(--accent);
+  border-radius: 15px;
+  border-collapse: collapse;
+}
+
+.walletTable td,
+th {
+  text-align: center;
+}
+
+.walletTable th {
+  font-size: 0.8rem;
+  padding: 1em 0;
+}
+
+.walletTable td {
+  font-size: 0.8rem;
+}
+.walletInitialAmount,
+.walletTimeOfPayment,
+.amountOfCrypto,
+.walletProfit,
+.walletCreditsPaid {
+  display: none;
+}
+.walletTableBody > tr {
+  position: relative;
+}
+
+.walletTableBody > tr > td {
+  padding: 1em 0;
+}
+
+.walletTableBody > tr {
+    border-top: 1px solid var(--text-soft);
+}
+
+.walletInfoForm > input {
+    border: none;
+    outline: none;
+}
+
+/* xs */
+@media (min-width: 475px) {
+  .walletTable th {
+    font-size: 0.9rem;
+  }
+  .walletTable td {
+    font-size: 0.9rem;
+  }
+
+  .walletCreditsPaid {
+    display: table-cell;
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+  .walletTimeOfPayment,
+  .walletProfit {
+    display: table-cell;
+  }
+
+  .walletHeader {
+    font-size: 1rem;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  .amountOfCrypto {
+    display: table-cell;
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .walletInitialAmount {
+    display: table-cell;
+  }
+}
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
+=======
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+    /* background-color: var(--accent); */
+    font-size: 0.8rem;
+  }
+  
+  .walletTable {
+    width: 100%;
+    /* border: 1px solid blue; */
+    margin-top: 1em;
+    background-color: var(--accent);
+    border-radius: 15px;
+    border-collapse: collapse;
+  }
+  
+  .walletTable td,
+  th {
+    text-align: center;
+  }
+  
+  .walletTable th {
+    font-size: 0.8rem;
+    padding: 1em 0;
+  }
+  
+  .walletTable td {
+    font-size: 0.8rem;
+  }
+  .walletInitialAmount,
+  .walletTimeOfPayment,
+  .amountOfCrypto,
+  .walletProfit,
+  .walletCreditsPaid {
+    display: none;
+  }
+  .walletTableBody > tr {
+    position: relative;
+  }
+  
+  .walletTableBody > tr > td {
+    padding: 1em 0;
+  }
+  
+  .walletTableBody > tr {
+      border-top: 1px solid var(--text-soft);
+  }
+  
+  .walletInfoForm > input {
+      border: none;
+      outline: none;
+  }
+  
+  /* xs */
+  @media (min-width: 475px) {
+    .walletTable th {
+      font-size: 0.9rem;
+    }
+    .walletTable td {
+      font-size: 0.9rem;
+    }
+  
+    .walletCreditsPaid {
+      display: table-cell;
+    }
+  }
+  
+  /* sm */
+  @media (min-width: 640px) {
+    .walletTimeOfPayment,
+    .walletProfit {
+      display: table-cell;
+    }
+  
+    .walletHeader {
+      font-size: 1rem;
+    }
+  }
+  
+  /* md */
+  @media (min-width: 768px) {
+    .amountOfCrypto {
+      display: table-cell;
+    }
+  }
+  
+  /* lg */
+  @media (min-width: 1024px) {
+    .walletInitialAmount {
+      display: table-cell;
+    }
+  }
+  
+  /* xl */
+  /* @media (min-width: 1280px) {} */
+  
+  /* 2xl */
+  /* @media (min-width: 1536px) {} */
+  
+>>>>>>> Stashed changes

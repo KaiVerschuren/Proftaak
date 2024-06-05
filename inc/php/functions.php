@@ -81,18 +81,13 @@ function headerFunction()
                     Buy/Sell crypto
                 </a>
             </li>
-            <li>
-                <a href="statistics.php" class="dropdown dropdownLink3 resetAnchorTag">
-                    Statistics
-                </a>
-            </li>
         </ul>
     </div>
     <div class="dropdownMenu dropdownAccount">
         <ul class="noStyleUL">
             <li>
-                <a href="account.php" class="dropdown dropdownLink1 resetAnchorTag">
-                    Account
+                <a href="dashboard.php" class="dropdown dropdownLink1 resetAnchorTag">
+                    Dashboard
                 </a>
             </li>
             <li>
@@ -137,10 +132,10 @@ function top3Card($placement)
 <<<<<<< Updated upstream
 ?>
     <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
-        <div class="top3Picture">
+        <div class="top3Picture ">
             <!-- <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" /> -->
         </div>
-        <div class="top3Info">
+        <div class="top3Info ">
             <h2 class="top3InfoTitle">Spongebob</h2>
             <p class="top3Credits">999,999 Credits</p>
             <span class="top3Placement"><?php echo $placement + 1; ?>st</span>
@@ -219,7 +214,7 @@ function customMessageBox($title, $message, $buttons = [])
 {
 ?>
     <div class="customMessageBoxBlur">
-        <div class="customMessageBox">
+        <div class="customMessageBox accentShadow">
             <div class="customMessageBoxInner">
                 <header class="customMessageBoxHeader">
                     <h2><?= htmlspecialchars($title); ?></h2>
@@ -253,6 +248,28 @@ function divide($num1, $num2) {
     return $num1 / $num2;
 }
 
+function calculatePercentageChange($purchasePrice, $currentPrice) {
+    // Calculate the difference between the current price and the purchase price
+    $difference = $currentPrice - $purchasePrice;
+    
+    // Calculate the percentage change
+    $percentageChange = ($difference / $purchasePrice) * 100;
+    
+    return $percentageChange;
+}
+
+function formatNumber($num) {
+    if ($num >= 1000000000) {
+        return number_format($num / 1000000000, 1) . 'b';
+    } elseif ($num >= 1000000) {
+        return number_format($num / 1000000, 1) . 'm';
+    } elseif ($num >= 1000) {
+        return number_format($num / 1000, 1) . 'k';
+    }
+
+    return $num;
+}
+
 function api($limit = 5, $ids = [], $convert = 'USD')
 {
     $url = 'https://api.coincap.io/v2/assets';
@@ -283,21 +300,21 @@ function api($limit = 5, $ids = [], $convert = 'USD')
     if ($response === false) {
         $error = curl_error($curl);
         curl_close($curl);
-        die('Curl error: ' . $error);
+        // die('Curl error: ' . $error);
     }
 
     $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
     if ($statusCode !== 200) {
         curl_close($curl);
-        die('Request failed: HTTP status code ' . $statusCode);
+        // die('Request failed: HTTP status code ' . $statusCode);
     }
 
     $data = json_decode($response, true);
 
     if (json_last_error() !== JSON_ERROR_NONE) {
         curl_close($curl);
-        die('JSON decode error: ' . json_last_error_msg());
+        // die('JSON decode error: ' . json_last_error_msg());
     }
 
     curl_close($curl);
