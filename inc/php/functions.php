@@ -184,7 +184,7 @@ function top3Card($placement)
 
     // Close the database connection
     mysqli_close($con);
->>>>>>> Stashed changes
+
 }
 
 
