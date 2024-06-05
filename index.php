@@ -35,7 +35,7 @@ head("Homepage");
     </section>
     <section class="userCounter">
         <div class="container">
-            <h2 class="userCounterTitle">Trusted by <span class="userCounterAmount">999,999,999</span> users!</h2>
+            <h2 class="userCounterTitle">Trusted by <span class="userCounterAmount"><?php usercounter()?></span> users!</h2>
         </div>
     </section>
     <section class="container">
