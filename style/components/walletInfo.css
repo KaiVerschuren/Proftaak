@@ -1,0 +1,123 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.walletInfoCard {
+  background-color: var(--accent);
+  padding: 1em 2em;
+  border-radius: 15px;
+}
+
+.walletSmallDisplay {
+  display: block;
+}
+
+.walletBigDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.walletInfoCard {
+  background-color: var(--accent);
+  padding: 1em 2em;
+}
+
+.walletSmallDisplay {
+  display: block;
+  font-size: 0.7rem;
+}
+
+.walletSellButtonWrapper {
+  display: flex;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.sellCrypto {
+  font-size: 0.7rem;
+}
+
+.walletBigDisplay {
+  display: none;
+}
+
+.cryptoGraph {
+  height: 15em;
+  /* width: 25em; */
+}
+
+#myChart {
+  cursor: crosshair;
+}
+
+/* xs */
+@media (min-width: 475px) {
+  .walletSmallDisplay,
+  .sellCrypto {
+    font-size: 0.8rem;
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+  .walletSmallDisplay,
+  .sellCrypto {
+    font-size: 0.9rem;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  .walletSmallDisplay {
+    display: none;
+  }
+
+  .walletBigDisplay {
+    display: block;
+  }
+  .walletBigWrapper {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    /* gap: 1em; */
+    /* text-align: center; */
+  }
+
+  .sellCrypto {
+    font-size: .8rem;
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .cryptoInfo {
+    grid-area: 1 / 1 / 2 / 4;
+  }
+  .sellCrypto {
+    grid-area: 1 / 4 / 2 / 6;
+  }
+  .cryptoGraph {
+    grid-area: 2 / 1 / 4 / 6;
+    height: 20em;
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .walletBigWrapper,
+  .sellCrypto {
+    font-size: 1rem;
+  }
+}
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

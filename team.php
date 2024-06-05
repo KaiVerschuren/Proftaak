@@ -11,10 +11,10 @@ head("Homepage");
     ?>
    <h1 class="teamTitle">Team</h1>
     <div class="teamGrid container">
-        <div class="jamieImgBox">
+        <div class="jamieImgBox accentShadow">
             <img class="jamieImg teamImg" src="assets/jamie.jpg" alt="Picture of Jamie">
         </div>
-        <div class="jamie">
+        <div class="jamie accentShadow">
             <p class="teamText">
                 Hi, I'm Jamie van der Maat, a 17 year old <strong>software development student</strong> 
                 at ROC Ter AA Helmond located in the Netherlands.
@@ -25,10 +25,10 @@ head("Homepage");
                 I enjoy learning how things work behind the scenes and I'm looking forward to learn more.
             </p>
         </div>
-        <div class="kaiImgBox">
+        <div class="kaiImgBox accentShadow">
             <img class="kaiImg teamImg" src="assets/kai.webp" alt="Picture of Kai">
         </div>
-        <div class="kai">
+        <div class="kai accentShadow">
             <p class="teamText">
                 Hi, I'm Kai Verschuren, a 16-year-old
                 <strong> software development student</strong> at ROC Ter AA in the
@@ -41,10 +41,10 @@ head("Homepage");
                 software development.   
             </p>
         </div>
-        <div class="lucasImgBox">
+        <div class="lucasImgBox accentShadow">
             <img class="lucasImg teamImg" src="assets/lucas.png" alt="Picture of Lucas">
         </div>
-        <div class="lucas">
+        <div class="lucas accentShadow">
             <p class="teamText">
                 Hi, I'm Lucas Knol, a 17-year-old
                 <strong> software development student</strong> at ROC Ter AA in the

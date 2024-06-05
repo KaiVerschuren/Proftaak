@@ -16,26 +16,26 @@ function connectDB()
 function loginWithInfo($userEmail, $userPassword)
 {
     $con = connectDB();
-    
+
     // Use a prepared statement to prevent SQL injection
     $sql = "SELECT * FROM `userInfo` WHERE `userEmail` = ?";
-    
+
     // Prepare the statement
     $stmt = $con->prepare($sql);
-    
+
     if (!$stmt) {
         die("Statement preparation failed: " . $con->error);
     }
 
     // Bind the userEmail parameter
     $stmt->bind_param("s", $userEmail);
-    
+
     // Execute the statement
     $stmt->execute();
-    
+
     // Get the result
     $result = $stmt->get_result();
-    
+
     // Check if any rows are returned
     if ($result->num_rows == 0) {
         customMessageBox(
@@ -47,7 +47,7 @@ function loginWithInfo($userEmail, $userPassword)
             ]
         );
     }
-    
+
     // Fetch data from the result
     $userInfo = $result->fetch_assoc();
 
@@ -58,7 +58,7 @@ function loginWithInfo($userEmail, $userPassword)
 function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
 {
     $con = connectDB();
-    
+
     // Check if the connection is successful
     if ($con->connect_error) {
         die("Connection failed: " . $con->connect_error);
@@ -67,7 +67,7 @@ function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
     // Check if the email already exists
     $sqlCheck = "SELECT userID FROM `userinfo` WHERE userEmail = ?";
     $stmtCheck = $con->prepare($sqlCheck);
-    
+
     if (!$stmtCheck) {
         die("Error preparing check statement: " . $con->error);
     }
@@ -92,7 +92,7 @@ function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
 
     // Prepare the statement
     $stmt = $con->prepare($sql);
-    
+
     if (!$stmt) {
         die("Error preparing statement: " . $con->error);
     }
@@ -113,7 +113,7 @@ function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
 
     // Prepare the second statement
     $stmt2 = $con->prepare($sql2);
-    
+
     if (!$stmt2) {
         die("Error preparing second statement: " . $con->error);
     }
@@ -135,7 +135,7 @@ function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
 }
 
 
-function addWalletToId($userId, $currency, $creditAmount, $amountCrypto, $initialPay)
+function addWalletToId($userId, $currency, $currencyFull, $creditAmount, $amountCrypto, $initialPay)
 {
     $con = connectDB();
 
@@ -145,8 +145,11 @@ function addWalletToId($userId, $currency, $creditAmount, $amountCrypto, $initia
         return; // exit the function or handle the error appropriately
     }
 
+    // convert currencyFull to lowercase
+    $currencyFull = strtolower($currencyFull);
+
     // define the SQL with placeholders
-    $sql = "INSERT INTO `userWallet` (currency, amountCredits, amountCrypto, initialPayed, userId) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO `userWallet` (currency, currencyFull, amountCredits, amountCrypto, initialPayed, userId) VALUES (?, ?, ?, ?, ?, ?)";
 
     // prepare the statement
     $stmt = $con->prepare($sql);
@@ -155,11 +158,11 @@ function addWalletToId($userId, $currency, $creditAmount, $amountCrypto, $initia
     if ($stmt->error) {
         echo "Error preparing statement: " . $stmt->error;
         $con->close(); // close the connection
-        return; // exit the function or handle the error appropriately
+        return false; // exit the function or handle the error appropriately
     }
 
     // bind parameters
-    $stmt->bind_param("sdddi", $currency, $creditAmount, $amountCrypto, $initialPay, $userId);
+    $stmt->bind_param("ssdddi", $currency, $currencyFull, $creditAmount, $amountCrypto, $initialPay, $userId);
 
     // execute the statement
     $stmt->execute();
@@ -176,6 +179,64 @@ function addWalletToId($userId, $currency, $creditAmount, $amountCrypto, $initia
     $stmt->close();
     $con->close();
 }
+
+function updateCreditHistory($userId, $newCreditAmount,)
+{
+
+    $con = connectDB();
+    // Define the SQL
+    $sql = "insert into creditHistory (userId, historyCredits) values (?, ?)";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameters
+    $stmt->bind_param("ii", $userId, $newCreditAmount);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the updated user credits
+    return true;
+}
+
+function getCreditHistory($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT * from creditHistory WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $creditHistory = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $creditHistory;
+}
+
 
 function getUserCredits($userId)
 {
@@ -211,5 +272,132 @@ function getUserCredits($userId)
 }
 
 
+function getUserSettings($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT * 
+    FROM userSettings
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userSettingsFromId = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $userSettingsFromId;
+}
+
+function getUserInfo($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT * 
+    FROM userInfo
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userInfoFromId = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $userInfoFromId;
+}
+
+
+function updateCredits($userId, $newCredits)
+{
+    updateCreditHistory($userId, $newCredits);
+    $con = connectDB();
+    // Define the SQL
+    $sql = "UPDATE userInfo
+    SET userCredits = ?
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameters
+    $stmt->bind_param("si", $newCredits, $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the updated user credits
+    return true;
+}
+
+function getWalletFromId($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT *
+    FROM userwallet
+    WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userWallet = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $userWallet;
+}
 
 ?>

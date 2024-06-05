@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 27, 2024 at 07:23 AM
+-- Generation Time: May 31, 2024 at 08:27 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -23,9 +23,6 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
-<<<<<<< Updated upstream
-=======
 -- Table structure for table `credithistory`
 --
 
@@ -39,7 +36,6 @@ CREATE TABLE `credithistory` (
 -- --------------------------------------------------------
 
 --
->>>>>>> Stashed changes
 -- Table structure for table `userinfo`
 --
 
@@ -57,7 +53,7 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`userId`, `userDisplayName`, `userEmail`, `userPassword`, `userStatus`, `userCredits`) VALUES
-(2, 'Admin 1', 'admin@gmail.com', '$2y$10$QZI28.RTj/Oy.H4Tm.9Fquxk4qXQxSkDOFo99NIHkBIcGggLKFvha', 'admin', 10000);
+(2, 'Admin 1', 'admin@gmail.com', '$2y$10$QZI28.RTj/Oy.H4Tm.9Fquxk4qXQxSkDOFo99NIHkBIcGggLKFvha', 'admin', 2216);
 
 -- --------------------------------------------------------
 
@@ -89,6 +85,7 @@ INSERT INTO `usersettings` (`id`, `profilePublic`, `profileCredits`, `profileLea
 CREATE TABLE `userwallet` (
   `id` int NOT NULL,
   `currency` varchar(255) NOT NULL,
+  `currencyFull` varchar(255) NOT NULL,
   `amountCredits` double NOT NULL,
   `amountCrypto` double NOT NULL,
   `initialPayed` double NOT NULL,
@@ -97,8 +94,23 @@ CREATE TABLE `userwallet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `userwallet`
+--
+
+INSERT INTO `userwallet` (`id`, `currency`, `currencyFull`, `amountCredits`, `amountCrypto`, `initialPayed`, `timeOfPayment`, `userId`) VALUES
+(75, 'SOL', 'solana', 123, 0.7390909980696226, 166.42064417136, '2024-05-31 08:02:22', 2),
+(76, 'BTC', 'bitcoin', 5000, 0.07336866213473532, 68148.986972366, '2024-05-31 08:03:43', 2);
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `credithistory`
+--
+ALTER TABLE `credithistory`
+  ADD PRIMARY KEY (`hisortyId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `userinfo`
@@ -125,6 +137,12 @@ ALTER TABLE `userwallet`
 --
 
 --
+-- AUTO_INCREMENT for table `credithistory`
+--
+ALTER TABLE `credithistory`
+  MODIFY `hisortyId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
@@ -140,11 +158,17 @@ ALTER TABLE `usersettings`
 -- AUTO_INCREMENT for table `userwallet`
 --
 ALTER TABLE `userwallet`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `credithistory`
+--
+ALTER TABLE `credithistory`
+  ADD CONSTRAINT `credithistory_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `userwallet` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `usersettings`
