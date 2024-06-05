@@ -130,8 +130,11 @@ function headerFunction()
 <?php
 }
 
+
+
 function top3Card($placement)
 {
+<<<<<<< Updated upstream
 ?>
     <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
         <div class="top3Picture">
@@ -144,7 +147,50 @@ function top3Card($placement)
         </div>
     </div>
 <?php
+=======
+
+    $con = mysqli_connect("localhost", "root", "", "coincove");
+
+    
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    // Mysqli query to fetch rows in descending order of userCredits, limiting to top 3
+    $result = mysqli_query($con, "SELECT userDisplayName, userCredits FROM userinfo ORDER BY userCredits DESC LIMIT 3");
+
+
+    if (mysqli_num_rows($result) > 0) {
+        $ranking = 1;
+        while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
+                <div class="top3Picture">
+                    <!-- <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" /> -->
+                </div>
+                <div class="top3Info">
+                    <h2 class="top3InfoTitle"><?php echo htmlspecialchars($row['userDisplayName']); ?></h2>
+                    <p class="top3Credits"><?php echo number_format($row['userCredits']); ?> Credits</p>
+                    <span class="top3Placement"><?php echo $ranking; ?><?php echo ($ranking == 1 ? 'st' : ($ranking == 2 ? 'nd' : 'rd')); ?></span>
+                </div>
+            </div>
+            <?php
+            $ranking++;
+            $placement++;
+        }
+    } else {
+        echo "No results found.";
+    }
+
+    // Close the database connection
+    mysqli_close($con);
+>>>>>>> Stashed changes
 }
+
+
+
+
+
 
 function footer()
 {
@@ -313,3 +359,4 @@ function convertCurrency($cryptocurrencies, $convert)
     return $cryptocurrencies;
 }
 ?>
+

@@ -24,6 +24,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+<<<<<<< Updated upstream
+=======
+-- Table structure for table `credithistory`
+--
+
+CREATE TABLE `credithistory` (
+  `hisortyId` int NOT NULL,
+  `historyCredits` int NOT NULL,
+  `historyTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `userId` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+>>>>>>> Stashed changes
 -- Table structure for table `userinfo`
 --
 
@@ -34,7 +50,7 @@ CREATE TABLE `userinfo` (
   `userPassword` varchar(255) NOT NULL,
   `userStatus` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `userCredits` int NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `userinfo`
@@ -55,7 +71,7 @@ CREATE TABLE `usersettings` (
   `profileCredits` int NOT NULL DEFAULT '1',
   `profileLeaderboard` int NOT NULL DEFAULT '1',
   `userId` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `usersettings`
@@ -78,7 +94,7 @@ CREATE TABLE `userwallet` (
   `initialPayed` double NOT NULL,
   `timeOfPayment` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `userId` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
