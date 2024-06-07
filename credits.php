@@ -22,7 +22,7 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
 ?>
 <body class="credits">  
     <div class="container creditsWrap">
-        <section class="creditsCard">
+        <section class="creditsCard accentShadow">
             <H1>1000 credits</H1>
             <p><strong> &euro;1000,- </strong></p>
             <ol>
@@ -35,7 +35,7 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
             </ol>
             <button class="btn creditsSection">Buy</button>
         </section>
-        <section class="creditsCard">
+        <section class="creditsCard accentShadow">
             <h1>10000 credits</h1>
             <p><strong> &euro;10000,- </strong></p>
             <ol>
@@ -48,7 +48,7 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
             </ol>
             <button class="btn creditsSection">Buy</button>
         </section>
-        <section class="creditsCard">
+        <section class="creditsCard accentShadow">
             <h1>custom amount</h1>
             <p><strong> 1 euro per credit </strong></p>
             <ol>
