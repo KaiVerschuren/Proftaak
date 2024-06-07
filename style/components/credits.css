@@ -5,11 +5,11 @@
     aspect-ratio: 7/5;
     margin-bottom: 20px;
     border-radius: 15px;
+
 }
 
 .creditsInput {
     border: 1px solid var(--text-soft) !important;
-    /* color: var(--text-soft); */
     border-radius: 10px;
 }
 
@@ -48,10 +48,14 @@
     .creditsWrap {
         flex-direction: row;
         max-width: 1000px;
+        align-items: center;
+        min-height: 65vh;
     }
 
     .creditsCard {
         max-width: 450px;
+        min-width: 273px;
+        min-height: 331px;
     }
 }
 
