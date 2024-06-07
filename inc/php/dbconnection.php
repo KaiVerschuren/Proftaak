@@ -367,6 +367,71 @@ function updateCredits($userId, $newCredits)
     return true;
 }
 
+function removeWalletFromId($walletId)
+{
+    $con = connectDB();
+    // Define the SQL
+    $sql = "DELETE FROM userwallet WHERE id = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameters
+    $stmt->bind_param("i", $walletId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the updated user credits
+    return true;
+}
+
+function updateWalletFromId($newAmount, $walletId)
+{
+    $con = connectDB();
+
+    // Update the wallet's amountCredits
+    $sqlUpdate = "UPDATE userwallet
+    SET amountCredits = ?
+    WHERE id = ?";
+
+    // Prepare the update statement
+    $stmtUpdate = $con->prepare($sqlUpdate);
+
+    // Bind the parameters for the update
+    $stmtUpdate->bind_param("di", $newAmount, $walletId); // Use "di" for double and integer types
+
+    // Execute the update statement
+    $stmtUpdate->execute();
+
+    // Close the update statement
+    $stmtUpdate->close();
+
+    // Delete wallet rows where amountCredits is 0
+    $sqlDelete = "DELETE FROM userwallet WHERE amountCredits = 0";
+
+    // Prepare the delete statement
+    $stmtDelete = $con->prepare($sqlDelete);
+
+    // Execute the delete statement
+    $stmtDelete->execute();
+
+    // Close the delete statement
+    $stmtDelete->close();
+
+    // Close the connection
+    $con->close();
+
+    return true;
+}
+
+
 function getWalletFromId($userId)
 {
     $con = connectDB();

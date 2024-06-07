@@ -1,33 +1,67 @@
 .sellInfoWrapper {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 2em;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2em;
 }
 
 .sellInfoCard {
-    background-color: var(--accent);
-    padding: 1em 2em;
-    border-radius: 16px;
-}
-
-.sellInfoUser {
-    grid-area: 1 / 1 / 2 / 5;
-}
-
-.sellInfoCrypto {
-    grid-area: 1 / 5 / 2 / 8;
-}
-
-.sellCard {
-    grid-area: 2 / 1 / 3 / 4;
-}
-
-.userCreditsGraph {
-    grid-area: 2 / 4 / 2 / 8;
+  background-color: var(--accent);
+  padding: 1em 2em;
+  border-radius: 16px;
 }
 
 .sellAllForm {
-    display: flex;
-    gap: 1em;
+  display: flex;
+  gap: 1em;
 }
+
+.sellWalletWrapper {
+  font-size: 0.8rem;
+}
+
+/* xs */
+@media (min-width: 475px) {
+  .sellWalletWrapper {
+    font-size: 1rem;
+  }
+}
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+@media (min-width: 768px) {
+  .sellInfoWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .sellInfoUser {
+    grid-area: 1 / 1 / 2 / 5;
+  }
+
+  .sellInfoCrypto {
+    grid-area: 1 / 5 / 2 / 8;
+  }
+
+  .sellCard {
+    grid-area: 2 / 1 / 3 / 4;
+  }
+
+  .userCreditsGraph {
+    grid-area: 2 / 4 / 2 / 8;
+  }
+
+  .sellInfoWrapper {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

@@ -4,6 +4,10 @@
     align-items: end;
 }
 
+.buyWrapper {
+    font-size: .7rem;
+}
+
 .buyCryptoChoose {
     display: flex;
     flex-direction: column;
@@ -28,3 +32,25 @@
 .buyCryptoAmount input {
     padding: 1rem 2rem;
 }
+
+/* xs */
+@media (min-width: 475px) {
+    .buyWrapper {
+        font-size: 1rem;
+    }
+}
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

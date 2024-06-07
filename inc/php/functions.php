@@ -22,6 +22,7 @@ function headerFunction()
 {
 ?>
     <script defer src="./inc/js/main.js"></script>
+    <script src="./inc/js/slidein.js"></script>
     <header class="container">
         <div class="title">
             <a href="index.php" class="resetAnchorTag">
@@ -164,10 +165,6 @@ function usercounter()
 
 function top3Card($placement)
 {
-
-
-
-
     $con = mysqli_connect("localhost", "root", "", "coincove");
 
     
@@ -200,16 +197,9 @@ function top3Card($placement)
     } else {
         echo "No results found.";
     }
-
     // Close the database connection
     mysqli_close($con);
-
 }
-
-
-
-
-
 
 function footer()
 {
@@ -292,6 +282,31 @@ function formatNumber($num) {
     }
 
     return $num;
+}
+
+function sellCustomAmount() {
+    ?>
+    <div class="sellCustomBackgroundBlur">
+        <div class="sellCustom accentShadow">
+            <div class="sellCustomTitle">
+                <h1>
+                    Choose custom amount
+                </h1>
+            </div>
+            <form action="" class="sellCustomForm">
+                <ul class="noStyleUL">
+                    <li>
+                        <input type="hidden" name="customSell">
+                        <input type="number" name="customNumber" class="sellCustomInput removeArrow input">
+                    </li>
+                    <li>
+                        <input type="submit" class="btn" value="Sell">
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+    <?php
 }
 
 function api($limit = 5, $ids = [], $convert = 'USD')

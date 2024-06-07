@@ -17,6 +17,7 @@
 @import url("components/credits.css");
 @import url("components/walletInfo.css");
 @import url("components/sell.css");
+@import url("components/sellCustomAmount.css");
 
 .btn {
   display: inline-block;
@@ -65,6 +66,23 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+}
+
+.removeArrow::-webkit-outer-spin-button,
+.removeArrow::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translatey(50%);
+  transition: all 1s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .container {

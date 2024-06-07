@@ -3,6 +3,37 @@ include('./inc/php/functions.php');
 include('./inc/php/dbconnection.php');
 
 session_start();
+if (isset($_SESSION['loginInfo']) || $_SESSION['loginInfo']['userLoginState']) {
+    $walletContent = getWalletFromId($_SESSION['loginInfo']['userId']);
+
+    if (isset($_SESSION['walletInfo']) && !isset($_POST['walletForm'])) {
+        unset($_SESSION['walletInfo']);
+    }
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['walletForm'])) {
+        $walletId = $_POST['walletId'];    
+        $currency = $_POST['currency'];
+        $currencyFull = $_POST['currencyFull'];
+        $amountCrypto = $_POST['amountCrypto'];
+        $amountCredits = $_POST['amountCredits'];
+        $initialPaid = $_POST['initialPaid'];
+        $timeOfPayment = $_POST['timeOfPayment'];
+        
+        $currency = $_POST['currency'];
+        $_SESSION['walletInfo'] = array(
+            'walletId' => $walletId,
+            'currency' => $currency,
+            'currencyFull' => $currencyFull,
+            'amountCrypto' => $amountCrypto,
+            'amountCredits' => $amountCredits,
+            'initialPaid' => $initialPaid,
+            'timeOfPayment' => $timeOfPayment
+        );
+        header("Location: walletInfo.php");
+    }
+}
+head("Wallet");
+headerFunction();
+mobileNav();
 
 if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo']['userLoginState']) {
     customMessageBox(
@@ -16,35 +47,7 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
     exit();
 }
 
-$walletContent = getWalletFromId($_SESSION['loginInfo']['userId']);
-
-if (isset($_SESSION['walletInfo']) && !isset($_POST['walletForm'])) {
-    unset($_SESSION['walletInfo']);
-}
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['walletForm'])) {
-    $currency = $_POST['currency'];
-    $currencyFull = $_POST['currencyFull'];
-    $amountCrypto = $_POST['amountCrypto'];
-    $amountCredits = $_POST['amountCredits'];
-    $initialPaid = $_POST['initialPaid'];
-    $timeOfPayment = $_POST['timeOfPayment'];
-    
-    $currency = $_POST['currency'];
-    $_SESSION['walletInfo'] = array(
-        'currency' => $currency,
-        'currencyFull' => $currencyFull,
-        'amountCrypto' => $amountCrypto,
-        'amountCredits' => $amountCredits,
-        'initialPaid' => $initialPaid,
-        'timeOfPayment' => $timeOfPayment
-    );
-    header("Location: walletInfo.php");
-}
-head("Wallet");
-headerFunction();
-mobileNav();
-
-$crypto = api(5, [], 'EUR');
+$crypto = api(100, [], 'EUR');
 ?>
 
 <body>
@@ -92,6 +95,7 @@ $crypto = api(5, [], 'EUR');
                                 <td>
                                     <form class="walletInfoForm" method="post" name="walletPosted">
                                         <input type="hidden" name="walletForm">
+                                        <input name="walletId" type="hidden" value="<?php echo $walletContents['id']; ?>">
                                         <input name="currency" type="hidden" value="<?php echo $walletContents['currency']; ?>">
                                         <input name="currencyFull" type="hidden" value="<?php echo $walletContents['currencyFull']; ?>">
                                         <input name="amountCrypto" type="hidden" value="<?php echo $walletContents['amountCrypto']; ?>">

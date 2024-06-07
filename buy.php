@@ -79,7 +79,7 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
     <?php
     if (isset($_GET['method'])) {
         ?>
-        <main class="container">
+        <main class="container buyWrapper">
             <?php
             if (!isset($_GET['cryptoCurrency'])) {
                 ?>
