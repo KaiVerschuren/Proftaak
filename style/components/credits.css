@@ -1,8 +1,71 @@
 .creditsCard {
-    /* display: flex; */
+    padding: 1em 2em;
+    background-color: var(--accent); 
+    max-height: 20em;
+    aspect-ratio: 7/5;
+    margin-bottom: 20px;
 }
 
-.creditsWrap {
-    display: flex;
-    justify-content: space-between;
+.creditsInput {
+    border: 1px solid var(--text-soft) !important;
+    /* color: var(--text-soft); */
+    border-radius: 10px;
+}
+
+.creditsInput::-webkit-outer-spin-button,
+.creditsInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.creditsSection {
+    margin-top: 1em;
+}
+
+/* xs */
+@media (min-width: 475px) {
+    .creditsCard {
+        text-align: center;
+    }
+}
+
+/* sm */
+@media (min-width: 640px) {    
+    .creditsWrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        max-width: 450px;
+    }
+}
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+@media (min-width: 1024px) {
+    .creditsWrap {
+        flex-direction: row;
+        max-width: 1000px;
+    }
+
+    .creditsCard {
+        max-width: 450px;
+    }
+}
+
+/* @media (min-width: 1280px) {}  */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
+
+.creditsFooter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.credits {
+    position: relative;
+    min-height: 100vh;
 }
