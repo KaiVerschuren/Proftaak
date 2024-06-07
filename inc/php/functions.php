@@ -22,6 +22,7 @@ function headerFunction()
 {
 ?>
     <script defer src="./inc/js/main.js"></script>
+    <script src="./inc/js/slidein.js"></script>
     <header class="container">
         <div class="title">
             <a href="index.php" class="resetAnchorTag">
@@ -128,7 +129,7 @@ function headerFunction()
 function top3Card($placement)
 {
 ?>
-    <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
+    <div class="top3Wrapper  slide-in hidden <?php echo 'top3Card' . $placement; ?>">
         <div class="top3Picture ">
             <!-- <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" /> -->
         </div>
@@ -222,6 +223,31 @@ function formatNumber($num) {
     }
 
     return $num;
+}
+
+function sellCustomAmount() {
+    ?>
+    <div class="sellCustomBackgroundBlur">
+        <div class="sellCustom accentShadow">
+            <div class="sellCustomTitle">
+                <h1>
+                    Choose custom amount
+                </h1>
+            </div>
+            <form action="" class="sellCustomForm">
+                <ul class="noStyleUL">
+                    <li>
+                        <input type="hidden" name="customSell">
+                        <input type="number" name="customNumber" class="sellCustomInput removeArrow input">
+                    </li>
+                    <li>
+                        <input type="submit" class="btn" value="Sell">
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+    <?php
 }
 
 function api($limit = 5, $ids = [], $convert = 'USD')

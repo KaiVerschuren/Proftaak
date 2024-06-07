@@ -10,7 +10,7 @@ head("Homepage");
     <?php mobileNav(); ?>
     <?php HeaderFunction(); ?>
     <main class="">
-        <section class="hero container">
+        <section class="hero container slide-in hidden">
             <div class="heroTextWrapper">
                 <div>
                     <h1 class="heroTitle">Coin Cove</h1>
@@ -22,7 +22,7 @@ head("Homepage");
             </div>
             <img class="heroImage" src="./assets/logo.png" alt="Our logo">
         </section>
-        <section class="userCounter">
+        <section class="userCounter slide-in hidden">
             <div class="container">
                 <h2 class="userCounterTitle">Trusted by <span class="userCounterAmount">999,999,999</span> users!</h2>
             </div>

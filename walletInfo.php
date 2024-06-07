@@ -6,7 +6,7 @@ session_start();
 
 if (isset($_SESSION['walletInfo'])) {
     $info = $_SESSION['walletInfo'];
-    $crypto = api(5, [], 'EUR');
+    $crypto = api(100, [], 'EUR');
 } else {
     customMessageBox(
         'Info is not set.',
