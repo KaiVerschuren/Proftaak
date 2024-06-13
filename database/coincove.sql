@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 07, 2024 at 07:45 AM
+-- Generation Time: Jun 13, 2024 at 06:52 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -23,6 +23,7 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+--
 -- Table structure for table `credithistory`
 --
 
@@ -31,7 +32,7 @@ CREATE TABLE `credithistory` (
   `historyCredits` int NOT NULL,
   `historyTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `userId` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `credithistory`
@@ -224,7 +225,85 @@ INSERT INTO `credithistory` (`hisortyId`, `historyCredits`, `historyTime`, `user
 (196, 0, '2024-06-06 20:55:15', 2),
 (197, 71272, '2024-06-07 09:31:08', 2),
 (198, 74, '2024-06-07 09:39:18', 2),
-(199, 746, '2024-06-07 09:42:51', 2);
+(199, 746, '2024-06-07 09:42:51', 2),
+(200, 1001, '2024-06-07 10:30:04', 2),
+(201, 1001, '2024-06-07 10:30:06', 2),
+(202, 1001, '2024-06-07 10:30:19', 2),
+(203, 1000, '2024-06-07 10:32:48', 2),
+(204, 1001, '2024-06-07 11:55:41', 2),
+(205, 1001, '2024-06-07 11:55:43', 2),
+(206, 10001, '2024-06-07 11:55:48', 2),
+(207, 10001, '2024-06-07 11:55:52', 2),
+(208, 1001, '2024-06-07 11:55:53', 2),
+(209, 1001, '2024-06-07 11:56:04', 2),
+(210, 1001, '2024-06-07 11:56:27', 2),
+(211, 1001, '2024-06-07 11:56:31', 2),
+(212, 1001, '2024-06-07 11:56:41', 2),
+(213, 1001, '2024-06-07 11:57:06', 2),
+(214, 1001, '2024-06-07 11:57:08', 2),
+(215, 10001, '2024-06-07 11:57:09', 2),
+(216, 1001, '2024-06-07 11:57:17', 2),
+(217, 1001, '2024-06-07 11:57:24', 2),
+(218, 1001, '2024-06-07 11:57:27', 2),
+(219, 10001, '2024-06-07 11:57:29', 2),
+(220, 10001, '2024-06-07 11:57:31', 2),
+(221, 1001, '2024-06-07 11:57:35', 2),
+(222, 1001, '2024-06-07 11:57:37', 2),
+(223, 1001, '2024-06-07 11:59:05', 2),
+(224, 10001, '2024-06-07 11:59:21', 2),
+(225, 10001, '2024-06-07 12:01:07', 2),
+(226, 10001, '2024-06-07 12:01:18', 2),
+(227, 1001, '2024-06-07 12:01:45', 2),
+(228, 10001, '2024-06-07 12:03:02', 2),
+(229, 1001, '2024-06-07 12:03:04', 2),
+(230, 10001, '2024-06-07 12:03:06', 2),
+(231, 1001, '2024-06-07 12:03:07', 2),
+(232, 1001, '2024-06-07 12:03:10', 2),
+(233, 124, '2024-06-07 12:03:12', 2),
+(234, 124, '2024-06-07 12:03:38', 2),
+(235, 1001, '2024-06-07 12:03:42', 2),
+(236, 10001, '2024-06-07 12:03:43', 2),
+(237, 10001, '2024-06-07 12:04:41', 2),
+(238, 10001, '2024-06-07 12:04:42', 2),
+(239, 1001, '2024-06-07 12:04:44', 2),
+(240, 1001, '2024-06-07 12:04:50', 2),
+(241, 10001, '2024-06-07 12:04:51', 2),
+(242, 20001, '2024-06-07 12:05:19', 2),
+(243, 21001, '2024-06-07 12:05:20', 2),
+(244, 31001, '2024-06-07 12:05:22', 2),
+(245, 41001, '2024-06-07 12:05:24', 2),
+(246, 42001, '2024-06-07 12:05:25', 2),
+(247, 43001, '2024-06-07 12:05:26', 2),
+(248, 44001, '2024-06-07 12:05:28', 2),
+(249, 44011, '2024-06-07 12:05:35', 2),
+(250, 44021, '2024-06-07 12:06:17', 2),
+(251, 45021, '2024-06-07 12:07:56', 2),
+(252, 45050, '2024-06-07 12:08:12', 2),
+(253, 46050, '2024-06-07 12:29:31', 2),
+(254, 47050, '2024-06-07 12:29:42', 2),
+(255, 116541, '2024-06-09 13:40:22', 2),
+(256, 16542, '2024-06-09 13:40:41', 2),
+(257, 26542, '2024-06-09 14:04:11', 2),
+(258, 126542, '2024-06-09 14:04:27', 2),
+(259, 126550, '2024-06-09 14:04:47', 2),
+(260, 126600, '2024-06-09 14:04:56', 2),
+(261, 131000, '2024-06-09 14:05:06', 2),
+(262, 140000, '2024-06-09 14:05:15', 2),
+(263, 200000, '2024-06-09 14:05:24', 2),
+(264, 190000, '2024-06-09 14:51:32', 2),
+(265, 140000, '2024-06-09 14:51:43', 2),
+(266, 141000, '2024-06-11 12:36:47', 2),
+(267, 151000, '2024-06-11 12:36:55', 2),
+(268, 151012, '2024-06-11 12:37:03', 2),
+(269, 151011, '2024-06-12 09:15:41', 2),
+(270, 151012, '2024-06-12 09:16:55', 2),
+(271, 152012, '2024-06-12 09:17:45', 2),
+(272, 162012, '2024-06-12 12:03:58', 2),
+(273, 10000, '2024-06-12 12:04:23', 9),
+(274, 0, '2024-06-12 12:04:32', 9),
+(275, 10000, '2024-06-12 20:39:47', 12),
+(276, 0, '2024-06-12 20:39:58', 12),
+(277, 172012, '2024-06-13 08:51:31', 2);
 
 -- --------------------------------------------------------
 
@@ -238,15 +317,20 @@ CREATE TABLE `userinfo` (
   `userEmail` varchar(255) NOT NULL,
   `userPassword` varchar(255) NOT NULL,
   `userStatus` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastInlog` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `userCredits` int NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `userinfo`
 --
 
-INSERT INTO `userinfo` (`userId`, `userDisplayName`, `userEmail`, `userPassword`, `userStatus`, `userCredits`) VALUES
-(2, 'Admin 1', 'admin@gmail.com', '$2y$10$QZI28.RTj/Oy.H4Tm.9Fquxk4qXQxSkDOFo99NIHkBIcGggLKFvha', 'admin', 747);
+INSERT INTO `userinfo` (`userId`, `userDisplayName`, `userEmail`, `userPassword`, `userStatus`, `createdAt`, `lastInlog`, `userCredits`) VALUES
+(2, 'Admin 1', 'admin@gmail.com', '$2y$10$QZI28.RTj/Oy.H4Tm.9Fquxk4qXQxSkDOFo99NIHkBIcGggLKFvha', 'admin', '2024-06-04 11:30:41', '2024-06-12 19:14:30', 172012),
+(9, 'Kai', 'verschurenkai@gmail.com', '$2y$10$KrpbePFixZCzVGczpKl.iO1BiuDUCGr3wDT3/216niEc8JzI1NXlO', 'user', '2024-06-12 13:44:36', '', 0),
+(10, 'Jamie2', 'Jamiemattie@gmail.com', '$2y$10$dUBRyIMGNsboDMcihcFXO.KWoBF.nAOa5hyMIKUUk1Tig0Uhf0/0S', 'user', '2024-06-12 13:44:36', '', 0),
+(12, 'Kaitje', '91733@roc-teraa.nl', '$2y$10$e94LuDtLHtrn1zFQ7I1c6.h5yE602De9HLdedG480t9i5gF2TI0lq', 'user', '2024-06-12 13:54:36', '2024-06-12 18:36:43', 0);
 
 -- --------------------------------------------------------
 
@@ -260,14 +344,17 @@ CREATE TABLE `usersettings` (
   `profileCredits` int NOT NULL DEFAULT '1',
   `profileLeaderboard` int NOT NULL DEFAULT '1',
   `userId` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `usersettings`
 --
 
 INSERT INTO `usersettings` (`id`, `profilePublic`, `profileCredits`, `profileLeaderboard`, `userId`) VALUES
-(2, 1, 1, 1, 2);
+(2, 1, 1, 1, 2),
+(7, 1, 0, 0, 9),
+(8, 1, 1, 1, 10),
+(10, 1, 0, 0, 12);
 
 -- --------------------------------------------------------
 
@@ -284,14 +371,18 @@ CREATE TABLE `userwallet` (
   `initialPayed` double NOT NULL,
   `timeOfPayment` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `userId` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `userwallet`
 --
 
 INSERT INTO `userwallet` (`id`, `currency`, `currencyFull`, `amountCredits`, `amountCrypto`, `initialPayed`, `timeOfPayment`, `userId`) VALUES
-(90, 'BTC', 'bitcoin', 71198, 1.0000004791359216, 71197.965886497, '2024-06-07 07:39:18', 2);
+(91, 'BTC', 'bitcoin', 100000, 1.43885819857315, 69499.55186631, '2024-06-09 11:40:41', 2),
+(92, 'BNB', 'binance-coin', 10000, 14.607716237935968, 684.56970529248, '2024-06-09 12:51:32', 2),
+(93, 'DOGE', 'dogecoin', 50000, 339966.7888779585, 0.14707318960485, '2024-06-09 12:51:43', 2),
+(95, 'BTC', 'bitcoin', 10000, 0.14741395708394148, 67836.181850174, '2024-06-12 10:04:32', 9),
+(96, 'BTC', 'bitcoin', 10000, 0.14458698107392506, 69162.520205655, '2024-06-12 18:39:58', 12);
 
 --
 -- Indexes for dumped tables
@@ -332,25 +423,25 @@ ALTER TABLE `userwallet`
 -- AUTO_INCREMENT for table `credithistory`
 --
 ALTER TABLE `credithistory`
-  MODIFY `hisortyId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
+  MODIFY `hisortyId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
 
 --
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
-  MODIFY `userId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `userId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `usersettings`
 --
 ALTER TABLE `usersettings`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `userwallet`
 --
 ALTER TABLE `userwallet`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- Constraints for dumped tables

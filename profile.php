@@ -154,7 +154,7 @@ mobileNav();
                     if ($userPreferences['profileCredits'] == 1 || $_SESSION['loginInfo']['userStatus'] == "admin") {
                     ?>
                         <li class="profileInfoList">
-                            <p>Amount of credits: </p><strong><?= $userInfo['userCredits'] ?></strong>
+                            <p>Amount of credits: </p><strong><?= formatNumber($userInfo['userCredits']); ?></strong>
                         </li>
                     <?php
                     } else {
@@ -220,7 +220,7 @@ mobileNav();
                                             <p>Type:</p><strong><?= $favoriteCryptos['currency']; ?></strong>
                                         </li>
                                         <li class="profileFavoriteCryptoList">
-                                            <p>Price:</p><strong><?= $cryptos['priceUsd']; ?></strong>
+                                            <p>Price:</p><strong>&euro;<?= number_format($cryptos['priceUsd'], 2); ?></strong>
                                         </li>
                                         <li class="profileFavoriteCryptoList">
                                             <p>Changed in 24 Hours:</p><strong style="color: var(--<?php echo $class; ?>);"><?= number_format($cryptos['changePercent24Hr'], 2) ?>%</strong>
