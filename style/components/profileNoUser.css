@@ -1,0 +1,19 @@
+.profileSearchForm {
+    width: fit-content;
+    /* border: red solid 1px; */
+    margin: 0 auto;
+    display: flex;
+}
+
+.profileSearchForm > ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.profileSearchForm > ul .input {
+    width: 15em;
+    padding: 1em 2em;
+    border-radius: 1em;
+}

@@ -18,6 +18,10 @@
 @import url("components/walletInfo.css");
 @import url("components/sell.css");
 @import url("components/sellCustomAmount.css");
+@import url("components/dashboard.css");
+@import url("components/customSlider.css");
+@import url("components/profileNoUser.css");
+@import url("components/profile.css");
 
 .btn {
   display: inline-block;

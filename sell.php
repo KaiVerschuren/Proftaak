@@ -116,17 +116,6 @@ foreach ($history as $creditHistory) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sell</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-
 <body>
     <script>
         $(document).ready(function() {
@@ -189,11 +178,11 @@ foreach ($history as $creditHistory) {
     </script>
     <main class="container">
         <div class="sellWalletWrapper">
-            <div class="sellTitle">
+            <div class="sellTitle slide-in hidden">
                 <h1>Sell your <span class="gradientText">crypto</span></h1>
             </div>
             <div class="sellInfoWrapper">
-                <div class="sellInfoCard sellInfoUser accentShadow">
+                <div class="sellInfoCard sellInfoUser accentShadow slide-in hidden">
                     <ul class="noStyleUL">
                         <?php
                         foreach ($crypto as $cryptos) {
@@ -226,7 +215,7 @@ foreach ($history as $creditHistory) {
                         </li>
                     </ul>
                 </div>
-                <div class="sellInfoCard sellInfoCrypto accentShadow">
+                <div class="sellInfoCard sellInfoCrypto accentShadow slide-in hidden">
                     <ul class="noStyleUL">
                         <?php
                         foreach ($crypto as $cryptos) {
@@ -265,7 +254,7 @@ foreach ($history as $creditHistory) {
                 <?php
                 if ($_SESSION['walletInfo']['sellType'] == 'sellAll') {
                 ?>
-                    <section class="sellCard sellInfoCard accentShadow">
+                    <section class="sellCard sellInfoCard accentShadow slide-in hidden">
                         <h1>Choose an option</h1>
                         <form action="" class="sellAllForm" method="post">
                             <button type="submit" name="sellAllButton" class="btn">Sell all</button>
@@ -275,7 +264,7 @@ foreach ($history as $creditHistory) {
                 <?php
                 } else if ($_SESSION['walletInfo']['sellType'] == 'sellAmount') {
                 ?>
-                    <section class="sellCard sellInfoCard accentShadow">
+                    <section class="sellCard sellInfoCard accentShadow slide-in hidden">
                         <h1>Choose an option</h1>
                         <form action="customSell.php" class="sellAllForm" method="post">
                             <button type="submit" name="sellCustomButton" class="btn">Sell custom amount</button>
@@ -285,8 +274,8 @@ foreach ($history as $creditHistory) {
                 <?php
                 }
                 ?>
-                <div class="userCreditsGraph sellInfoCard accentShadow">
-                    <canvas id="walletChart"></canvas>
+                <div class="userCreditsGraphWrapper sellInfoCard accentShadow slide-in hidden">
+                    <canvas class="userCreditsGraph" id="walletChart"></canvas>
                 </div>
             </div>
         </div>

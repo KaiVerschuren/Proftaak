@@ -1,5 +1,6 @@
 <?php
 include("inc/php/functions.php");
+include("inc/php/dbconnection.php");
 
 session_start();
 
@@ -23,15 +24,15 @@ head("Homepage");
             <img class="heroImage" src="./assets/logo.png" alt="Our logo">
         </section>
     </section>
-    <section class="userCounter">
+    <section class="userCounter slide-in hidden">
         <div class="container">
-            <h2 class="userCounterTitle">Trusted by <span class="userCounterAmount"><?php usercounter()?></span> users!</h2>
+            <h2 class="userCounterTitle">Trusted by <span class="userCounterAmount"><?php userCounter()?></span> users!</h2>
         </div>
     </section>
     <section class="container">
     <div class="top3Cards">
     <?php
-    $i = 0; // Define $i with the value you want
+    $i = 0;
     top3Card($i);
 
     ?>

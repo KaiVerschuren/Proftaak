@@ -56,8 +56,6 @@ mobileNav();
 ?>
 
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     $(document).ready(function () {
         // Set parameters for the AJAX request
@@ -139,8 +137,8 @@ mobileNav();
     });
 </script>
 <div class="info container">
-    <div class="cryptoInfo walletInfoCard accentShadow">
-        <div class="walletBigDisplay">
+    <div class="cryptoInfo walletInfoCard accentShadow slide-in hidden">
+        <div class="walletBigDisplay ">
             <div class="walletBigWrapper">
                 <div class="walletBigLeft">
                     <h1>Your Info</h1>
@@ -202,14 +200,14 @@ mobileNav();
             </ul>
         </div>
     </div>
-    <div class="sellCrypto walletInfoCard accentShadow">
+    <div class="sellCrypto walletInfoCard accentShadow slide-in hidden">
         <h1>Sell this crypto</h1>
         <form class="walletSellButtonWrapper" method="post">
             <button type="submit" name="sellType" value="sellAll" class="btn">Sell all</button>
             <button type="submit" name="sellType" value="sellAmount" class="btn">Sell custom amount</button>
         </form>
     </div>
-    <div class="cryptoGraph walletInfoCard accentShadow">
+    <div class="cryptoGraph walletInfoCard accentShadow slide-in hidden">
         <canvas id="myChart"></canvas>
     </div>
 </div>
