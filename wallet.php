@@ -57,7 +57,7 @@ $crypto = api(100, [], 'EUR');
                 <h1>Wallet</h1>
                 <h3>Hello, <?php echo $_SESSION['loginInfo']['userDisplayName']; ?>!</h3>
             </header>
-            <div class="walletContents">
+            <div class="walletContents slide-in hidden">
                 <table class="walletTable accentShadow">
                     <thead>
                         <tr>

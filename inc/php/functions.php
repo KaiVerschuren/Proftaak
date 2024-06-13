@@ -13,6 +13,8 @@ function head($page)
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style/utils.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <title><?php echo $page ?> | Coin Cove</title>
     </head>
 <?php
@@ -87,6 +89,11 @@ function headerFunction()
     <div class="dropdownMenu dropdownAccount">
         <ul class="noStyleUL">
             <li>
+                <a href="profile.php" class="dropdown dropdownLink1 resetAnchorTag">
+                    Profile
+                </a>
+            </li>
+            <li>
                 <a href="dashboard.php" class="dropdown dropdownLink1 resetAnchorTag">
                     Dashboard
                 </a>
@@ -123,41 +130,7 @@ function headerFunction()
             </li>
         </ul>
     </div>
-<?php
-}
-
-
-
-function usercounter()
-{
-
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "coincove";
-    
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    
-    // Fetch the user count
-    $sql = "SELECT COUNT(*) as total FROM userinfo";
-    $result = $conn->query($sql);
-    
-    if ($result->num_rows > 0) {
-        // Output the user count multiplied by 3
-        $row = $result->fetch_assoc();
-        $multipliedCount = $row["total"] * 3;
-        echo " " . $multipliedCount;
-    } else {
-        echo "0 results";
-    }
-    
-    $conn->close();
+    <?php
 }
 
 
@@ -167,7 +140,7 @@ function top3Card($placement)
 {
     $con = mysqli_connect("localhost", "root", "", "coincove");
 
-    
+
     if (!$con) {
         die("Connection failed: " . mysqli_connect_error());
     }
@@ -179,18 +152,15 @@ function top3Card($placement)
     if (mysqli_num_rows($result) > 0) {
         $ranking = 1;
         while ($row = mysqli_fetch_assoc($result)) {
-            ?>
-            <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
-                <div class="top3Picture">
-                    <!-- <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" /> -->
-                </div>
-                <div class="top3Info">
+    ?>
+            <div class="top3Wrapper slide-in hidden <?php echo 'top3Card' . $placement; ?>">
+                <div class="top3Info ">
                     <h2 class="top3InfoTitle"><?php echo htmlspecialchars($row['userDisplayName']); ?></h2>
                     <p class="top3Credits"><?php echo number_format($row['userCredits']); ?> Credits</p>
                     <span class="top3Placement"><?php echo $ranking; ?><?php echo ($ranking == 1 ? 'st' : ($ranking == 2 ? 'nd' : 'rd')); ?></span>
                 </div>
             </div>
-            <?php
+    <?php
             $ranking++;
             $placement++;
         }
@@ -203,7 +173,7 @@ function top3Card($placement)
 
 function footer()
 {
-?>
+    ?>
     <footer>
         <div class="container">
             <p class="footerText">- CoinCove - <br> - 2024 &copy; -</p>
@@ -258,21 +228,24 @@ function customMessageBox($title, $message, $buttons = [])
 <?php
 }
 
-function divide($num1, $num2) {
+function divide($num1, $num2)
+{
     return $num1 / $num2;
 }
 
-function calculatePercentageChange($purchasePrice, $currentPrice) {
+function calculatePercentageChange($purchasePrice, $currentPrice)
+{
     // Calculate the difference between the current price and the purchase price
     $difference = $currentPrice - $purchasePrice;
-    
+
     // Calculate the percentage change
     $percentageChange = ($difference / $purchasePrice) * 100;
-    
+
     return $percentageChange;
 }
 
-function formatNumber($num) {
+function formatNumber($num)
+{
     if ($num >= 1000000000) {
         return number_format($num / 1000000000, 1) . 'b';
     } elseif ($num >= 1000000) {
@@ -284,8 +257,9 @@ function formatNumber($num) {
     return $num;
 }
 
-function sellCustomAmount() {
-    ?>
+function sellCustomAmount()
+{
+?>
     <div class="sellCustomBackgroundBlur">
         <div class="sellCustom accentShadow">
             <div class="sellCustomTitle">
@@ -306,7 +280,23 @@ function sellCustomAmount() {
             </form>
         </div>
     </div>
-    <?php
+<?php
+}
+
+function customSlider($off, $on, $state, $checkboxName)
+{
+    $checked = $state ? "checked" : "";
+?>
+    <div class="customSlider">
+        <label class="switch">
+            <input value="1" name="<?= $checkboxName; ?>" type="checkbox" <?= $checked; ?>>
+            <span class="slider">
+                <span class="slider-text off"><?= $off; ?></span>
+                <span class="slider-text on"><?= $on; ?></span>
+            </span>
+        </label>
+    </div>
+<?php
 }
 
 function api($limit = 5, $ids = [], $convert = 'USD')
@@ -415,4 +405,3 @@ function convertCurrency($cryptocurrencies, $convert)
     return $cryptocurrencies;
 }
 ?>
-
