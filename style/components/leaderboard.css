@@ -1,0 +1,45 @@
+.leaderboardTable {
+    width: 100%;
+    
+}
+
+.leaderboardTable > *{
+ text-align: center;
+}
+
+.leaderboardTableBody {
+    position: relative;
+}
+
+.leaderboardTableBody::before, .leaderboardTableHead::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--accent);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 15px;
+}
+
+.leaderboardTableBody > tr > td {
+    padding: 0.5em 1em;
+}
+
+.leaderboardTableHead > tr > th {
+    padding: 0.5em 1em;
+}
+
+.leaderboardTableHead > tr > th > * {
+    color: var(--secondary);
+}
+
+.leaderboardRank {
+    font-weight: 800;
+}
+
+.leaderboardTableHead {
+    position: relative;
+
+}

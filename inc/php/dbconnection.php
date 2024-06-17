@@ -384,6 +384,35 @@ function getUserInfo($userId)
     return [false, null];
 }
 
+function getAllUsers()
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT *
+FROM userInfo
+ORDER BY userCredits DESC";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $allInfo = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    return $allInfo;
+}
+
 function updateCredits($userId, $newCredits)
 {
     updateCreditHistory($userId, $newCredits);
@@ -633,4 +662,3 @@ function updatePreferences($userId, $profilePublic = 0, $profileCredits = 0, $pr
 
     return true;
 }
-
