@@ -4,13 +4,12 @@
     max-height: 20em;
     aspect-ratio: 7/5;
     margin-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
 
 }
 
 .creditsInput {
     border: 1px solid var(--text-soft) !important;
-    /* color: var(--text-soft); */
     border-radius: 10px;
 }
 
@@ -35,6 +34,7 @@
 @media (min-width: 640px) {    
     .creditsWrap {
         display: flex;
+        gap: 2em;
         flex-direction: column;
         justify-content: space-between;
         max-width: 450px;

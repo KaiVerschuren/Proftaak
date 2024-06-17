@@ -13,6 +13,8 @@ function head($page)
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style/utils.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <title><?php echo $page ?> | Coin Cove</title>
     </head>
 <?php
@@ -22,6 +24,7 @@ function headerFunction()
 {
 ?>
     <script defer src="./inc/js/main.js"></script>
+    <script src="./inc/js/slidein.js"></script>
     <header class="container">
         <div class="title">
             <a href="index.php" class="resetAnchorTag">
@@ -86,6 +89,11 @@ function headerFunction()
     <div class="dropdownMenu dropdownAccount">
         <ul class="noStyleUL">
             <li>
+                <a href="profile.php" class="dropdown dropdownLink1 resetAnchorTag">
+                    Profile
+                </a>
+            </li>
+            <li>
                 <a href="dashboard.php" class="dropdown dropdownLink1 resetAnchorTag">
                     Dashboard
                 </a>
@@ -122,28 +130,50 @@ function headerFunction()
             </li>
         </ul>
     </div>
-<?php
+    <?php
 }
+
+
+
 
 function top3Card($placement)
 {
-?>
-    <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
-        <div class="top3Picture">
-            <!-- <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" /> -->
-        </div>
-        <div class="top3Info">
-            <h2 class="top3InfoTitle">Spongebob</h2>
-            <p class="top3Credits">999,999 Credits</p>
-            <span class="top3Placement"><?php echo $placement + 1; ?>st</span>
-        </div>
-    </div>
-<?php
+    $con = mysqli_connect("localhost", "root", "", "coincove");
+
+
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    // Mysqli query to fetch rows in descending order of userCredits, limiting to top 3
+    $result = mysqli_query($con, "SELECT userDisplayName, userCredits FROM userinfo ORDER BY userCredits DESC LIMIT 3");
+
+
+    if (mysqli_num_rows($result) > 0) {
+        $ranking = 1;
+        while ($row = mysqli_fetch_assoc($result)) {
+    ?>
+            <div class="top3Wrapper slide-in hidden <?php echo 'top3Card' . $placement; ?>">
+                <div class="top3Info ">
+                    <h2 class="top3InfoTitle"><?php echo htmlspecialchars($row['userDisplayName']); ?></h2>
+                    <p class="top3Credits"><?php echo number_format($row['userCredits']); ?> Credits</p>
+                    <span class="top3Placement"><?php echo $ranking; ?><?php echo ($ranking == 1 ? 'st' : ($ranking == 2 ? 'nd' : 'rd')); ?></span>
+                </div>
+            </div>
+    <?php
+            $ranking++;
+            $placement++;
+        }
+    } else {
+        echo "No results found.";
+    }
+    // Close the database connection
+    mysqli_close($con);
 }
 
 function footer()
 {
-?>
+    ?>
     <footer>
         <div class="container">
             <p class="footerText">- CoinCove - <br> - 2024 &copy; -</p>
@@ -168,7 +198,7 @@ function customMessageBox($title, $message, $buttons = [])
 {
 ?>
     <div class="customMessageBoxBlur">
-        <div class="customMessageBox">
+        <div class="customMessageBox accentShadow">
             <div class="customMessageBoxInner">
                 <header class="customMessageBoxHeader">
                     <h2><?= htmlspecialchars($title); ?></h2>
@@ -198,18 +228,75 @@ function customMessageBox($title, $message, $buttons = [])
 <?php
 }
 
-function divide($num1, $num2) {
+function divide($num1, $num2)
+{
     return $num1 / $num2;
 }
 
-function calculatePercentageChange($purchasePrice, $currentPrice) {
+function calculatePercentageChange($purchasePrice, $currentPrice)
+{
     // Calculate the difference between the current price and the purchase price
     $difference = $currentPrice - $purchasePrice;
-    
+
     // Calculate the percentage change
     $percentageChange = ($difference / $purchasePrice) * 100;
-    
+
     return $percentageChange;
+}
+
+function formatNumber($num)
+{
+    if ($num >= 1000000000) {
+        return number_format($num / 1000000000, 1) . 'b';
+    } elseif ($num >= 1000000) {
+        return number_format($num / 1000000, 1) . 'm';
+    } elseif ($num >= 1000) {
+        return number_format($num / 1000, 1) . 'k';
+    }
+
+    return $num;
+}
+
+function sellCustomAmount()
+{
+?>
+    <div class="sellCustomBackgroundBlur">
+        <div class="sellCustom accentShadow">
+            <div class="sellCustomTitle">
+                <h1>
+                    Choose custom amount
+                </h1>
+            </div>
+            <form action="" class="sellCustomForm">
+                <ul class="noStyleUL">
+                    <li>
+                        <input type="hidden" name="customSell">
+                        <input type="number" name="customNumber" class="sellCustomInput removeArrow input">
+                    </li>
+                    <li>
+                        <input type="submit" class="btn" value="Sell">
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+<?php
+}
+
+function customSlider($off, $on, $state, $checkboxName)
+{
+    $checked = $state ? "checked" : "";
+?>
+    <div class="customSlider">
+        <label class="switch">
+            <input value="1" name="<?= $checkboxName; ?>" type="checkbox" <?= $checked; ?>>
+            <span class="slider">
+                <span class="slider-text off"><?= $off; ?></span>
+                <span class="slider-text on"><?= $on; ?></span>
+            </span>
+        </label>
+    </div>
+<?php
 }
 
 function api($limit = 5, $ids = [], $convert = 'USD')
@@ -316,68 +403,5 @@ function convertCurrency($cryptocurrencies, $convert)
     }
 
     return $cryptocurrencies;
-}
-
-function getAssetHistory($name, $interval = 'd1', $convert = 'USD')
-{
-    // Calculate current time and one year ago in UNIX time (milliseconds)
-    $end_time = round(microtime(true) * 1000);
-    $start_time = $end_time - (365 * 24 * 60 * 60 * 1000); // 1 year ago in milliseconds
-
-    // Define the URL and parameters
-    $url = "https://api.coincap.io/v2/assets/{$name}/history";
-    $parameters = [
-        'interval' => $interval,
-        'start' => $start_time,
-        'end' => $end_time
-    ];
-
-    $qs = http_build_query($parameters); // Query string encode the parameters
-    $request = "{$url}?{$qs}"; // Create the request URL
-
-    $curl = curl_init(); // Get cURL resource
-    // Set cURL options
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => $request,            // Set the request URL
-        CURLOPT_HTTPHEADER => [
-            'Accepts: application/json'
-        ],     // Set the headers
-        CURLOPT_RETURNTRANSFER => true,     // Ask for raw response instead of bool
-        CURLOPT_CAINFO => __DIR__ . '../../../api/cacert.pem', // Path to the CA bundle file in the same directory
-    ));
-
-    $response = curl_exec($curl); // Send the request, save the response
-
-    if ($response === false) {
-        $error = curl_error($curl);
-        curl_close($curl);
-        die('Curl error: ' . $error);
-    }
-
-    $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-    if ($statusCode !== 200) {
-        curl_close($curl);
-        die('Request failed: HTTP status code ' . $statusCode);
-    }
-
-    $data = json_decode($response, true);
-
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        curl_close($curl);
-        die('JSON decode error: ' . json_last_error_msg());
-    }
-
-    curl_close($curl);
-
-    // Extract and use the data
-    $assetHistory = $data['data'] ?? [];
-
-    // Convert prices to the requested currency if needed (assuming convertCurrency function is defined)
-    if (strtoupper($convert) !== 'USD' && !empty($assetHistory)) {
-        $assetHistory = convertCurrency($assetHistory, $convert);
-    }
-
-    return $assetHistory;
 }
 ?>

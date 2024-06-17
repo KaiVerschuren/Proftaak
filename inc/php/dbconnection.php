@@ -13,29 +13,29 @@ function connectDB()
     return $mysqli;
 }
 
-function loginWithInfo($userEmail, $userPassword)
+function loginWithInfo($userEmail)
 {
     $con = connectDB();
-    
+
     // Use a prepared statement to prevent SQL injection
     $sql = "SELECT * FROM `userInfo` WHERE `userEmail` = ?";
-    
+
     // Prepare the statement
     $stmt = $con->prepare($sql);
-    
+
     if (!$stmt) {
         die("Statement preparation failed: " . $con->error);
     }
 
     // Bind the userEmail parameter
     $stmt->bind_param("s", $userEmail);
-    
+
     // Execute the statement
     $stmt->execute();
-    
+
     // Get the result
     $result = $stmt->get_result();
-    
+
     // Check if any rows are returned
     if ($result->num_rows == 0) {
         customMessageBox(
@@ -47,18 +47,25 @@ function loginWithInfo($userEmail, $userPassword)
             ]
         );
     }
-    
+
     // Fetch data from the result
     $userInfo = $result->fetch_assoc();
+
+    $currentTime = date("Y-m-d H:i:s");
+    $updateSql = "UPDATE `userInfo` SET `lastInlog` = ? WHERE `userEmail` = ?";
+    $updateStmt = $con->prepare($updateSql);
+    $updateStmt->bind_param("ss", $currentTime, $userEmail);
+    $updateStmt->execute();
 
     return $userInfo;
 }
 
 
+
 function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
 {
     $con = connectDB();
-    
+
     // Check if the connection is successful
     if ($con->connect_error) {
         die("Connection failed: " . $con->connect_error);
@@ -67,7 +74,7 @@ function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
     // Check if the email already exists
     $sqlCheck = "SELECT userID FROM `userinfo` WHERE userEmail = ?";
     $stmtCheck = $con->prepare($sqlCheck);
-    
+
     if (!$stmtCheck) {
         die("Error preparing check statement: " . $con->error);
     }
@@ -92,7 +99,7 @@ function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
 
     // Prepare the statement
     $stmt = $con->prepare($sql);
-    
+
     if (!$stmt) {
         die("Error preparing statement: " . $con->error);
     }
@@ -113,7 +120,7 @@ function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
 
     // Prepare the second statement
     $stmt2 = $con->prepare($sql2);
-    
+
     if (!$stmt2) {
         die("Error preparing second statement: " . $con->error);
     }
@@ -158,7 +165,7 @@ function addWalletToId($userId, $currency, $currencyFull, $creditAmount, $amount
     if ($stmt->error) {
         echo "Error preparing statement: " . $stmt->error;
         $con->close(); // close the connection
-        return; // exit the function or handle the error appropriately
+        return false; // exit the function or handle the error appropriately
     }
 
     // bind parameters
@@ -178,6 +185,63 @@ function addWalletToId($userId, $currency, $currencyFull, $creditAmount, $amount
     // close the statement and connection
     $stmt->close();
     $con->close();
+}
+
+function updateCreditHistory($userId, $newCreditAmount,)
+{
+
+    $con = connectDB();
+    // Define the SQL
+    $sql = "INSERT INTO creditHistory (userId, historyCredits) VALUES (?, ?)";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameters
+    $stmt->bind_param("ii", $userId, $newCreditAmount);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the updated user credits
+    return true;
+}
+
+function getCreditHistory($userId)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT * from creditHistory WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $creditHistory = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $creditHistory;
 }
 
 
@@ -248,6 +312,42 @@ function getUserSettings($userId)
     return $userSettingsFromId;
 }
 
+function getUserIdFromDisplayName($userDisplayName)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT userId 
+    FROM userInfo
+    WHERE userDisplayName = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("s", $userDisplayName);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userInfoFromDisplayName = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Check if user info is found
+    if ($userInfoFromDisplayName) {
+        return [true, $userInfoFromDisplayName];
+    }
+    return [false, null];
+}
+
 function getUserInfo($userId)
 {
     $con = connectDB();
@@ -277,12 +377,16 @@ function getUserInfo($userId)
     // Close the connection
     $con->close();
 
-    // return array of links
-    return $userInfoFromId;
+    // Check if user info is found
+    if ($userInfoFromId) {
+        return [true, $userInfoFromId];
+    }
+    return [false, null];
 }
 
-
-function updateCredits($userId, $newCredits) {
+function updateCredits($userId, $newCredits)
+{
+    updateCreditHistory($userId, $newCredits);
     $con = connectDB();
     // Define the SQL
     $sql = "UPDATE userInfo
@@ -307,6 +411,122 @@ function updateCredits($userId, $newCredits) {
     // Return the updated user credits
     return true;
 }
+
+function removeWalletFromId($walletId)
+{
+    $con = connectDB();
+    // Define the SQL
+    $sql = "DELETE FROM userwallet WHERE id = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameters
+    $stmt->bind_param("i", $walletId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the updated user credits
+    return true;
+}
+
+function updateWalletFromId($newAmount, $walletId)
+{
+    $con = connectDB();
+
+    // Update the wallet's amountCredits
+    $sqlUpdate = "UPDATE userwallet
+    SET amountCredits = ?
+    WHERE id = ?";
+
+    // Prepare the update statement
+    $stmtUpdate = $con->prepare($sqlUpdate);
+
+    // Bind the parameters for the update
+    $stmtUpdate->bind_param("di", $newAmount, $walletId); // Use "di" for double and integer types
+
+    // Execute the update statement
+    $stmtUpdate->execute();
+
+    // Close the update statement
+    $stmtUpdate->close();
+
+    // Delete wallet rows where amountCredits is 0
+    $sqlDelete = "DELETE FROM userwallet WHERE amountCredits = 0";
+
+    // Prepare the delete statement
+    $stmtDelete = $con->prepare($sqlDelete);
+
+    // Execute the delete statement
+    $stmtDelete->execute();
+
+    // Close the delete statement
+    $stmtDelete->close();
+
+    // Close the connection
+    $con->close();
+
+    return true;
+}
+
+function getFavoriteCrypto($userId)
+{
+    $con = connectDB();
+
+    // Define the SQL
+    $sql = "
+        WITH favoriteCrypto AS (
+            SELECT
+                *,
+                ROW_NUMBER() OVER (PARTITION BY currencyFull ORDER BY amountCredits DESC) AS rn
+            FROM
+                userwallet
+            WHERE
+                userId = ?
+        )
+        SELECT
+            *
+        FROM
+            favoriteCrypto
+        WHERE
+            rn = 1
+        ORDER BY
+            amountCredits DESC
+        LIMIT 3;
+    ";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $threeWallets = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return array of links
+    return $threeWallets;
+}
+
 
 function getWalletFromId($userId)
 {
@@ -340,4 +560,77 @@ function getWalletFromId($userId)
     // return array of links
     return $userWallet;
 }
-?>
+
+function userCounter()
+{
+    $con = connectDB();
+
+
+    // Fetch the user count
+    $sql = "SELECT COUNT(*) as total FROM userinfo";
+    $result = $con->query($sql);
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    if ($result->num_rows > 0) {
+        // Output the user count multiplied by 3
+        $row = $result->fetch_assoc();
+        $multipliedCount = $row["total"] * 3;
+        echo " " . $multipliedCount;
+    } else {
+        echo "0 results";
+    }
+    $stmt->close();
+    $con->close();
+}
+
+function updateLastInlogFromId($newTime, $userId)
+{
+    $con = connectDB();
+
+    // Update the wallet's amountCredits
+    $sqlUpdate = "UPDATE userinfo
+    SET lastInlog = ?
+    WHERE userId = ?";
+
+    // Prepare the update statement
+    $stmtUpdate = $con->prepare($sqlUpdate);
+
+    // Bind the parameters for the update
+    $stmtUpdate->bind_param("si", $newTime, $userId); // Use "di" for double and integer types
+
+    // Execute the update statement
+    $stmtUpdate->execute();
+
+    // Close the update statement
+    $stmtUpdate->close();
+
+    // Close the connection
+    $con->close();
+
+    return true;
+}
+
+function updatePreferences($userId, $profilePublic = 0, $profileCredits = 0, $profileLeaderboard = 0)
+{
+    $con = connectDB();
+    $sql = "UPDATE userSettings
+    SET profilePublic = ?,
+            profileCredits = ?,
+            profileLeaderboard = ?
+    WHERE userId = ?";
+
+    $stmt = $con->prepare($sql);
+
+    $stmt->bind_param("iiii", $profilePublic, $profileCredits, $profileLeaderboard, $userId);
+
+    $stmt->execute();
+
+    $stmt->close();
+
+    $con->close();
+
+    return true;
+}
+

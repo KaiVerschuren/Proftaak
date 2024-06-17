@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   backdrop-filter: blur(5px);
+  z-index: 999;
 }
 
 .customMessageBox {
@@ -20,6 +21,7 @@
   padding: 0.5rem 1rem;
   box-sizing: border-box;
   /* backdrop-filter: blur(10px); */
+  z-index: 1000;
 }
 
 .customMessageBoxHeader {

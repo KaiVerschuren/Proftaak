@@ -1,6 +1,5 @@
 @import url("normalize.css");
 @import url("style.css");
-@import url("allStyle.css");
 @import url("components/header.css");
 @import url("components/footer.css");
 @import url("components/hero.css");
@@ -15,11 +14,14 @@
 @import url("components/customMessageBox.css");
 @import url("components/buyCrypto.css");
 @import url("components/wallet.css");
-@import url("components/walletInfo.css");
 @import url("components/credits.css");
 @import url("components/walletInfo.css");
-@import url("components/wallet.css");
-@import url("functionStyles.css");
+@import url("components/sell.css");
+@import url("components/sellCustomAmount.css");
+@import url("components/dashboard.css");
+@import url("components/customSlider.css");
+@import url("components/profileNoUser.css");
+@import url("components/profile.css");
 
 .btn {
   display: inline-block;
@@ -41,6 +43,10 @@
   box-shadow: 0 14px 18px rgba(252, 213, 53, 0.5), 0 10px 10px rgba(252, 213, 53, 0.5), 0 0 120px -10px var(--primary);
 }
 
+.accentShadow {
+  box-shadow: 0 5px 15px rgba(15, 18, 35, .6), 0 0 20px rgba(15, 18, 35, .5);
+}
+
 .input {
   background-color: var(--accent);
   border: none;
@@ -56,6 +62,31 @@
 
 .resetAnchorTag {
   text-decoration: none;
+}
+
+.gradientText {
+  background: linear-gradient(to left, var(--secondary), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.removeArrow::-webkit-outer-spin-button,
+.removeArrow::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translatey(50%);
+  transition: all 1s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .container {

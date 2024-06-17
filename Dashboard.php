@@ -19,17 +19,51 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
     exit();
 }
 
-$user = getUserSettings(2);
+$getSettings = getUserSettings($_SESSION['loginInfo']['userId']);
+foreach ($getSettings as $getSetting) {
+    if ($getSetting['userId'] == $_SESSION['loginInfo']['userId']) {
+        $userSettings = $getSetting;
+    }
+}
 
-$userInfo = getUserInfo(2);
+list($usersSuccess, $getUsers) = getUserInfo($_SESSION['loginInfo']['userId']);
+foreach ($getUsers as $getUser) {
+    if ($getUser['userId'] == $_SESSION['loginInfo']['userId']) {
+        $userInfo = $getUser;
+    }
+}
+
+$history = getCreditHistory($_SESSION['loginInfo']['userId']);
+
+$labels = [];
+$values = [];
+foreach ($history as $creditHistory) {
+    $labels[] = substr($creditHistory['historyTime'], 0, 10);
+    $values[] = $creditHistory['historyCredits'];
+}
+
+$favoriteCrypto = getFavoriteCrypto($_SESSION['loginInfo']['userId']);
+$crypto = api(100, [], 'EUR');
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['changePreferences']) {
+    $profilePublic = isset($_POST['profilePublic']) ? 1 : 0;
+    $profileCredits = isset($_POST['profileCredits']) ? 1 : 0;
+    $profileLeaderboard = isset($_POST['profileLeaderboard']) ? 1 : 0;
+
+    $succes = updatePreferences($_SESSION['loginInfo']['userId'], $profilePublic, $profileCredits, $profileLeaderboard);
+    if ($succes) {
+        customMessageBox("Successfully hanldel update",
+        "Successfully changed to your preferences",
+        $buttons = [
+            ['label' => 'Continue', 'url' => 'dashboard.php']
+        ]   
+    );
+    }
+}
 ?>
 
 <body>
-<<<<<<< Updated upstream
-<?php
-    var_dump($userInfo);
-?>
-=======
+
     <script>
         $(document).ready(function() {
             let labels = <?php echo json_encode($labels); ?>;
@@ -104,7 +138,9 @@ $userInfo = getUserInfo(2);
                     <li class="dashboardUserInfoList">Account status: <span class="dashboardBoldText"><?= $userInfo['userStatus']; ?></span></li>
                     <li class="dashboardUserInfoList">Credits: <span class="dashboardBoldText"><?= $userInfo['userCredits']; ?></span></li>
                     <li class="dashboardUserInfoList">
+
                         <a href="profile.php?profileId=<?= $userInfo['userId'];?>" class="dashboardUserInfoBtn btn">Go to profile</a>
+
                     </li>
                 </ul>
             </div>
@@ -184,11 +220,10 @@ $userInfo = getUserInfo(2);
             </div>
         </div>
     </main>
->>>>>>> Stashed changes
 </body>
 
 </html>
 
 <?php
-// footer();
+footer();
 ?>
