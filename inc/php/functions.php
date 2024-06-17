@@ -90,7 +90,7 @@ function headerFunction()
         <ul class="noStyleUL">
             <li>
                 <a href="profile.php" class="dropdown dropdownLink1 resetAnchorTag">
-                    Profile
+                    Profiles
                 </a>
             </li>
             <li>
