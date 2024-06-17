@@ -22,6 +22,7 @@
 @import url("components/customSlider.css");
 @import url("components/profileNoUser.css");
 @import url("components/profile.css");
+@import url("components/leaderboard.css");
 
 .btn {
   display: inline-block;
