@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['changePreferences']) {
                             intersect: false
                         },
                         legend: {
-                            display: false,
+                            display: true,
                             position: 'top'
                         }
                     },
