@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['changePreferences'])) 
 ?>
 
 <body>
+
     <script>
         $(document).ready(function() {
             let labels = <?php echo json_encode($labels); ?>;
@@ -107,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['changePreferences'])) 
                             intersect: false
                         },
                         legend: {
-                            display: false,
+                            display: true,
                             position: 'top'
                         }
                     },
@@ -138,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['changePreferences'])) 
                     <li class="dashboardUserInfoList">Account status: <span class="dashboardBoldText"><?= $userInfo['userStatus']; ?></span></li>
                     <li class="dashboardUserInfoList">Credits: <span class="dashboardBoldText"><?= $userInfo['userCredits']; ?></span></li>
                     <li class="dashboardUserInfoList">
-                        <a href="profile.php?profileId=<?= $_SESSION['loginInfo']['userId']; ?>" class="dashboardUserInfoBtn btn">To personal profile</a>
+                        <a href="profile.php?profileId=<?= $userInfo['userId'];?>" class="dashboardUserInfoBtn btn">Go to profile</a>
                         <?php
                         if ($_SESSION['loginInfo']['userStatus'] == "admin") {
                         ?>

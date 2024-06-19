@@ -83,6 +83,11 @@ function headerFunction()
                 <a href="buy.php?method=buy&cryptoCurrency=BTC" class="dropdown dropdownLink2 resetAnchorTag">
                     Buy/Sell crypto
                 </a>
+            </li>  
+            <li>
+                <a href="credits.php" class="dropdown dropdownLink3 resetAnchorTag">
+                    Credits
+                </a>
             </li>
         </ul>
     </div>
@@ -104,8 +109,8 @@ function headerFunction()
                 </a>
             </li>
             <li>
-                <a href="credits.php" class="dropdown dropdownLink3 resetAnchorTag">
-                    Credits
+                <a href="leaderboard.php" class="dropdown dropdownLink2 resetAnchorTag">
+                    leaderboard
                 </a>
             </li>
         </ul>

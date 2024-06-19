@@ -24,6 +24,7 @@
 @import url("components/profile.css");
 @import url("components/customScrollbar.css");
 @import url("components/admin.css");
+@import url("components/leaderboard.css");
 
 .btn {
   display: inline-block;
