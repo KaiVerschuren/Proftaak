@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['changePreferences'])) 
                         <li>
                             <input type="hidden" name="contact" value="set">
                             <input class="contactInput contactSubmit" type="submit" class="" value="Send">
-                        </li>
+                    </li>
                     </ul>
                 </form>
             </div>
