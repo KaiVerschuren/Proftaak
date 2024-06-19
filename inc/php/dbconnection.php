@@ -386,10 +386,11 @@ function getUserInfo($userId)
 function getAllUsers()
 {
     $con = connectDB();
-    // define the SQL
+    
+    // Define the SQL with secondary sorting by userId
     $sql = "SELECT *
-FROM userInfo
-ORDER BY userCredits DESC";
+            FROM userInfo
+            ORDER BY userCredits DESC, userId DESC";
 
     // Prepare the SQL statement
     $stmt = $con->prepare($sql);
@@ -411,6 +412,7 @@ ORDER BY userCredits DESC";
 
     return $allInfo;
 }
+
 
 function updateCredits($userId, $newCredits)
 {
@@ -766,21 +768,33 @@ function getMessages()
     return $messages;
 }
 
-function getUserLeaderboardPosition()
+function getUserLeaderboardPosition($userId)
 {
+    // Connect to the database
     $con = connectDB();
-    // define the SQL
-    $sql = "SELECT 
+
+    // Define the SQL query with subquery for ranking
+    $sql = "SELECT
                 userId,
                 userDisplayName,
                 userCredits,
-                DENSE_RANK() OVER (ORDER BY userCredits DESC) AS leaderboardPosition
-            FROM 
-            userinfo
-            ";
+                leaderboardPosition
+            FROM (
+                SELECT 
+                    userId,
+                    userDisplayName,
+                    userCredits,
+                    DENSE_RANK() OVER (ORDER BY userCredits DESC, userId DESC) AS leaderboardPosition
+                FROM 
+                    userinfo
+            ) AS ranked_users
+            WHERE userId = ?";
 
     // Prepare the SQL statement
     $stmt = $con->prepare($sql);
+
+    // Bind the userId parameter
+    $stmt->bind_param("i", $userId);
 
     // Execute the statement
     $stmt->execute();
@@ -797,9 +811,10 @@ function getUserLeaderboardPosition()
     // Close the connection
     $con->close();
 
-    // return array of links
+    // Return the array of leaderboard positions for the specified user
     return $userLeaderboardPosition;
 }
+
 
 function updatePreferences($userId, $profilePublic = 0, $profileCredits = 0, $profileLeaderboard = 0)
 {
