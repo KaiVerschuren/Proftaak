@@ -278,7 +278,6 @@ function getUserCredits($userId)
     return $userCreditsFromId;
 }
 
-
 function getUserSettings($userId)
 {
     $con = connectDB();
@@ -415,6 +414,9 @@ ORDER BY userCredits DESC";
 
 function updateCredits($userId, $newCredits)
 {
+    if ($newCredits < 0) {
+        $newCredits = 0;
+    }
     updateCreditHistory($userId, $newCredits);
     $con = connectDB();
     // Define the SQL
@@ -764,7 +766,40 @@ function getMessages()
     return $messages;
 }
 
+function getUserLeaderboardPosition()
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT 
+                userId,
+                userDisplayName,
+                userCredits,
+                DENSE_RANK() OVER (ORDER BY userCredits DESC) AS leaderboardPosition
+            FROM 
+            userinfo
+            ";
 
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userLeaderboardPosition = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $userLeaderboardPosition;
+}
 
 function updatePreferences($userId, $profilePublic = 0, $profileCredits = 0, $profileLeaderboard = 0)
 {
