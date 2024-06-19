@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['changePreferences'])) 
                     <li class="dashboardUserInfoList">Account status: <span class="dashboardBoldText"><?= $userInfo['userStatus']; ?></span></li>
                     <li class="dashboardUserInfoList">Credits: <span class="dashboardBoldText"><?= $userInfo['userCredits']; ?></span></li>
                     <li class="dashboardUserInfoList">
-                        <a href="changeInfo.php" class="dashboardUserInfoBtn btn">Change</a>
+                        <a href="profile.php?profileId=<?= $_SESSION['loginInfo']['userId']; ?>" class="dashboardUserInfoBtn btn">To personal profile</a>
                         <?php
                         if ($_SESSION['loginInfo']['userStatus'] == "admin") {
                         ?>
