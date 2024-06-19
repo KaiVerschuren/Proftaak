@@ -10,7 +10,7 @@ headerFunction();
 if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo']['userLoginState']) {
     customMessageBox(
         "Whoopsie!",
-        "You need to be logged in to access our buying page",
+        "You need to be logged in to access your dashboard.",
         $buttons = [
             ['label' => 'Take me back', 'url' => 'javascript:history.go(-1);'],
             ['label' => 'Let me log in', 'url' => 'loginSignup.php?method=logIn']
@@ -45,19 +45,20 @@ foreach ($history as $creditHistory) {
 $favoriteCrypto = getFavoriteCrypto($_SESSION['loginInfo']['userId']);
 $crypto = api(100, [], 'EUR');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['changePreferences']) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['changePreferences'])) {
     $profilePublic = isset($_POST['profilePublic']) ? 1 : 0;
     $profileCredits = isset($_POST['profileCredits']) ? 1 : 0;
     $profileLeaderboard = isset($_POST['profileLeaderboard']) ? 1 : 0;
 
     $succes = updatePreferences($_SESSION['loginInfo']['userId'], $profilePublic, $profileCredits, $profileLeaderboard);
     if ($succes) {
-        customMessageBox("Successfully hanldel update",
-        "Successfully changed to your preferences",
-        $buttons = [
-            ['label' => 'Continue', 'url' => 'dashboard.php']
-        ]   
-    );
+        customMessageBox(
+            "Successfully hanldel update",
+            "Successfully changed to your preferences",
+            $buttons = [
+                ['label' => 'Continue', 'url' => 'dashboard.php']
+            ]
+        );
     }
 }
 ?>
@@ -138,9 +139,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['changePreferences']) {
                     <li class="dashboardUserInfoList">Account status: <span class="dashboardBoldText"><?= $userInfo['userStatus']; ?></span></li>
                     <li class="dashboardUserInfoList">Credits: <span class="dashboardBoldText"><?= $userInfo['userCredits']; ?></span></li>
                     <li class="dashboardUserInfoList">
-
                         <a href="profile.php?profileId=<?= $userInfo['userId'];?>" class="dashboardUserInfoBtn btn">Go to profile</a>
-
+                        <?php
+                        if ($_SESSION['loginInfo']['userStatus'] == "admin") {
+                        ?>
+                            <a href="admin.php" class="dashboardUserInfoBtn btn">Admin dashboard</a>
+                        <?php
+                        }
+                        ?>
                     </li>
                 </ul>
             </div>
@@ -214,9 +220,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['changePreferences']) {
             </div>
             <div class="dashboardCard dashboardContact accentShadow">
                 <h1>Contact</h1>
-                <div class="dashboardComingSoon">
-                    <h2 style="color: var(--no);">⚠️ - Coming Soon - ⚠️</h2>
-                </div>
+                <form action="handleContact.php" method="post" class="contactForm">
+                    <ul class="noStyleUL contactUl">
+                        <li>
+                            <textarea required maxlength="250" minlength="10" class="contactInput contactTextarea" name="contactContent" class=""></textarea>
+                        </li>
+                        <li>
+                            <select required class="contactInput contactSelect" name="contactType">
+                                <option value="" disabled selected>Contact Type</option>
+                                <option value="question">Question</option>
+                                <option value="report">Report</option>
+                                <option value="message">Message</option>
+                            </select>
+                        </li>
+                        <li>
+                            <input type="hidden" name="contact" value="set">
+                            <input class="contactInput contactSubmit" type="submit" class="" value="Send">
+                    </li>
+                    </ul>
+                </form>
             </div>
         </div>
     </main>
