@@ -63,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['changePreferences']) {
 ?>
 
 <body>
+
     <script>
         $(document).ready(function() {
             let labels = <?php echo json_encode($labels); ?>;
@@ -106,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['changePreferences']) {
                             intersect: false
                         },
                         legend: {
-                            display: false,
+                            display: true,
                             position: 'top'
                         }
                     },
@@ -137,7 +138,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['changePreferences']) {
                     <li class="dashboardUserInfoList">Account status: <span class="dashboardBoldText"><?= $userInfo['userStatus']; ?></span></li>
                     <li class="dashboardUserInfoList">Credits: <span class="dashboardBoldText"><?= $userInfo['userCredits']; ?></span></li>
                     <li class="dashboardUserInfoList">
-                        <a href="" class="dashboardUserInfoBtn btn">Change</a>
+
+                        <a href="profile.php?profileId=<?= $userInfo['userId'];?>" class="dashboardUserInfoBtn btn">Go to profile</a>
+
                     </li>
                 </ul>
             </div>
