@@ -32,6 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['profileId'])) {
                         $userPreferences = $userSetting;
                     }
                 }
+                $userLeaderboard = getUserLeaderboardPosition();
+                foreach ($userLeaderboard as $userLeaderboardPos) {
+                    if ($userLeaderboardPos['userId'] == $profileId) {
+                        $userLeaderboardPosition = $userLeaderboardPos['leaderboardPosition'];
+                    }
+                }
             }
         }
 
@@ -184,7 +190,7 @@ mobileNav();
                     if ($userPreferences['profileLeaderboard'] == 1 || $_SESSION['loginInfo']['userStatus'] == 'admin') {
                     ?>
                         <li class="profileFavoriteCryptoList">
-                            <p>Leaderboard position:</p><strong>#1</strong>
+                            <p>Leaderboard position:</p><strong>#<?= $userLeaderboardPosition; ?></strong>
                         </li>
                     <?php
                     } else {
