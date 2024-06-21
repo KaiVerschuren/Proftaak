@@ -139,6 +139,14 @@ head("Homepage");
         </p>
     </div>
 
+    <div class="cryptoHowSummary">
+        <h3>Summary</h3>
+        <p>
+            Cryptocurrency is online money that you can use just like regular money but without needing a bank. 
+            It is secure, fast, and managed by a network of users instead of a single organization.
+        </p>
+    </div>
+
     <div class="teamFooter">
         <?php 
         footer();
