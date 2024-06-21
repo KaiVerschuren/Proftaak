@@ -96,16 +96,25 @@
 }
 
 .adminMessageUserMessage {
+
   flex-basis: 60%;
+
+  flex-basis: 70%;
+
   flex-shrink: 0;
 }
 
 .adminMessageUserType {
+
   flex-basis: 10%;
+
+  flex-basis: 15%;
+
   flex-shrink: 0;
 }
 
 .adminMessageUserTime {
+
   flex-basis: 10%;
   flex-shrink: 0;
 }
@@ -134,6 +143,12 @@
   color: transparent;
   cursor: pointer;
 }
+
+
+  flex-basis: 15%;
+  flex-shrink: 0;
+}
+
 
 /* xs */
 @media (min-width: 475px) {

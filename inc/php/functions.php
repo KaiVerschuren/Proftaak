@@ -13,6 +13,8 @@ function head($page)
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style/utils.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <title><?php echo $page ?> | Coin Cove</title>
     </head>
 <?php
@@ -22,6 +24,8 @@ function headerFunction()
 {
 ?>
     <script defer src="./inc/js/main.js"></script>
+    <script src="./inc/js/slidein.js"></script>
+    <script defer src="./inc/js/accordion.js"></script>
     <header class="container">
         <div class="title">
             <a href="index.php" class="resetAnchorTag">
@@ -45,6 +49,14 @@ function headerFunction()
                 </li>
                 <li class="navList3">
                     <span class="navLinkSpan">Us
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navLinkSvg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+
+                    </span>
+                </li>
+                <li class="navList4">
+                    <span class="navLinkSpan">FAQ
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navLinkSvg">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                         </svg>
@@ -78,13 +90,23 @@ function headerFunction()
             </li>
             <li>
                 <a href="buy.php?method=buy&cryptoCurrency=BTC" class="dropdown dropdownLink2 resetAnchorTag">
-                    Buy/Sell crypto
+                    Buy crypto
+                </a>
+            </li>  
+            <li>
+                <a href="credits.php" class="dropdown dropdownLink3 resetAnchorTag">
+                    Credits
                 </a>
             </li>
         </ul>
     </div>
     <div class="dropdownMenu dropdownAccount">
         <ul class="noStyleUL">
+            <li>
+                <a href="profile.php" class="dropdown dropdownLink1 resetAnchorTag">
+                    Profiles
+                </a>
+            </li>
             <li>
                 <a href="dashboard.php" class="dropdown dropdownLink1 resetAnchorTag">
                     Dashboard
@@ -96,8 +118,8 @@ function headerFunction()
                 </a>
             </li>
             <li>
-                <a href="credits.php" class="dropdown dropdownLink3 resetAnchorTag">
-                    Credits
+                <a href="leaderboard.php" class="dropdown dropdownLink2 resetAnchorTag">
+                    Leaderboard
                 </a>
             </li>
         </ul>
@@ -122,41 +144,31 @@ function headerFunction()
             </li>
         </ul>
     </div>
-<?php
-}
-
-
-
-function usercounter()
-{
-
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "coincove";
-    
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    
-    // Fetch the user count
-    $sql = "SELECT COUNT(*) as total FROM userinfo";
-    $result = $conn->query($sql);
-    
-    if ($result->num_rows > 0) {
-        // Output the user count multiplied by 3
-        $row = $result->fetch_assoc();
-        $multipliedCount = $row["total"] * 3;
-        echo " " . $multipliedCount;
-    } else {
-        echo "0 results";
-    }
-    
-    $conn->close();
+    <div class="dropdownMenu dropdownFAQ">
+        <ul class="noStyleUL">
+            <li>
+                <a href="cryptoHow.php" class="dropdown dropdownLink1 resetAnchorTag">
+                    How does crypto work
+                </a>
+            </li>
+            <li>
+                <a href="proCon.php" class="dropdown dropdownLink2 resetAnchorTag">
+                    pros and cons of crypto
+                </a>
+            </li>
+            <li>
+                <a href="manual.php" class="dropdown dropdownLink3 resetAnchorTag">
+                    user manual
+                </a>
+            </li>
+            <li>
+                <a href="contact.php" class="dropdown dropdownLink3 resetAnchorTag">
+                    Contact us 
+                </a>
+            </li>
+        </ul>
+    </div>
+    <?php
 }
 
 
@@ -164,56 +176,42 @@ function usercounter()
 
 function top3Card($placement)
 {
-
-
-
-
     $con = mysqli_connect("localhost", "root", "", "coincove");
 
-    
+
     if (!$con) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
     // Mysqli query to fetch rows in descending order of userCredits, limiting to top 3
-    $result = mysqli_query($con, "SELECT userDisplayName, userCredits FROM userinfo ORDER BY userCredits DESC LIMIT 3");
+    $result = mysqli_query($con, "SELECT userDisplayName, userCredits FROM userinfo ORDER BY userCredits DESC, userId DESC LIMIT 3");
 
 
     if (mysqli_num_rows($result) > 0) {
         $ranking = 1;
         while ($row = mysqli_fetch_assoc($result)) {
-            ?>
-            <div class="top3Wrapper <?php echo 'top3Card' . $placement; ?>">
-                <div class="top3Picture">
-                    <!-- <img src="./assets/Placeholder881-1000x1000.jpg" alt="Picture" /> -->
-                </div>
-                <div class="top3Info">
+    ?>
+            <div class="top3Wrapper slide-in hidden <?php echo 'top3Card' . $placement; ?>">
+                <div class="top3Info ">
                     <h2 class="top3InfoTitle"><?php echo htmlspecialchars($row['userDisplayName']); ?></h2>
                     <p class="top3Credits"><?php echo number_format($row['userCredits']); ?> Credits</p>
                     <span class="top3Placement"><?php echo $ranking; ?><?php echo ($ranking == 1 ? 'st' : ($ranking == 2 ? 'nd' : 'rd')); ?></span>
                 </div>
             </div>
-            <?php
+    <?php
             $ranking++;
             $placement++;
         }
     } else {
         echo "No results found.";
     }
-
     // Close the database connection
     mysqli_close($con);
-
 }
-
-
-
-
-
 
 function footer()
 {
-?>
+    ?>
     <footer>
         <div class="container">
             <p class="footerText">- CoinCove - <br> - 2024 &copy; -</p>
@@ -268,21 +266,24 @@ function customMessageBox($title, $message, $buttons = [])
 <?php
 }
 
-function divide($num1, $num2) {
+function divide($num1, $num2)
+{
     return $num1 / $num2;
 }
 
-function calculatePercentageChange($purchasePrice, $currentPrice) {
+function calculatePercentageChange($purchasePrice, $currentPrice)
+{
     // Calculate the difference between the current price and the purchase price
     $difference = $currentPrice - $purchasePrice;
-    
+
     // Calculate the percentage change
     $percentageChange = ($difference / $purchasePrice) * 100;
-    
+
     return $percentageChange;
 }
 
-function formatNumber($num) {
+function formatNumber($num)
+{
     if ($num >= 1000000000) {
         return number_format($num / 1000000000, 1) . 'b';
     } elseif ($num >= 1000000) {
@@ -292,6 +293,48 @@ function formatNumber($num) {
     }
 
     return $num;
+}
+
+function sellCustomAmount()
+{
+?>
+    <div class="sellCustomBackgroundBlur">
+        <div class="sellCustom accentShadow">
+            <div class="sellCustomTitle">
+                <h1>
+                    Choose custom amount
+                </h1>
+            </div>
+            <form action="" class="sellCustomForm">
+                <ul class="noStyleUL">
+                    <li>
+                        <input type="hidden" name="customSell">
+                        <input type="number" name="customNumber" class="sellCustomInput removeArrow input">
+                    </li>
+                    <li>
+                        <input type="submit" class="btn" value="Sell">
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+<?php
+}
+
+function customSlider($off, $on, $state, $checkboxName)
+{
+    $checked = $state ? "checked" : "";
+?>
+    <div class="customSlider">
+        <label class="switch">
+            <input value="1" name="<?= $checkboxName; ?>" type="checkbox" <?= $checked; ?>>
+            <span class="slider">
+                <span class="slider-text off"><?= $off; ?></span>
+                <span class="slider-text on"><?= $on; ?></span>
+            </span>
+        </label>
+    </div>
+<?php
 }
 
 function api($limit = 5, $ids = [], $convert = 'USD')
@@ -400,4 +443,3 @@ function convertCurrency($cryptocurrencies, $convert)
     return $cryptocurrencies;
 }
 ?>
-

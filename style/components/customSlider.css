@@ -1,0 +1,64 @@
+.customSlider .switch {
+    position: relative;
+    display: inline-block;
+    width: 80px; /* Increased width to accommodate text */
+    height: 34px;
+}
+
+.customSlider .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.customSlider .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--primary);
+    transition: .4s;
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px; /* Add padding to avoid text overlap */
+}
+
+.customSlider .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--accent);
+    transition: .4s;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.customSlider .slider-text {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-soft-reverse);
+    z-index: 1; /* Ensure text is above the slider */
+}
+
+.customSlider .slider-text.on {
+    order: 1;
+}
+
+.customSlider .slider-text.off {
+    order: 2;
+}
+
+.customSlider .switch input:checked + .slider {
+    background-color: var(--secondary);
+}
+
+.customSlider .switch input:checked + .slider:before {
+    transform: translateX(46px); /* Adjusted to move to the right */
+}
