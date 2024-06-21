@@ -96,19 +96,59 @@
 }
 
 .adminMessageUserMessage {
+
+  flex-basis: 60%;
+
   flex-basis: 70%;
+
   flex-shrink: 0;
 }
 
 .adminMessageUserType {
+
+  flex-basis: 10%;
+
   flex-basis: 15%;
+
   flex-shrink: 0;
 }
 
 .adminMessageUserTime {
+
+  flex-basis: 10%;
+  flex-shrink: 0;
+}
+
+.adminMessageUserDelete {
+  flex-basis: 5%;
+  flex-shrink: 0;
+  height: 48px;
+  aspect-ratio: 1;
+  stroke: white;
+}
+
+.removeForm {
+  position: relative;
+}
+
+.removeSubmit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: transparent;
+  cursor: pointer;
+}
+
+
   flex-basis: 15%;
   flex-shrink: 0;
 }
+
 
 /* xs */
 @media (min-width: 475px) {
