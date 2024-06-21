@@ -5,7 +5,8 @@ include('./inc/php/functions.php');
 session_start();
 
 headerFunction();
-head("");
+head("Custom");
+mobileNav();
 
 if ($_SESSION['loginInfo']['userLoginState'] && isset($_SESSION['walletInfo'])) {
     $walletInfo = $_SESSION['walletInfo'];

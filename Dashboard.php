@@ -6,6 +6,7 @@ session_start();
 
 head("Dashboard");
 headerFunction();
+mobileNav();
 
 if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo']['userLoginState']) {
     customMessageBox(
@@ -64,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['changePreferences'])) 
 ?>
 
 <body>
-
     <script>
         $(document).ready(function() {
             let labels = <?php echo json_encode($labels); ?>;
@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['changePreferences'])) 
                     <li class="dashboardUserInfoList">Account status: <span class="dashboardBoldText"><?= $userInfo['userStatus']; ?></span></li>
                     <li class="dashboardUserInfoList">Credits: <span class="dashboardBoldText"><?= $userInfo['userCredits']; ?></span></li>
                     <li class="dashboardUserInfoList">
-                        <a href="profile.php?profileId=<?= $userInfo['userId'];?>" class="dashboardUserInfoBtn btn">Go to profile</a>
+                        <a href="profile.php?profileId=<?= $userInfo['userId']; ?>" class="dashboardUserInfoBtn btn">Go to profile</a>
                         <?php
                         if ($_SESSION['loginInfo']['userStatus'] == "admin") {
                         ?>
@@ -236,15 +236,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['changePreferences'])) 
                         <li>
                             <input type="hidden" name="contact" value="set">
                             <input class="contactInput contactSubmit" type="submit" class="" value="Send">
-                    </li>
+                        </li>
                     </ul>
                 </form>
             </div>
         </div>
     </main>
 </body>
-
-</html>
 
 <?php
 footer();

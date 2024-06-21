@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user'])) {
     $messages = getMessages();
     $userInfo = [
         [
-            "userId" => "All Users",
+            "userId" => "All users",
             "userDisplayName" => "",
             "userEmail" => "",
             "userStatus" => "",

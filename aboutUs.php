@@ -4,10 +4,10 @@ include("inc/php/functions.php");
 session_start();
 
 head("About us");
+HeaderFunction(); 
+mobileNav();
 ?>
 <body>
-    <?php HeaderFunction(); mobileNav(); ?>
-
     <main class="aboutUs container">
         <div class="aboutUsText">
             <div class="aboutUsTitle">
@@ -73,5 +73,4 @@ head("About us");
         </figure>
     </main>
     <?php footer(); ?>
-
 </body>
