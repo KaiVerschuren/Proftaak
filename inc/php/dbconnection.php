@@ -594,10 +594,6 @@ function getWalletFromId($userId)
     return $userWallet;
 }
 
-
-?>
-
-
 function userCounter()
 {
     $con = connectDB();
