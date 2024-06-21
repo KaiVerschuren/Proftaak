@@ -12,16 +12,16 @@ head("Homepage");
     HeaderFunction();
     ?>
 
-    <body>
-        <h2>Pros and Cons of Cryptocurrency</h2>
-        <table>
-            <thead>
+    <body class="container proConBody">
+        <h2 class="proConTableTitle">Pros and Cons of Cryptocurrency</h2>
+        <table class="proConTable">
+            <thead class="proConTableHead">
                 <tr>
                     <th>Pros</th>
                     <th>Cons</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="proConTableBody">
                 <tr>
                     <td>Decentralization</td>
                     <td>Volatility</td>
@@ -57,7 +57,7 @@ head("Homepage");
     </html>
 
 
-    <div class="teamFooter">
+    <div class="proConFooter">
         <?php
         footer();
         ?>
