@@ -23,6 +23,7 @@
 @import url("components/profileNoUser.css");
 @import url("components/profile.css");
 @import url("components/leaderboard.css");
+@import url("components/proCon.css");
 
 .btn {
   display: inline-block;
