@@ -25,6 +25,7 @@ function headerFunction()
 ?>
     <script defer src="./inc/js/main.js"></script>
     <script src="./inc/js/slidein.js"></script>
+    <script defer src="./inc/js/accordion.js"></script>
     <header class="container">
         <div class="title">
             <a href="index.php" class="resetAnchorTag">
