@@ -55,6 +55,14 @@ function headerFunction()
 
                     </span>
                 </li>
+                <li class="navList4">
+                    <span class="navLinkSpan">FAQ
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navLinkSvg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+
+                    </span>
+                </li>
                 <!-- <li class="navList3"><a class="resetAnchorTag" href="">Wallet</a></li> -->
             </ul>
         </nav>
@@ -82,7 +90,7 @@ function headerFunction()
             </li>
             <li>
                 <a href="buy.php?method=buy&cryptoCurrency=BTC" class="dropdown dropdownLink2 resetAnchorTag">
-                    Buy/Sell crypto
+                    Buy crypto
                 </a>
             </li>  
             <li>
@@ -111,7 +119,7 @@ function headerFunction()
             </li>
             <li>
                 <a href="leaderboard.php" class="dropdown dropdownLink2 resetAnchorTag">
-                    leaderboard
+                    Leaderboard
                 </a>
             </li>
         </ul>
@@ -132,6 +140,30 @@ function headerFunction()
             <li>
                 <a href="history.php" class="dropdown dropdownLink3 resetAnchorTag">
                     History
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="dropdownMenu dropdownFAQ">
+        <ul class="noStyleUL">
+            <li>
+                <a href="cryptoHow.php" class="dropdown dropdownLink1 resetAnchorTag">
+                    How does crypto work
+                </a>
+            </li>
+            <li>
+                <a href="proCon.php" class="dropdown dropdownLink2 resetAnchorTag">
+                    pros and cons of crypto
+                </a>
+            </li>
+            <li>
+                <a href="manual.php" class="dropdown dropdownLink3 resetAnchorTag">
+                    user manual
+                </a>
+            </li>
+            <li>
+                <a href="contact.php" class="dropdown dropdownLink3 resetAnchorTag">
+                    Contact us 
                 </a>
             </li>
         </ul>
