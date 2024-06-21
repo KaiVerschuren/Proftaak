@@ -3,7 +3,7 @@ include("inc/php/functions.php");
 
 session_start();
 
-head("Homepage");
+head("Pros en Cons");
 ?>
 
 <body>

@@ -3,7 +3,7 @@ include("inc/php/functions.php");
 
 session_start();
 
-head("Homepage");
+head("User manual");
 ?>
 
 <body>
@@ -12,7 +12,9 @@ head("Homepage");
     HeaderFunction(); 
     ?>
 
-    <div class="teamFooter">
+
+
+    <div>
         <?php 
         footer();
         ?>
