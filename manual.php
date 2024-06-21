@@ -12,11 +12,11 @@ head("User manual");
     HeaderFunction(); 
     ?>
 
+    <img src="assets/manualLoggin.png" alt="">   
 
 
-    <div>
-        <?php 
-        footer();
-        ?>
-    </div>
+    <?php 
+    footer();
+    ?>
+   
 </body>
