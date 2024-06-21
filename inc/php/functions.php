@@ -127,37 +127,37 @@ function headerFunction()
 
 
 
-function usercounter()
-{
+// function usercounter()
+// {
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "coincove";
-    
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
+//     $servername = "localhost";
+//     $username = "root";
+//     $password = "";
+//     $dbname = "coincove";
     
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+//     $conn = new mysqli($servername, $username, $password, $dbname);
     
-    // Fetch the user count
-    $sql = "SELECT COUNT(*) as total FROM userinfo";
-    $result = $conn->query($sql);
+
+//     if ($conn->connect_error) {
+//         die("Connection failed: " . $conn->connect_error);
+//     }
     
-    if ($result->num_rows > 0) {
-        // Output the user count multiplied by 3
-        $row = $result->fetch_assoc();
-        $multipliedCount = $row["total"] * 3;
-        echo " " . $multipliedCount;
-    } else {
-        echo "0 results";
-    }
+//     // Fetch the user count
+//     $sql = "SELECT COUNT(*) as total FROM userinfo";
+//     $result = $conn->query($sql);
     
-    $conn->close();
-}
+//     if ($result->num_rows > 0) {
+//         // Output the user count multiplied by 3
+//         $row = $result->fetch_assoc();
+//         $multipliedCount = $row["total"] * 3;
+//         echo " " . $multipliedCount;
+//     } else {
+//         echo "0 results";
+//     }
+    
+//     $conn->close();
+// }
 
 
 

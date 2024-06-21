@@ -400,9 +400,6 @@ function getWalletFromId($userId)
     return $userWallet;
 }
 
-<<<<<<< Updated upstream
-?>
-=======
 function userCounter()
 {
     $con = connectDB();
@@ -705,4 +702,4 @@ function deleteSingularChat($id)
     // Return true if deletion was successful, false otherwise
     return $success;
 }
->>>>>>> Stashed changes
+
