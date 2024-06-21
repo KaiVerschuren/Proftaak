@@ -3,22 +3,12 @@ include("inc/php/functions.php");
 
 session_start();
 
-head("Homepage");
+head("History");
+mobileNav();
+HeaderFunction();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
 <body>
-    <?php mobileNav(); ?>
-    <?php HeaderFunction(); ?>
-
     <div class="slideshow-container">
         <div class="projectGrid">
             <div class="project">
@@ -78,11 +68,9 @@ head("Homepage");
         </div>
     </div>
     </div>
-
-    <div class="history_footer">
+    <div class="historyFooter">
         <?php footer(); ?>
     </div>
-
 </body>
 
 </html>

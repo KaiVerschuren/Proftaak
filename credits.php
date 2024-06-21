@@ -6,6 +6,7 @@ session_start();
 
 head("Credits");
 headerFunction();
+mobileNav();
 
 if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo']['userLoginState']) {
     customMessageBox(
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     ['label' => 'Back', 'url' => 'javascript:history.go(-1);']
                 ]
             );
-            exit(); // Exit after displaying error message
+            exit();
         }
     } elseif (isset($_POST['custom'])) {
         $userPreviousCredits = getUserCredits($_SESSION['loginInfo']['userId']);
@@ -62,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     ['label' => 'Back', 'url' => 'javascript:history.go(-1);']
                 ]
             );
-            exit(); // Exit after displaying error message
+            exit();
         }
     }
     if ($success) {
@@ -73,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ['label' => 'To Wallet', 'url' => 'wallet.php']
             ]
         );
-        exit(); // Exit after displaying success message
+        exit();
     }
 }
 
@@ -95,7 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button class="btn creditsSection" type="submit">Buy</button>
             </form>
         </section>
-
         <section class="creditsCard slide-in hidden">
             <form action="" method="post">
                 <h1>10000 credits</h1>
@@ -109,7 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button class="btn creditsSection" type="submit">Buy</button>
             </form>
         </section>
-
         <section class="creditsCard slide-in hidden">
             <form action="" method="post">
                 <h1>custom amount</h1>
@@ -129,13 +128,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </section>
 
     </div>
-
     <div class="creditsFooter">
         <?php
         footer()
         ?>
     </div>
-
 </body>
-
-</html>
