@@ -13,7 +13,7 @@ function connectDB()
     return $mysqli;
 }
 
-function loginWithInfo($userEmail, $userPassword)
+function loginWithInfo($userEmail)
 {
     $con = connectDB();
 
@@ -51,8 +51,15 @@ function loginWithInfo($userEmail, $userPassword)
     // Fetch data from the result
     $userInfo = $result->fetch_assoc();
 
+    $currentTime = date("Y-m-d H:i:s");
+    $updateSql = "UPDATE `userInfo` SET `lastInlog` = ? WHERE `userEmail` = ?";
+    $updateStmt = $con->prepare($updateSql);
+    $updateStmt->bind_param("ss", $currentTime, $userEmail);
+    $updateStmt->execute();
+
     return $userInfo;
 }
+
 
 
 function signUp($userDisplayName, $userPassword, $userEmail, $userStatus)
@@ -185,7 +192,7 @@ function updateCreditHistory($userId, $newCreditAmount,)
 
     $con = connectDB();
     // Define the SQL
-    $sql = "insert into creditHistory (userId, historyCredits) values (?, ?)";
+    $sql = "INSERT INTO creditHistory (userId, historyCredits) VALUES (?, ?)";
 
     // Prepare the SQL statement
     $stmt = $con->prepare($sql);
@@ -271,7 +278,6 @@ function getUserCredits($userId)
     return $userCreditsFromId;
 }
 
-
 function getUserSettings($userId)
 {
     $con = connectDB();
@@ -305,6 +311,42 @@ function getUserSettings($userId)
     return $userSettingsFromId;
 }
 
+function getUserIdFromDisplayName($userDisplayName)
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT userId 
+    FROM userInfo
+    WHERE userDisplayName = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("s", $userDisplayName);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userInfoFromDisplayName = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Check if user info is found
+    if ($userInfoFromDisplayName) {
+        return [true, $userInfoFromDisplayName];
+    }
+    return [false, null];
+}
+
 function getUserInfo($userId)
 {
     $con = connectDB();
@@ -334,13 +376,49 @@ function getUserInfo($userId)
     // Close the connection
     $con->close();
 
-    // return array of links
-    return $userInfoFromId;
+    // Check if user info is found
+    if ($userInfoFromId) {
+        return [true, $userInfoFromId];
+    }
+    return [false, null];
+}
+
+function getAllUsers()
+{
+    $con = connectDB();
+    
+    // Define the SQL with secondary sorting by userId
+    $sql = "SELECT *
+            FROM userInfo
+            ORDER BY userCredits DESC, userId DESC";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $allInfo = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    return $allInfo;
 }
 
 
 function updateCredits($userId, $newCredits)
 {
+    if ($newCredits < 0) {
+        $newCredits = 0;
+    }
     updateCreditHistory($userId, $newCredits);
     $con = connectDB();
     // Define the SQL
@@ -366,6 +444,122 @@ function updateCredits($userId, $newCredits)
     // Return the updated user credits
     return true;
 }
+
+function removeWalletFromId($walletId)
+{
+    $con = connectDB();
+    // Define the SQL
+    $sql = "DELETE FROM userwallet WHERE id = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameters
+    $stmt->bind_param("i", $walletId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the updated user credits
+    return true;
+}
+
+function updateWalletFromId($newAmount, $walletId)
+{
+    $con = connectDB();
+
+    // Update the wallet's amountCredits
+    $sqlUpdate = "UPDATE userwallet
+    SET amountCredits = ?
+    WHERE id = ?";
+
+    // Prepare the update statement
+    $stmtUpdate = $con->prepare($sqlUpdate);
+
+    // Bind the parameters for the update
+    $stmtUpdate->bind_param("di", $newAmount, $walletId); // Use "di" for double and integer types
+
+    // Execute the update statement
+    $stmtUpdate->execute();
+
+    // Close the update statement
+    $stmtUpdate->close();
+
+    // Delete wallet rows where amountCredits is 0
+    $sqlDelete = "DELETE FROM userwallet WHERE amountCredits = 0";
+
+    // Prepare the delete statement
+    $stmtDelete = $con->prepare($sqlDelete);
+
+    // Execute the delete statement
+    $stmtDelete->execute();
+
+    // Close the delete statement
+    $stmtDelete->close();
+
+    // Close the connection
+    $con->close();
+
+    return true;
+}
+
+function getFavoriteCrypto($userId)
+{
+    $con = connectDB();
+
+    // Define the SQL
+    $sql = "
+        WITH favoriteCrypto AS (
+            SELECT
+                *,
+                ROW_NUMBER() OVER (PARTITION BY currencyFull ORDER BY amountCredits DESC) AS rn
+            FROM
+                userwallet
+            WHERE
+                userId = ?
+        )
+        SELECT
+            *
+        FROM
+            favoriteCrypto
+        WHERE
+            rn = 1
+        ORDER BY
+            amountCredits DESC
+        LIMIT 3;
+    ";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $threeWallets = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return array of links
+    return $threeWallets;
+}
+
 
 function getWalletFromId($userId)
 {
@@ -668,6 +862,7 @@ function sendContact($content, $type, $userId)
     return true;
 }
 
+
 function deleteSingularChat($id)
 {
     $con = connectDB();
@@ -703,7 +898,7 @@ function deleteSingularChat($id)
     return $success;
 }
 
-function deleteChat($userId)
+function deleteChat($userId)    
 {
     $con = connectDB();
     // Define the SQL

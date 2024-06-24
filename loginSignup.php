@@ -18,24 +18,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_GET['method']) && $_GET['method'] == "logIn") {
         $userEmail = filter_var(trim($_POST['loginEmail']), FILTER_SANITIZE_EMAIL);
         $userPassword = trim($_POST['loginPassword']);
-        $userHashedPassword = password_hash($userPassword, PASSWORD_BCRYPT);
 
-        $loginInfo = loginWithInfo($userEmail, $userHashedPassword);
+        $loginInfo = loginWithInfo($userEmail);
 
-        if (isset($loginInfo)) {
+        if ($loginInfo && password_verify($userPassword, $loginInfo['userPassword'])) {
             $_SESSION['loginInfo'] = array(
                 'userLoginState' => true,
                 'userId' => $loginInfo['userId'],
                 'userDisplayName' => $loginInfo['userDisplayName'],
                 'userEmail' => $loginInfo['userEmail'],
+                'userStatus' => $loginInfo['userStatus'],
             );
 
             customMessageBox(
-                "Login succesful",
-                "You're now succesfully logged into your account.",
+                "Login successful",
+                "You're now successfully logged into your account.",
                 $buttons = [
                     ['label' => 'Home', 'url' => 'index.php'],
                     ['label' => 'Dashboard', 'url' => 'dashboard.php']
+                ]
+            );
+        } else {
+            customMessageBox(
+                "Login failed",
+                "Invalid email or password.",
+                $buttons = [
+                    ['label' => 'Try again', 'url' => 'loginSignup.php?method=logIn'],
+                    ['label' => 'Home', 'url' => 'index.php']
                 ]
             );
         }
@@ -46,21 +55,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $signUpSuccessfull = signUp($userDisplayName, $userPassword, $userEmail, "user");
 
-        if ($signUpSuccessfull) {
+        if ($signUpSuccessful) {
             customMessageBox(
-                "Sign up succesful",
-                "You're now succesfully signed up",
+                "Sign up successful",
+                "You're now successfully signed up",
                 $buttons = [
                     ['label' => 'Home', 'url' => 'index.php'],
                     ['label' => 'Log in', 'url' => 'loginSignup.php?method=logIn']
                 ]
             );
-        } else if (!$signUpSuccessfull) {
+        } else {
             customMessageBox(
                 "Email exists",
-                "The email youve entered already exists",
+                "The email you've entered already exists",
                 $buttons = [
-                    ['label' => 'Log in', 'url' => 'loginSignup.php?method=signUp'],
+                    ['label' => 'Log in', 'url' => 'loginSignup.php?method=logIn'],
                     ['label' => 'Home', 'url' => 'index.php']
                 ]
             );
