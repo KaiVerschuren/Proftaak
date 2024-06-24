@@ -7,10 +7,6 @@
  text-align: center;
 }
 
-.proConTableBody {
-    position: relative;
-}
-
 .proConTableBody::before, .proConTableHead::before {
     content: '';
     position: absolute;
@@ -44,13 +40,9 @@
     text-align: center;
 }
 
-.proConBody {
-    position: relative;
-    min-height: 100vh;
-}
-
 .proConFooter {
     position: absolute;
+    left: 0;
     bottom: 0;
     width: 100%;
 }
