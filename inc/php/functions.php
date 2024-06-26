@@ -168,11 +168,8 @@ function headerFunction()
             </li>
         </ul>
     </div>
-    <?php
+<?php
 }
-
-
-
 
 function top3Card($placement)
 {

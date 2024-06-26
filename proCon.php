@@ -12,7 +12,7 @@ head("Pros en Cons");
     HeaderFunction();
     ?>
 
-    <body class="container proConBody">
+    <body class="container">
         <h2 class="proConTableTitle">Pros and Cons of Cryptocurrency</h2>
         <table class="proConTable">
             <thead class="proConTableHead">

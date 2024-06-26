@@ -7,20 +7,6 @@ HeaderFunction();
 ?>
 
 <body>
-<<<<<<< Updated upstream
-    <?php 
-    mobileNav(); 
-    HeaderFunction(); 
-    ?>
-
-
-
-    <div>
-        <?php 
-        footer();
-        ?>
-    </div>
-=======
     <div class="container">
         <div class="manualWrapper">
             <div class="manualLinks">
@@ -52,5 +38,4 @@ HeaderFunction();
             video.currentTime = seconds;
         }
     </script>
->>>>>>> Stashed changes
 </body>

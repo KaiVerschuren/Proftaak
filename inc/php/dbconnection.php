@@ -861,3 +861,74 @@ function sendContact($content, $type, $userId)
 
     return true;
 }
+
+
+function deleteSingularChat($id)
+{
+    $con = connectDB();
+    // Define the SQL
+    $sql = "DELETE FROM adminchat WHERE id = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Check if the statement was prepared successfully
+    if (!$stmt) {
+        // Close the connection
+        $con->close();
+        return false;
+    }
+
+    // Bind the parameter
+    $stmt->bind_param("i", $id);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Check if the record was successfully deleted
+    $success = $stmt->affected_rows > 0;
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return true if deletion was successful, false otherwise
+    return $success;
+}
+
+function deleteChat($userId)    
+{
+    $con = connectDB();
+    // Define the SQL
+    $sql = "DELETE FROM adminchat WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Check if the statement was prepared successfully
+    if (!$stmt) {
+        // Close the connection
+        $con->close();
+        return false;
+    }
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Check if the record was successfully deleted
+    $success = $stmt->affected_rows > 0;
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return true if deletion was successful, false otherwise
+    return $success;
+}
