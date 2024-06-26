@@ -119,8 +119,9 @@
   height: 80%;
   aspect-ratio: 1;
   padding-left: .5em;
-
-
+  flex-basis: 10%;
+  flex-shrink: 0;
+}
 
 .adminMessageUserDelete {
   flex-basis: 5%;
