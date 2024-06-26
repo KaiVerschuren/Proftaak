@@ -10,10 +10,6 @@
   height: fit-content;
 }
 
-.adminUserId {
-  display: none;
-}
-
 .adminCard {
   background-color: var(--accent);
   border-radius: 1em;
@@ -99,6 +95,8 @@
   flex-basis: 60%;
   flex-basis: 70%;
   flex-shrink: 0;
+  white-space: wrap;
+  text-overflow: ellipsis;
 }
 
 .adminMessageUserType {
@@ -108,7 +106,16 @@
 }
 
 .adminMessageUserTime {
+  flex-basis: 10%;
+  flex-shrink: 0;
+}
 
+.adminMessageUserDelete {
+  flex-basis: 5%;
+  flex-shrink: 0;
+  height: 100%;
+  aspect-ratio: 1;
+  padding-left: .5em;
   flex-basis: 10%;
   flex-shrink: 0;
 }
@@ -136,6 +143,10 @@
   border: none;
   color: transparent;
   cursor: pointer;
+}
+
+.adminUserId, .adminMessageUserCreatedAt, .adminMessageUserTime {
+  display: none;
 }
 
 /* xs */
@@ -166,6 +177,10 @@
 
   .adminMessages {
     grid-area: 2 / 1 / 3 / 3;
+  }
+
+  .adminMessageUserCreatedAt, .adminMessageUserTime {
+    display: block;
   }
 }
 

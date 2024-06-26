@@ -1,0 +1,30 @@
+.manualAnchorTag {
+    cursor: pointer;
+}
+
+.manualAnchorTag:hover {
+    text-decoration: underline;
+}
+
+.manualWrapper {
+    display: flex;
+    margin-bottom: 5em;
+}
+.manualLinks {
+    display: flex;
+    justify-content: center;
+    flex-grow: 2;
+    flex-basis: 0;
+    flex-shrink: 0;
+}
+
+.manualLinks > * {
+    text-align: start;
+}
+
+.videoWrapper {
+    width: 100%;
+    flex-grow: 5;
+    flex-basis: 0;
+    flex-shrink: 0;
+}
