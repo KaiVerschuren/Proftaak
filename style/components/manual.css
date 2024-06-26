@@ -8,7 +8,9 @@
 
 .manualWrapper {
     display: flex;
-    margin-bottom: 5em;
+
+    margin-bottom: 4em;
+
 }
 .manualLinks {
     display: flex;
@@ -28,3 +30,4 @@
     flex-basis: 0;
     flex-shrink: 0;
 }
+
