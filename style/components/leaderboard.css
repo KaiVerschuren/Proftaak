@@ -1,6 +1,6 @@
 .leaderboardTable {
     width: 100%;
-    
+    font-size: .75rem;
 }
 
 .leaderboardTable > *{
@@ -41,5 +41,43 @@
 
 .leaderboardTableHead {
     position: relative;
-
 }
+
+.leaderboardTableStatus, .leaderboardTableCreatedAt {
+    display: none;
+}
+
+.leaderboardTableData {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* xs */
+@media (min-width: 475px) {
+    .leaderboardTable {
+        font-size: 1rem;
+    }
+}
+
+/* sm */
+@media (min-width: 640px) {
+    .leaderboardTableCreatedAt {
+        display: table-cell;
+    }
+}
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+@media (min-width: 1024px) {
+    .leaderboardTableStatus {
+        display: table-cell;
+    }
+}
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

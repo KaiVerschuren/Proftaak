@@ -20,20 +20,20 @@ $numbering = 1
         <table class="leaderboardTable">
             <thead class="leaderboardTableHead">
                 <tr>
-                    <th>
+                    <th class="leaderboardTableData">
                         <p class="leaderboardRank">rank: </p>
                     </th>
-                    <th>
-                        <p>name: </p>
+                    <th class="leaderboardTableName leaderboardTableData">
+                        <p>Name: </p>
                     </th>
-                    <th>
-                        <p>status: </p>
+                    <th class="leaderboardTableStatus leaderboardTableData">
+                        <p>Status: </p>
                     </th>
-                    <th>
-                        <p>amount of credits: </p>
+                    <th class="leaderboardTableData">
+                        <p>Credits: </p>
                     </th>
-                    <th>
-                        <p>created at: </p>
+                    <th class="leaderboardTableCreatedAt leaderboardTableData">
+                        <p>Created at: </p>
                     </th>
                 </tr>
             </thead>
@@ -42,19 +42,19 @@ $numbering = 1
                 foreach ($allUsers as $user) { 
                 ?>
                     <tr>
-                        <td class="leaderboardRank">
+                        <td class="leaderboardRank leaderboardTableData">
                         <?= $numbering; ?>
                         </td>
-                        <td>
+                        <td class="leaderboardTableData">
                             <?php echo $user['userDisplayName']; ?>
                         </td>
-                        <td>
+                        <td class="leaderboardTableStatus leaderboardTableData">
                             <?php echo $user['userStatus']; ?>
                         </td>
-                        <td>
+                        <td  class="leaderboardTableData">
                             <?php echo $user['userCredits']; ?>
                         </td>
-                        <td>
+                        <td class="leaderboardTableCreatedAt leaderboardTableData">
                             <?php echo $user['createdAt']; ?>
                         </td>
                     </tr>

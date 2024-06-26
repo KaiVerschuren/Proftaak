@@ -25,6 +25,7 @@ function headerFunction()
 ?>
     <script defer src="./inc/js/main.js"></script>
     <script src="./inc/js/slidein.js"></script>
+    <script defer src="./inc/js/accordion.js"></script>
     <header class="container">
         <div class="title">
             <a href="index.php" class="resetAnchorTag">
@@ -103,7 +104,7 @@ function headerFunction()
         <ul class="noStyleUL">
             <li>
                 <a href="profile.php" class="dropdown dropdownLink1 resetAnchorTag">
-                    Profile
+                    Profiles
                 </a>
             </li>
             <li>
@@ -167,11 +168,8 @@ function headerFunction()
             </li>
         </ul>
     </div>
-    <?php
+<?php
 }
-
-
-
 
 function top3Card($placement)
 {
@@ -183,7 +181,7 @@ function top3Card($placement)
     }
 
     // Mysqli query to fetch rows in descending order of userCredits, limiting to top 3
-    $result = mysqli_query($con, "SELECT userDisplayName, userCredits FROM userinfo ORDER BY userCredits DESC LIMIT 3");
+    $result = mysqli_query($con, "SELECT userDisplayName, userCredits FROM userinfo ORDER BY userCredits DESC, userId DESC LIMIT 3");
 
 
     if (mysqli_num_rows($result) > 0) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 13, 2024 at 06:52 AM
+-- Generation Time: Jun 19, 2024 at 08:03 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `coincove`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminchat`
+--
+
+CREATE TABLE `adminchat` (
+  `id` int NOT NULL,
+  `content` text NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `timeSent` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `userId` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `adminchat`
+--
+
+INSERT INTO `adminchat` (`id`, `content`, `type`, `timeSent`, `userId`) VALUES
+(1, '12345', 'message', '2024-06-13 21:35:46', 2),
+(2, '1234543245324', 'message', '2024-06-13 21:36:31', 2),
+(3, '1234543245324', 'message', '2024-06-13 21:37:36', 2),
+(4, 'YO BIG DAWG', 'message', '2024-06-13 21:37:44', 2),
+(5, 'Helo im kai', 'question', '2024-06-16 09:59:21', 9),
+(6, 'ewgtrhyjtmunbrev4wfgtthymjhm', 'question', '2024-06-17 08:37:14', 2);
 
 -- --------------------------------------------------------
 
@@ -303,7 +329,15 @@ INSERT INTO `credithistory` (`hisortyId`, `historyCredits`, `historyTime`, `user
 (274, 0, '2024-06-12 12:04:32', 9),
 (275, 10000, '2024-06-12 20:39:47', 12),
 (276, 0, '2024-06-12 20:39:58', 12),
-(277, 172012, '2024-06-13 08:51:31', 2);
+(277, 172012, '2024-06-13 08:51:31', 2),
+(278, 99161, '2024-06-13 09:06:33', 2),
+(279, 90161910, '2024-06-13 09:07:39', 2),
+(280, 88927343, '2024-06-13 09:11:41', 2),
+(281, 1000, '2024-06-16 15:23:34', 9),
+(282, 11000, '2024-06-16 15:23:39', 9),
+(283, 0, '2024-06-19 09:07:57', 9),
+(284, 1000, '2024-06-19 09:08:30', 9),
+(285, -1, '2024-06-19 09:08:46', 9);
 
 -- --------------------------------------------------------
 
@@ -327,10 +361,10 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`userId`, `userDisplayName`, `userEmail`, `userPassword`, `userStatus`, `createdAt`, `lastInlog`, `userCredits`) VALUES
-(2, 'Admin 1', 'admin@gmail.com', '$2y$10$QZI28.RTj/Oy.H4Tm.9Fquxk4qXQxSkDOFo99NIHkBIcGggLKFvha', 'admin', '2024-06-04 11:30:41', '2024-06-12 19:14:30', 172012),
-(9, 'Kai', 'verschurenkai@gmail.com', '$2y$10$KrpbePFixZCzVGczpKl.iO1BiuDUCGr3wDT3/216niEc8JzI1NXlO', 'user', '2024-06-12 13:44:36', '', 0),
+(2, 'Admin 1', 'admin@gmail.com', '$2y$10$QZI28.RTj/Oy.H4Tm.9Fquxk4qXQxSkDOFo99NIHkBIcGggLKFvha', 'admin', '2024-06-04 11:30:41', '2024-06-19 07:05:12', 88927343),
+(9, 'Kai', 'verschurenkai@gmail.com', '$2y$10$KrpbePFixZCzVGczpKl.iO1BiuDUCGr3wDT3/216niEc8JzI1NXlO', 'user', '2024-06-12 13:44:36', '2024-06-19 07:07:47', -1),
 (10, 'Jamie2', 'Jamiemattie@gmail.com', '$2y$10$dUBRyIMGNsboDMcihcFXO.KWoBF.nAOa5hyMIKUUk1Tig0Uhf0/0S', 'user', '2024-06-12 13:44:36', '', 0),
-(12, 'Kaitje', '91733@roc-teraa.nl', '$2y$10$e94LuDtLHtrn1zFQ7I1c6.h5yE602De9HLdedG480t9i5gF2TI0lq', 'user', '2024-06-12 13:54:36', '2024-06-12 18:36:43', 0);
+(12, 'Kaitje', '91733@roc-teraa.nl', '$2y$10$e94LuDtLHtrn1zFQ7I1c6.h5yE602De9HLdedG480t9i5gF2TI0lq', 'user', '2024-06-12 13:54:36', '2024-06-18 11:57:57', 0);
 
 -- --------------------------------------------------------
 
@@ -382,11 +416,22 @@ INSERT INTO `userwallet` (`id`, `currency`, `currencyFull`, `amountCredits`, `am
 (92, 'BNB', 'binance-coin', 10000, 14.607716237935968, 684.56970529248, '2024-06-09 12:51:32', 2),
 (93, 'DOGE', 'dogecoin', 50000, 339966.7888779585, 0.14707318960485, '2024-06-09 12:51:43', 2),
 (95, 'BTC', 'bitcoin', 10000, 0.14741395708394148, 67836.181850174, '2024-06-12 10:04:32', 9),
-(96, 'BTC', 'bitcoin', 10000, 0.14458698107392506, 69162.520205655, '2024-06-12 18:39:58', 12);
+(96, 'BTC', 'bitcoin', 10000, 0.14458698107392506, 69162.520205655, '2024-06-12 18:39:58', 12),
+(97, 'BTC', 'bitcoin', 9000000, 133.3556552514642, 67488.701420491, '2024-06-13 07:07:39', 2),
+(98, 'XRP', 'xrp', 1234567, 2549989.248329927, 0.4841459628932, '2024-06-13 07:11:41', 2),
+(99, 'BTC', 'bitcoin', 11000, 0.16749188046110827, 65674.825368948, '2024-06-19 07:07:57', 9),
+(100, 'BTC', 'bitcoin', 1, 0.000015227980888349404, 65668.587801097, '2024-06-19 07:08:46', 9);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `adminchat`
+--
+ALTER TABLE `adminchat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `credithistory`
@@ -420,10 +465,16 @@ ALTER TABLE `userwallet`
 --
 
 --
+-- AUTO_INCREMENT for table `adminchat`
+--
+ALTER TABLE `adminchat`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `credithistory`
 --
 ALTER TABLE `credithistory`
-  MODIFY `hisortyId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
+  MODIFY `hisortyId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=286;
 
 --
 -- AUTO_INCREMENT for table `userinfo`
@@ -441,11 +492,17 @@ ALTER TABLE `usersettings`
 -- AUTO_INCREMENT for table `userwallet`
 --
 ALTER TABLE `userwallet`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `adminchat`
+--
+ALTER TABLE `adminchat`
+  ADD CONSTRAINT `adminchat_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `userinfo` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `usersettings`

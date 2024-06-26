@@ -1,0 +1,209 @@
+.admin {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  grid-auto-flow: row;
+  font-size: 0.8rem;
+}
+
+.adminInfo {
+  height: fit-content;
+}
+
+.adminCard {
+  background-color: var(--accent);
+  border-radius: 1em;
+  padding: 1em 2em;
+}
+
+.adminUserList>h2 {
+  margin-bottom: 1em;
+}
+
+.adminUserHead {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: hsl(234, 37%, 12%);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1em;
+}
+
+.adminUserHead>div {
+  max-width: 30%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adminUserRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  background: hsl(234, 37%, 12%);
+}
+
+.adminUserRow:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+.adminUserListWrapper {
+  min-height: 15em;
+  max-height: 25em;
+  overflow-y: scroll;
+  border: 5px solid hsl(234, 37%, 15%);
+  border-radius: 15px;
+}
+
+.adminMessages {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.adminMessagesUserInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminMessagesWrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  max-height: 20em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.adminMessageUser {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  background-color: hsl(234, 37%, 12%);
+  padding: .5rem 1rem;
+  border-radius: 10px;
+}
+
+.adminMessageUser:not(:first-child) {
+  margin-bottom: 1em;
+}
+
+.adminMessageUserMessage {
+  flex-basis: 60%;
+  flex-basis: 70%;
+  flex-shrink: 0;
+  white-space: wrap;
+  text-overflow: ellipsis;
+}
+
+.adminMessageUserType {
+  flex-basis: 10%;
+  flex-basis: 15%;
+  flex-shrink: 0;
+}
+
+.adminMessageUserTime {
+  flex-basis: 10%;
+  flex-shrink: 0;
+}
+
+.adminMessageUserDelete {
+  flex-basis: 5%;
+  flex-shrink: 0;
+  height: 100%;
+  aspect-ratio: 1;
+  padding-left: .5em;
+  flex-basis: 10%;
+  flex-shrink: 0;
+}
+
+.adminMessageUserDelete {
+  flex-basis: 5%;
+  flex-shrink: 0;
+  height: 48px;
+  aspect-ratio: 1;
+  stroke: white;
+}
+
+.removeForm {
+  position: relative;
+}
+
+.removeSubmit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: transparent;
+  cursor: pointer;
+}
+
+.adminUserId, .adminMessageUserCreatedAt, .adminMessageUserTime {
+  display: none;
+}
+
+/* xs */
+@media (min-width: 475px) {
+  .adminUserId {
+    display: block;
+  }
+}
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+@media (min-width: 1024px) {
+  .admin {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    font-size: 1rem;
+  }
+
+  .adminInfo {
+    height: auto;
+  }
+
+  .adminMessages {
+    grid-area: 2 / 1 / 3 / 3;
+  }
+
+  .adminMessageUserCreatedAt, .adminMessageUserTime {
+    display: block;
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  .admin {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .adminMessages {
+    grid-area: 1 / 3 / 4 / 6;
+  }
+
+  .adminUserList {
+    grid-area: 2 / 1 / 4 / 3;
+  }
+
+  .adminInfo {
+    grid-area: 1 / 1 / 2 / 3;
+  }
+}
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

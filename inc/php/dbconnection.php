@@ -278,7 +278,6 @@ function getUserCredits($userId)
     return $userCreditsFromId;
 }
 
-
 function getUserSettings($userId)
 {
     $con = connectDB();
@@ -387,10 +386,11 @@ function getUserInfo($userId)
 function getAllUsers()
 {
     $con = connectDB();
-    // define the SQL
+    
+    // Define the SQL with secondary sorting by userId
     $sql = "SELECT *
-FROM userInfo
-ORDER BY userCredits DESC";
+            FROM userInfo
+            ORDER BY userCredits DESC, userId DESC";
 
     // Prepare the SQL statement
     $stmt = $con->prepare($sql);
@@ -413,8 +413,12 @@ ORDER BY userCredits DESC";
     return $allInfo;
 }
 
+
 function updateCredits($userId, $newCredits)
 {
+    if ($newCredits < 0) {
+        $newCredits = 0;
+    }
     updateCreditHistory($userId, $newCredits);
     $con = connectDB();
     // Define the SQL
@@ -603,9 +607,8 @@ function userCounter()
     $stmt = $con->prepare($sql);
 
     if ($result->num_rows > 0) {
-        // Output the user count multiplied by 3
         $row = $result->fetch_assoc();
-        $multipliedCount = $row["total"] * 3;
+        $multipliedCount = $row["total"];
         echo " " . $multipliedCount;
     } else {
         echo "0 results";
@@ -641,6 +644,178 @@ function updateLastInlogFromId($newTime, $userId)
     return true;
 }
 
+function getUsersWithContact()
+{
+    $con = connectDB();
+    // define the SQL
+    $sql = "SELECT DISTINCT u.*
+    FROM userinfo u
+    JOIN adminchat c ON u.userId = c.userId
+    ";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $users = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // return array of links
+    return $users;
+}
+
+function getMessageAmount($userId)
+{
+    $con = connectDB(); // Establish database connection (assuming connectDB() function handles this)
+
+    // Define the SQL query to fetch messages for the given userId
+    $sql = "SELECT *
+            FROM adminChat
+            WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Count the number of rows (messages)
+    $messageCount = $result->num_rows;
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the message count
+    return $messageCount;
+}
+
+function getMessagesById($userId)
+{
+    $con = connectDB(); // Establish database connection (assuming connectDB() function handles this)
+
+    // Define the SQL query to fetch messages for the given userId
+    $sql = "SELECT *
+            FROM adminChat
+            WHERE userId = ?
+            ORDER BY timeSent DESC";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $message = $stmt->get_result();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the message count
+    return $message;
+}
+
+function getMessages()
+{
+    $con = connectDB();
+    // Define the SQL query to fetch messages for the given userId
+    $sql = "SELECT *
+            FROM adminChat
+            ORDER BY timeSent DESC";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $messages = $stmt->get_result();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the message count
+    return $messages;
+}
+
+function getUserLeaderboardPosition($userId)
+{
+    // Connect to the database
+    $con = connectDB();
+
+    // Define the SQL query with subquery for ranking
+    $sql = "SELECT
+                userId,
+                userDisplayName,
+                userCredits,
+                leaderboardPosition
+            FROM (
+                SELECT 
+                    userId,
+                    userDisplayName,
+                    userCredits,
+                    DENSE_RANK() OVER (ORDER BY userCredits DESC, userId DESC) AS leaderboardPosition
+                FROM 
+                    userinfo
+            ) AS ranked_users
+            WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the userId parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch data from result
+    $userLeaderboardPosition = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return the array of leaderboard positions for the specified user
+    return $userLeaderboardPosition;
+}
+
+
 function updatePreferences($userId, $profilePublic = 0, $profileCredits = 0, $profileLeaderboard = 0)
 {
     $con = connectDB();
@@ -661,4 +836,99 @@ function updatePreferences($userId, $profilePublic = 0, $profileCredits = 0, $pr
     $con->close();
 
     return true;
+}
+
+function sendContact($content, $type, $userId)
+{
+    $con = connectDB();
+    // Define the SQL
+    $sql = "INSERT INTO `adminchat` (`content`, `type`, `userId`) VALUES (?, ?, ?)";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Bind the parameters
+    $stmt->bind_param("ssi", $content, $type, $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    return true;
+}
+
+
+function deleteSingularChat($id)
+{
+    $con = connectDB();
+    // Define the SQL
+    $sql = "DELETE FROM adminchat WHERE id = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Check if the statement was prepared successfully
+    if (!$stmt) {
+        // Close the connection
+        $con->close();
+        return false;
+    }
+
+    // Bind the parameter
+    $stmt->bind_param("i", $id);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Check if the record was successfully deleted
+    $success = $stmt->affected_rows > 0;
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return true if deletion was successful, false otherwise
+    return $success;
+}
+
+function deleteChat($userId)    
+{
+    $con = connectDB();
+    // Define the SQL
+    $sql = "DELETE FROM adminchat WHERE userId = ?";
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare($sql);
+
+    // Check if the statement was prepared successfully
+    if (!$stmt) {
+        // Close the connection
+        $con->close();
+        return false;
+    }
+
+    // Bind the parameter
+    $stmt->bind_param("i", $userId);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Check if the record was successfully deleted
+    $success = $stmt->affected_rows > 0;
+
+    // Close the statement
+    $stmt->close();
+
+    // Close the connection
+    $con->close();
+
+    // Return true if deletion was successful, false otherwise
+    return $success;
 }

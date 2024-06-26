@@ -6,6 +6,14 @@ header {
   /* border: red 1px solid; */
 }
 
+header > * {
+  flex: 1;
+}
+
+.nav {
+  flex: 2;
+}
+
 .title {
   display: none;
 }
@@ -21,6 +29,8 @@ header {
 
 .navUL {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   font-weight: 600;
   font-size: 0.65rem;
 }
@@ -51,10 +61,11 @@ header {
 
 .loginButtons {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
   gap: 1em;
   font-size: 0.6rem;
+  white-space: nowrap;
 }
 
 .dropdownMenu {
@@ -69,6 +80,9 @@ header {
 
 /* xs */
 @media (min-width: 475px) {
+  .title {
+    display: block;
+  }
   .title > a > h1 {
     font-size: 1.2rem;
   }
@@ -76,12 +90,9 @@ header {
     font-size: 0.8rem;
   }
   .loginButtons {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
   }
-  .title {
-    display: block;
-  }
-  
+
 }
 
 /* sm */
@@ -92,23 +103,26 @@ header {
   .navUL {
     font-size: 1rem;
   }
+
+
+}
+
+/* md */
+@media (min-width: 768px) {
   .loginButtons {
     font-size: 1rem;
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .title > a > h1 {
+    font-size: 1.8rem;
   }
   .navLinkSvg {
     display: inline-block;
   }
 }
-
-/* md */
-@media (min-width: 768px) {
-  .title > a > h1 {
-    font-size: 2rem;
-  }
-}
-
-/* lg */
-/* @media (min-width: 1024px) {} */
 
 /* xl */
 /* @media (min-width: 1280px) {} */

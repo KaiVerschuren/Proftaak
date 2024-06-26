@@ -1,26 +1,12 @@
 <?php
 include("inc/php/functions.php");
 
-session_start();
-
 head("User manual");
+mobileNav();
+HeaderFunction();
 ?>
 
 <body>
-<<<<<<< Updated upstream
-    <?php 
-    mobileNav(); 
-    HeaderFunction(); 
-    ?>
-
-    <img src="assets/manualLoggin.png" alt="">   
-
-
-    <?php 
-    footer();
-    ?>
-   
-=======
     <div class="container">
         <div class="manualWrapper">
             <div class="manualLinks">
@@ -45,14 +31,11 @@ head("User manual");
             </div>
         </div>
     </div>
-    <div class="manualFooter">
-        <?php footer(); ?>
-    </div>
+    <?php footer(); ?>
     <script>
         function skipTo(seconds) {
             var video = document.getElementById('manualVideo');
             video.currentTime = seconds;
         }
     </script>
->>>>>>> Stashed changes
 </body>

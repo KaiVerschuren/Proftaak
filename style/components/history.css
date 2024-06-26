@@ -4,12 +4,12 @@
     scroll-snap-type: x mandatory;
     display: none;
     justify-content: center;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .slideshow-container::-webkit-scrollbar {
-    display: none;  /* Safari and Chrome */
+    display: none;
 }
 
 .projectGrid {
@@ -27,7 +27,7 @@
 
 .photo {
     width: 75%;
-    border-radius: 15px 0 0 15px;
+    border-radius: 15px 15px 15px 15px;
     object-fit: cover;
 }
 
@@ -66,7 +66,7 @@
 
 .photo {
     width: 75%;
-    border-radius: 15px 0 0 15px;
+    border-radius: 15px 15px 15px 15px;
     object-fit: cover;
 }
 
@@ -81,7 +81,7 @@
     text-align: center;
 }
 
-.history_footer {
+.historyFooter {
     padding-top: 250px;
 }
 .mobileHistory {
