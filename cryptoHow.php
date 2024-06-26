@@ -12,7 +12,13 @@ HeaderFunction();
     <div class="container">
         <div class="accordion">
             <div class="accordion-item">
-                <div class="accordion-header">What is Cryptocurrency</div>
+                <div class="accordion-header">
+                    What is Cryptocurrency
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="accordion-header-svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25" />
+                    </svg>
+
+                </div>
                 <div class="accordion-content">
                     <p>
                         Imagine cryptocurrency as a kind of digital money that you can use on the internet.
@@ -22,7 +28,12 @@ HeaderFunction();
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-header">How Does Cryptocurrency Work?</div>
+                <div class="accordion-header">
+                    How Does Cryptocurrency Work?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="accordion-header-svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25" />
+                    </svg>
+                </div>
                 <div class="accordion-content">
                     <h3>1. Digital Money</h3>
                     <ul>
@@ -39,7 +50,12 @@ HeaderFunction();
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-header">Blockchain (Digital Ledger)</div>
+                <div class="accordion-header">
+                    Blockchain (Digital Ledger)
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="accordion-header-svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25" />
+                    </svg>
+                </div>
                 <div class="accordion-content">
                     <p>
                         Think of a <strong>blockchain</strong> as a special kind of digital
@@ -58,7 +74,12 @@ HeaderFunction();
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-header">How Transactions Work</div>
+                <div class="accordion-header">
+                    How Transactions Work
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="accordion-header-svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25" />
+                    </svg>
+                </div>
                 <div class="accordion-content">
                     <p>Imagine you want to send digital money to a friend:</p>
                     <ul>
@@ -82,7 +103,12 @@ HeaderFunction();
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-header">Security</div>
+                <div class="accordion-header">
+                    Security
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="accordion-header-svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25" />
+                    </svg>
+                </div>
                 <div class="accordion-content">
                     <p>Cryptocurrency uses special codes and techniques (called cryptography) to keep everything secure:</p>
                     <ul>
@@ -99,7 +125,12 @@ HeaderFunction();
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-header">Mining (Creating New Coins)</div>
+                <div class="accordion-header">
+                    Mining (Creating New Coins)
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="accordion-header-svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25" />
+                    </svg>
+                </div>
                 <div class="accordion-content">
                     <ul>
                         <li>
@@ -116,7 +147,12 @@ HeaderFunction();
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-header">Why Use Cryptocurrency?</div>
+                <div class="accordion-header">
+                    Why Use Cryptocurrency?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="accordion-header-svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25" />
+                    </svg>
+                </div>
                 <div class="accordion-content">
                     <ul>
                         <li>
@@ -137,7 +173,12 @@ HeaderFunction();
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-header">Where to Keep Cryptocurrency?</div>
+                <div class="accordion-header">
+                    Where to Keep Cryptocurrency?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="accordion-header-svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25" />
+                    </svg>
+                </div>
                 <div class="accordion-content">
                     <p>
                         You keep your cryptocurrency in a <strong>digital wallet</strong>,
