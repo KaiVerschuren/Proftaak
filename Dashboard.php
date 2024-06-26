@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['changePreferences'])) 
     $succes = updatePreferences($_SESSION['loginInfo']['userId'], $profilePublic, $profileCredits, $profileLeaderboard);
     if ($succes) {
         customMessageBox(
-            "Successfully hanldel update",
+            "Successfully handled update",
             "Successfully changed to your preferences",
             $buttons = [
                 ['label' => 'Continue', 'url' => 'dashboard.php']
