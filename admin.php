@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user'])) {
                         <h2><a href="mailto:<?= $user['userEmail']; ?>"><?= $user['userEmail']; ?></a></h2>
                         <h2 class="adminMessageUserCreatedAt"><?= $user['createdAt']; ?></h2>
                         <h2><?= $user['userStatus']; ?></h2>
-                        <h2><?= $user['createdAt']; ?></h2>
+
                     <?php
                     }
                     ?>
