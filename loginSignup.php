@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $signUpSuccessfull = signUp($userDisplayName, $userPassword, $userEmail, "user");
 
-        if ($signUpSuccessful) {
+        if ($signUpSuccessfull) {
             customMessageBox(
                 "Sign up successful",
                 "You're now successfully signed up",

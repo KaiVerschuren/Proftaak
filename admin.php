@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['reset'])) {
             <h2>Users:</h2>
             <div class="adminUserListWrapper">
                 <div class="adminUserHead">
-                    <div class="adminUserId"></div>
                     <div class="adminUserId">Id:</div>
                     <div class="adminUserName">Name:</div>
                     <div class="adminUserAmount">Message Amount:</div>
@@ -89,11 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['reset'])) {
                     <?php
                     foreach ($userInfo as $user) {
                     ?>
-                        <h2><?= $user['userId']; ?></h2>
                         <h2><?= $user['userDisplayName']; ?></h2>
                         <h2><a href="mailto:<?= $user['userEmail']; ?>"><?= $user['userEmail']; ?></a></h2>
-                        <h2><?= $user['userStatus']; ?></h2>
-                        <h2><?= $user['createdAt']; ?></h2>
+                        <h2 class="adminMessageUserCreatedAt"><?= $user['createdAt']; ?></h2>
                     <?php
                     }
                     ?>
