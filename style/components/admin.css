@@ -97,7 +97,7 @@
 
 .adminMessageUserMessage {
   flex-basis: 60%;
-  flex-basis: 70%;
+  
   flex-shrink: 0;
 }
 
@@ -109,6 +109,15 @@
 
 .adminMessageUserTime {
 
+<<<<<<< Updated upstream
+=======
+.adminMessageUserDelete {
+  flex-basis: 30%;
+  flex-shrink: 0;
+  height: 80%;
+  aspect-ratio: 1;
+  padding-left: .5em;
+>>>>>>> Stashed changes
   flex-basis: 10%;
   flex-shrink: 0;
 }

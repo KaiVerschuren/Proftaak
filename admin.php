@@ -116,8 +116,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user'])) {
                         <h2><?= $user['userDisplayName']; ?></h2>
                         <h2><a href="mailto:<?= $user['userEmail']; ?>"><?= $user['userEmail']; ?></a></h2>
                         <h2><?= $user['userStatus']; ?></h2>
+<<<<<<< Updated upstream
                         <h2><?= $user['createdAt']; ?></h2>
                         
+=======
+                    
+>>>>>>> Stashed changes
                     <?php
                     }
                     ?>
