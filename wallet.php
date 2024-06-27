@@ -47,6 +47,11 @@ if (!isset($_SESSION['loginInfo']['userLoginState']) || !$_SESSION['loginInfo'][
     exit();
 }
 
+$userCredits = getUserCredits($_SESSION['loginInfo']['userId']);
+$userCredit = 0;
+foreach ($userCredits as $credits) {
+    $userCredit = $credits['userCredits'];
+}
 $crypto = api(100, [], 'EUR');
 ?>
 
@@ -55,7 +60,10 @@ $crypto = api(100, [], 'EUR');
         <div class="wallet">
             <header class="walletHeader">
                 <h1>Wallet</h1>
-                <h3>Hello, <?php echo $_SESSION['loginInfo']['userDisplayName']; ?>!</h3>
+                <div class="walletHeaderUserInfo">
+                    <h3>Hello, <?php echo $_SESSION['loginInfo']['userDisplayName']; ?>!</h3>
+                    <h3>Credits: <?php echo $userCredit;?></h3>
+                </div>
             </header>
             <div class="walletContents slide-in hidden">
                 <table class="walletTable accentShadow">

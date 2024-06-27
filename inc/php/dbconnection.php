@@ -413,7 +413,6 @@ function getAllUsers()
     return $allInfo;
 }
 
-
 function updateCredits($userId, $newCredits)
 {
     if ($newCredits < 0) {
